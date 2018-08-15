@@ -1,7 +1,3 @@
-/*------------------------------------------------------------------------------
- - Copyright (c) 2018. This code was created by Younes Charfaoui in the process of Graduation Project for the year of  2018 , which is about creating a platform  for students and professors to help them in the communication and the get known of the university information and so on.
- -----------------------------------------------------------------------------*/
-
 package me.mxcsyounes.archernotebook.adapters;
 
 import android.content.Context;
@@ -10,7 +6,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 
 public class IntroPagerAdapter extends PagerAdapter {

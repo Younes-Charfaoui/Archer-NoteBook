@@ -25,5 +25,28 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextIntroSlidersUp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="TextIntroSlidersDown">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ImageViewSliders">
+        <item name="android:layout_width">256dp</item>
+        <item name="android:layout_height">256dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:contentDescription">@null</item>
+    </style>
+
 
 </resources>
