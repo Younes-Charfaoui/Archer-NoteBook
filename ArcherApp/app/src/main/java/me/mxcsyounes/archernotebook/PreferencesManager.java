@@ -26,11 +26,10 @@ public class PreferencesManager {
     private SharedPreferences.Editor mEditor;
 
     @SuppressLint("CommitPrefEdits")
-    public PreferencesManager(Context mContext, int type) {
+    public PreferencesManager(Context mContext) {
         mPreferences = mContext.getSharedPreferences(PREFERENCE_CONFIGURATION_NAME, PRIVATE_MODE);
         mEditor = mPreferences.edit();
     }
-
 
     public boolean isNotFirstTimeLaunched() {
         return !mPreferences.getBoolean(FIRST_TIME, true);
