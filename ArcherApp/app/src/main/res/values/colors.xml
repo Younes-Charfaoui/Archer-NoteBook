@@ -3,4 +3,10 @@
     <color name="colorPrimary">#AB47BC</color>
     <color name="colorPrimaryDark">#8E24AA</color>
     <color name="colorAccent">#E040FB</color>
+
+    <!-- colors of slides -->
+    <color name="slide_one">#4FC3F7</color>
+    <color name="slide_two">#FF8A65</color>
+    <color name="slide_three">#81C784</color>
+    <color name="slide_four">#BA68C8</color>
 </resources>

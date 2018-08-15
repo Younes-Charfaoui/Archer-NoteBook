@@ -28,7 +28,7 @@ public class LauncherActivity extends AppCompatActivity {
         }
 
         if (new PreferencesManager(this).isNotFirstTimeLaunched()) {
-            //classes = MainActivity.class;
+           classes = MainActivity.class;
         }
 
 

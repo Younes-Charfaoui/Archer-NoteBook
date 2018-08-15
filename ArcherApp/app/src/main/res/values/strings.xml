@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">ArcherNoteBook</string>
+    <string name="app_name">Archer NoteBook</string>
     <string name="done">Done</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="archery_notebook">Archery Notebook</string>
+    <string name="slide_one_down_text">Amazing Android app with cool features.</string>
+    <string name="slide_one_top_text">Welcome to Archer Notebook</string>
+    <string name="slide_two_down_text">Save the scores sheets you\nmake at training and tournament\nin on place.</string>
+    <string name="slide_two_top_text">All scores in\none place</string>
+    <string name="slide_three_down_text">Mark you bow adjustments\nfor specifics targets.</string>
+    <string name="slide_three_top_text">Bow adjustments</string>
+    <string name="slide_four_down_text">Tap Done and start using\nArcher Notebook.</string>
+    <string name="slide_four_top_text">What are
+you waiting?</string>
 </resources>

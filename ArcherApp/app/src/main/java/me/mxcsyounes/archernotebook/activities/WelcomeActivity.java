@@ -52,9 +52,11 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
                 R.layout.welcome_slide_three,
                 R.layout.welcome_slide_four};
 
+
         //changing the color of the status bar to transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
@@ -80,7 +82,7 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
 
     private void launchMainScreen() {
         mPreferencesManager.setFirstTimeLaunched();
-        //startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
