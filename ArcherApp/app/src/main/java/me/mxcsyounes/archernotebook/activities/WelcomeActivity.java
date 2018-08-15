@@ -2,7 +2,7 @@
  - Copyright (c) 2018. This code was created by Younes Charfaoui in the process of Graduation Project for the year of  2018 , which is about creating a platform  for students and professors to help them in the communication and the get known of the university information and so on.
  -----------------------------------------------------------------------------*/
 
-package me.mxcsyounes.archernotebook;
+package me.mxcsyounes.archernotebook.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import me.mxcsyounes.archernotebook.adapters.IntroPagerAdapter;
+import me.mxcsyounes.archernotebook.utilities.PreferencesManager;
+import me.mxcsyounes.archernotebook.R;
 
 public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -49,11 +53,11 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
                 R.layout.welcome_slide_four};
 
         //changing the color of the status bar to transparent
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+
         IntroPagerAdapter mPageAdapter = new IntroPagerAdapter(this, mLayouts);
         mViewPager.setAdapter(mPageAdapter);
         mViewPager.addOnPageChangeListener(this);
@@ -76,10 +80,9 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
 
     private void launchMainScreen() {
         mPreferencesManager.setFirstTimeLaunched();
-        startActivity(new Intent(this, LoginActivity.class));
+        //startActivity(new Intent(this, MainActivity.class));
         finish();
     }
-
 
     private int getItem() {
         return mViewPager.getCurrentItem() + 1;
@@ -89,10 +92,10 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
         if (position == mLayouts.length - 1) {
-            mNextButton.setText(getResources().getString(R.string.got_it));
+            mNextButton.setText(R.string.done);
             mSkipButton.setVisibility(View.GONE);
         } else {
-            mNextButton.setText(getResources().getString(R.string.next));
+            mNextButton.setText(R.string.next);
             mSkipButton.setVisibility(View.VISIBLE);
         }
 
@@ -107,5 +110,4 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
     public void onPageScrollStateChanged(int state) {
 
     }
-
 }

@@ -14,19 +14,6 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/studenttwo"
-            android:contentDescription="@null" />
-
-
-        <TextView
-            style="@style/IntroSlidersText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_slide_two_string" />
-
     </LinearLayout>
 
 </RelativeLayout>
