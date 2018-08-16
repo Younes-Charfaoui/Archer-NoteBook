@@ -16,7 +16,7 @@
         <TextView
             style="@style/TextIntroSlidersUp"
             android:layout_marginBottom="64dp"
-            android:fontFamily="@font/lato_regular"
+            android:fontFamily="@font/bahnschrift"
             android:text="@string/slide_one_top_text" />
 
         <ImageView
@@ -26,7 +26,7 @@
 
         <TextView
             style="@style/TextIntroSlidersDown"
-            android:fontFamily="@font/lato_light"
+            android:fontFamily="@font/bahnschrift"
             android:text="@string/slide_one_down_text" />
     </LinearLayout>
 
