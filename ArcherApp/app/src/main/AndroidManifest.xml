@@ -27,6 +27,33 @@
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AdjustmentsActivity"
+            android:label="@string/title_activity_adjustments"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mxcsyounes.archernotebook.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ScoresActivity"
+            android:label="@string/title_activity_scores"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mxcsyounes.archernotebook.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.BowSettingActivity"
+            android:label="@string/title_activity_bow_setting"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mxcsyounes.archernotebook.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

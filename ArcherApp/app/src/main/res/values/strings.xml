@@ -22,5 +22,10 @@
     <string name="adjust">Adjust</string>
     <string name="scores">Scores</string>
     <string name="bow_setting">Bow Setting</string>
+    <string name="menu_item_setting_string">Setting</string>
+    <string name="title_activity_adjustments">Adjustments</string>
+    <string name="title_activity_scores">Scores</string>
+    <string name="title_activity_bow_setting">Bow Setting</string>
+    <string name="more_toast">More features in next version of the app.</string>
 
 </resources>
