@@ -3,6 +3,8 @@ package me.mxcsyounes.archernotebook.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.ads.AdRequest;
@@ -10,8 +12,12 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import me.mxcsyounes.archernotebook.R;
+import me.mxcsyounes.archernotebook.adapters.AdjustmentsAdapter;
+import me.mxcsyounes.archernotebook.viewmodels.AdjustmentViewModel;
 
 public class AdjustmentsActivity extends AppCompatActivity {
+
+    private AdjustmentViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,14 @@ public class AdjustmentsActivity extends AppCompatActivity {
         });
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        RecyclerView recyclerView = findViewById(R.id.adjustment_recycler_view);
+        AdjustmentsAdapter adapter = new AdjustmentsAdapter(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(false);
     }
 
 }
