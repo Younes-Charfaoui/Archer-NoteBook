@@ -52,5 +52,6 @@
     <style name="CardViewMain" parent="CardView">
         <item name="android:layout_width">140dp</item>
         <item name="android:layout_height">170dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 </resources>
