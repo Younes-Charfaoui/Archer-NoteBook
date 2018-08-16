@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import me.mxcsyounes.archernotebook.database.dao.AdjustmentDao;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
-@Database(entities = {Adjustment.class}, version = 1)
+@Database(entities = {Adjustment.class}, version = 1 ,exportSchema = false)
 public abstract class ArcherDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "archer.db";

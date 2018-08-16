@@ -31,7 +31,7 @@ public class Adjustment {
     @ColumnInfo(name = "path_two")
     public String pathTwo;
     @ColumnInfo(name = "path_three")
-    public String PathThree;
+    public String pathThree;
 
     public String description;
 
@@ -43,7 +43,7 @@ public class Adjustment {
         this.date = date;
         this.pathOne = pathOne;
         this.pathTwo = pathTwo;
-        PathThree = pathThree;
+        this.pathThree = pathThree;
         this.description = description;
     }
 }

@@ -13,7 +13,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/ad_view_adjustment"
+        android:visibility="gone"
         tools:listitem="@layout/adjustment_list_item_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/adjust_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <LinearLayout
+            android:id="@+id/adjust_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="230dp"
+                android:layout_height="230dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@null"
+                android:paddingBottom="8dp"
+                android:src="@drawable/ic_gear_archer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bahnschrift"
+                android:paddingBottom="5dp"
+                android:text="@string/adjustment_empty_title_string"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bahnschrift"
+                android:text="@string/adjustment_empty_detail_string"
+                android:textAppearance="?android:textAppearanceSmall" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/ad_view_adjustment"

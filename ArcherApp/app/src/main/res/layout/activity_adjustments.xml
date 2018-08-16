@@ -29,8 +29,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="80dp"
         android:layout_marginEnd="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
-
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        tools:ignore="VectorDrawableCompat" />
 
 </android.support.design.widget.CoordinatorLayout>

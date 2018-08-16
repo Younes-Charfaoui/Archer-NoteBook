@@ -27,5 +27,7 @@
     <string name="title_activity_scores">Scores</string>
     <string name="title_activity_bow_setting">Bow Setting</string>
     <string name="more_toast">More features in next version of the app.</string>
+    <string name="adjustment_empty_detail_string">Get started by adding an adjustment.</string>
+    <string name="adjustment_empty_title_string">No adjustment available.</string>
 
 </resources>
