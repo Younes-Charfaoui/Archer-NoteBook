@@ -6,14 +6,25 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:textViewStyle">@style/BahnschriftTextViews</item>-->
+        <!--<item name="buttonStyle">@style/BahnschriftButtonStyle</item>-->
     </style>
 
+    <style name="BahnschriftTextViews" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/bahnschrift</item>
+    </style>
+
+    <style name="BahnschriftButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/bahnschrift</item>
+    </style>
 
     <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/BahnschriftTextViews</item>
+        <item name="buttonStyle">@style/BahnschriftButtonStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

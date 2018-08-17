@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -18,14 +18,15 @@ import com.google.android.gms.ads.MobileAds;
 import me.mxcsyounes.archernotebook.DataProvider;
 import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.adapters.AdjustmentsAdapter;
+import me.mxcsyounes.archernotebook.fragments.AddAdjustmentDialog;
 import me.mxcsyounes.archernotebook.viewmodels.AdjustmentViewModel;
 
-public class AdjustmentsActivity extends AppCompatActivity {
+public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustmentDialog.AdjustmentDistance {
 
     private AdjustmentViewModel mViewModel;
     private FloatingActionButton mAddAdjustFab;
     private ProgressBar mProgressBar;
-    private static final String TAG ="AdjActivity";
+    private static final String TAG = "AdjActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,6 @@ public class AdjustmentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_adjustments);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         MobileAds.initialize(this, getResources().getString(R.string.app_id_ad_test));
 
@@ -48,8 +48,12 @@ public class AdjustmentsActivity extends AppCompatActivity {
         mAddAdjustFab.hide();
 
         mAddAdjustFab.setOnClickListener(v -> {
+            AddAdjustmentDialog dialog = new AddAdjustmentDialog();
+            dialog.show(getSupportFragmentManager(), "Tag");
+
             // TODO: 16-Aug-18 process to add new adjust.
         });
+
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -76,4 +80,8 @@ public class AdjustmentsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onAdjustmentDistanceComplete(int distance) {
+        Toast.makeText(this, "distance is " + distance, Toast.LENGTH_SHORT).show();
+    }
 }
