@@ -2,6 +2,7 @@ package me.mxcsyounes.archernotebook.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
 public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.AdjustmentViewHolder> {
-
+    private final static String TAG = "Adapter";
     private LayoutInflater mInflater;
     private List<Adjustment> mAdjustmentsList;
 
@@ -44,7 +45,7 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
     }
 
     public void setAdjustmentsList(List<Adjustment> list) {
-        mAdjustmentsList = list;
+        this.mAdjustmentsList = list;
         notifyDataSetChanged();
     }
 
@@ -68,7 +69,9 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
 
     @Override
     public int getItemCount() {
-        return mAdjustmentsList == null ? 0 : mAdjustmentsList.size();
+        if (mAdjustmentsList != null)
+            return mAdjustmentsList.size();
+        return 0;
     }
 
     class AdjustmentViewHolder extends RecyclerView.ViewHolder {

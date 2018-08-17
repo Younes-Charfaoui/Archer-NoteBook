@@ -3,7 +3,7 @@
     <string name="done">Done</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Notebook</string>
     <string name="archery_notebook">Archery Notebook</string>
     <string name="slide_one_down_text">Amazing Android app with cool\nfeatures.</string>
     <string name="slide_one_top_text">Welcome to Archer Notebook</string>

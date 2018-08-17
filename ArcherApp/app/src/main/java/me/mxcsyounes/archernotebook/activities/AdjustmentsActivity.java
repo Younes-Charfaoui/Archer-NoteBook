@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -14,6 +15,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import me.mxcsyounes.archernotebook.DataProvider;
 import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.adapters.AdjustmentsAdapter;
 import me.mxcsyounes.archernotebook.viewmodels.AdjustmentViewModel;
@@ -23,6 +25,7 @@ public class AdjustmentsActivity extends AppCompatActivity {
     private AdjustmentViewModel mViewModel;
     private FloatingActionButton mAddAdjustFab;
     private ProgressBar mProgressBar;
+    private static final String TAG ="AdjActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +66,11 @@ public class AdjustmentsActivity extends AppCompatActivity {
         mViewModel.getAllNotes().observe(this, list -> {
             mProgressBar.setVisibility(View.GONE);
             mAddAdjustFab.show();
-            if (list != null && list.size() > 0)
-                adapter.setAdjustmentsList(list);
-            else {
+            recyclerView.setVisibility(View.VISIBLE);
+            if (DataProvider.getAdjustmentList() != null && DataProvider.getAdjustmentList().size() > 0) {
+                recyclerView.setVisibility(View.VISIBLE);
+                adapter.setAdjustmentsList(DataProvider.getAdjustmentList());
+            } else {
                 findViewById(R.id.adjust_empty_view).setVisibility(View.VISIBLE);
             }
         });

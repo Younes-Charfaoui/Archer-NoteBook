@@ -14,6 +14,21 @@ import me.mxcsyounes.archernotebook.database.converters.DateConverters;
 @Entity(tableName = "adjustment")
 public class Adjustment {
 
+    @Override
+    public String toString() {
+        return "Adjustment{" +
+                "id=" + id +
+                ", distance=" + distance +
+                ", v_adj='" + v_adj + '\'' +
+                ", h_adj='" + h_adj + '\'' +
+                ", date=" + date +
+                ", pathOne='" + pathOne + '\'' +
+                ", pathTwo='" + pathTwo + '\'' +
+                ", pathThree='" + pathThree + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     @PrimaryKey(autoGenerate = true)
     public int id;
 
