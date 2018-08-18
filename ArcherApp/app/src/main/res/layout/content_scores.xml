@@ -79,7 +79,7 @@
 
             <ImageView
                 style="@style/ScoresImageMenu"
-                android:src="@drawable/taget_and_arrow" />
+                android:src="@drawable/ic_chart_archery" />
 
             <TextView
                 style="@style/ScoresTextMenu"

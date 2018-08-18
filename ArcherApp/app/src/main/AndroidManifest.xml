@@ -54,6 +54,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mxcsyounes.archernotebook.activities.MainActivity" />
         </activity>
+
+
     </application>
 
 </manifest>

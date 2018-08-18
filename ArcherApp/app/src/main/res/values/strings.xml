@@ -32,5 +32,8 @@
     <string name="horizontal_adjust">Horizontal Adjust</string>
     <string name="vertical_adjust">Vertical Adjust</string>
     <string name="description">Description</string>
+    <string name="info_add_photo_string">You can take any photos for your bow and other thing like clicker state, arrows and so on.</string>
+    <string name="no_photos_yet">No Photos yet.</string>
+    <string name="take_photo">Take Photo</string>
 
 </resources>

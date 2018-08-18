@@ -6,20 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bahnschrift"
-        tools:text="Text Adjusts"
-        android:textColor="@color/colorAccent"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bahnschrift"
-        android:text="Please fill the information in the text fields." />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/horizontal_adjust_input_layout_text"
@@ -66,19 +52,5 @@
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:fontFamily="@font/bahnschrift"
-            android:textColor="@color/colorAccent"
-            tools:text="Next" />
-    </LinearLayout>
 
 </LinearLayout>

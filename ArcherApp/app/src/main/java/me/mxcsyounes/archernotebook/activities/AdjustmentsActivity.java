@@ -18,10 +18,13 @@ import com.google.android.gms.ads.MobileAds;
 import me.mxcsyounes.archernotebook.DataProvider;
 import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.adapters.AdjustmentsAdapter;
-import me.mxcsyounes.archernotebook.fragments.AddAdjustmentDialog;
+import me.mxcsyounes.archernotebook.fragments.AddAdjustmentDistanceDialog;
+import me.mxcsyounes.archernotebook.fragments.AddAdjustmentPhotosDialog;
+import me.mxcsyounes.archernotebook.fragments.AddAdjustmentTextsDialog;
 import me.mxcsyounes.archernotebook.viewmodels.AdjustmentViewModel;
 
-public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustmentDialog.AdjustmentDistance {
+public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustmentDistanceDialog.AdjustmentDistanceListener
+        , AddAdjustmentTextsDialog.AdjustmentTextListener, AddAdjustmentPhotosDialog.AdjustmentPhotoListener {
 
     private AdjustmentViewModel mViewModel;
     private FloatingActionButton mAddAdjustFab;
@@ -48,10 +51,8 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
         mAddAdjustFab.hide();
 
         mAddAdjustFab.setOnClickListener(v -> {
-            AddAdjustmentDialog dialog = new AddAdjustmentDialog();
-            dialog.show(getSupportFragmentManager(), "Tag");
-
-            // TODO: 16-Aug-18 process to add new adjust.
+            AddAdjustmentDistanceDialog dialog = new AddAdjustmentDistanceDialog();
+            dialog.show(getSupportFragmentManager(), "DistanceAdd");
         });
 
         if (getSupportActionBar() != null)
@@ -83,5 +84,20 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
     @Override
     public void onAdjustmentDistanceComplete(int distance) {
         Toast.makeText(this, "distance is " + distance, Toast.LENGTH_SHORT).show();
+
+        AddAdjustmentTextsDialog dialog = new AddAdjustmentTextsDialog();
+        dialog.show(getSupportFragmentManager(), "TextAdd");
+    }
+
+    @Override
+    public void onAdjustmentTextComplete(String vertical, String horizontal, String description) {
+        Toast.makeText(this, "text are " + vertical + horizontal + description, Toast.LENGTH_SHORT).show();
+        AddAdjustmentPhotosDialog dialog = new AddAdjustmentPhotosDialog();
+        dialog.show(getSupportFragmentManager(),"PhotoAdd");
+    }
+
+    @Override
+    public void onAdjustmentPhotoComplete(String... paths) {
+
     }
 }
