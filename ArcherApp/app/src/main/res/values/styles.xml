@@ -65,4 +65,29 @@
         <item name="android:layout_height">170dp</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
+
+
+    <style name="ScoresTextMenu">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/bahnschrift</item>
+        <item name="android:padding">22dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">27sp</item>
+    </style>
+
+    <style name="ScoresImageMenu">
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:alpha">0.2</item>
+        <item name="android:contentDescription">Hello world</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="ScoresCardMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">120dp</item>
+    </style>
 </resources>

@@ -56,10 +56,12 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
             case 2:
                 return "70m";
             case 3:
-                return "50m";
+                return "60m";
             case 4:
-                return "30m";
+                return "50m";
             case 5:
+                return "30m";
+            case 6:
                 return "18m";
             default:
                 return "";

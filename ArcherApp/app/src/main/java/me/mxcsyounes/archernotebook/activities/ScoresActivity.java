@@ -15,18 +15,23 @@ public class ScoresActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        findViewById(R.id.scores_add_score_card).setOnClickListener(v -> {
+            // TODO: 18-Aug-18 Launch adding score process
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        findViewById(R.id.scores_progress_card).setOnClickListener(v -> {
+            // TODO: 18-Aug-18  launch preview of progress
+        });
+
+        findViewById(R.id.scores_add_score_card).setOnClickListener(v -> {
+            // TODO: 18-Aug-18 launch activity of scores
+        });
     }
 
 }
