@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,6 +21,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import me.mxcsyounes.archernotebook.R;
 
@@ -38,6 +38,7 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
     }
 
     int counter = 0;
+    TextView photoInfoTv;
 
     @NonNull
     @Override
@@ -49,22 +50,18 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
 
         textDialog.setMessage("Please take photos for your bow.");
 
-        View view = getActivity().getLayoutInflater().inflate(R.layout.adjust_photos_dialog, null);
+        View view = Objects.requireNonNull(getActivity()).getLayoutInflater().inflate(R.layout.adjust_photos_dialog, null);
 
         Button addPhotoBtn = view.findViewById(R.id.adjust_button_add_photo);
-        TextView photoInfoTv = view.findViewById(R.id.adjust_photo_state_text_view);
 
-        addPhotoBtn.setOnClickListener(v -> {
-            takePhoto();
-            counter++;
-            photoInfoTv.setText(counter + " photo are taken.");
-        });
+        photoInfoTv = view.findViewById(R.id.adjust_photo_state_text_view);
+
+        addPhotoBtn.setOnClickListener(v -> takePhoto());
 
         textDialog.setView(view);
 
-        textDialog.setPositiveButton("Finish", (dialogInterface, i) -> {
-            mInterface.onAdjustmentPhotoComplete(mCurrentPhotoFiles);
-        });
+        textDialog.setPositiveButton("Finish", (dialogInterface, i) ->
+                mInterface.onAdjustmentPhotoComplete(mCurrentPhotoFiles));
 
 
         return textDialog.create();
@@ -75,7 +72,7 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
     }
 
 
-    static final int REQUES_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void takePhoto() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -85,16 +82,15 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
                 try {
                     photoFile = createImageFile();
                 } catch (IOException ex) {
-                    Toast.makeText(getContext(), "Something Wrong happend.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.somthing_wrong, Toast.LENGTH_SHORT).show();
                 }
 
                 if (photoFile != null) {
                     if (getContext() != null)
                         imageUri = FileProvider.getUriForFile(getContext(), "me.mxcsyounes.archernotebook.fileprovider", photoFile);
 
-                    Log.i(TAG, "takePhoto: " + imageUri.toString());
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                    startActivityForResult(intent, REQUES_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
                 }
 
             } else
@@ -121,9 +117,12 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == REQUES_IMAGE_CAPTURE)
+        if (requestCode == REQUEST_IMAGE_CAPTURE)
             if (resultCode == Activity.RESULT_OK) {
-                mCurrentPhotoFiles += imageUri.toString() + ";";
+                counter++;
+                String currentPhotoText = counter + getString(R.string.photo_string);
+                photoInfoTv.setText(currentPhotoText);
+                mCurrentPhotoFiles += currentImage.getAbsolutePath() + ";";
             } else {
                 if (currentImage.exists())
                     if (getContext() != null)

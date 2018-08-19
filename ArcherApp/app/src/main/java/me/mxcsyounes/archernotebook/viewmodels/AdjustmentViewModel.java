@@ -14,28 +14,28 @@ import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
 public class AdjustmentViewModel extends AndroidViewModel {
 
-    private LiveData<List<Adjustment>> mAllNotes;
+    private LiveData<List<Adjustment>> mAllAdjustment;
     private DataRepository mRepository;
 
     public AdjustmentViewModel(@NonNull Application application) {
         super(application);
         mRepository = new DataRepository(application);
-        mAllNotes = mRepository.getAllAdj();
+        mAllAdjustment = mRepository.getAllAdj();
     }
 
-    public LiveData<List<Adjustment>> getAllNotes() {
-        return mAllNotes;
+    public LiveData<List<Adjustment>> getAllAdjustments() {
+        return mAllAdjustment;
     }
 
-    public void insertNote(Adjustment adjustment) {
-        mRepository.insertNote(adjustment);
+    public void insertAdjustment(Adjustment adjustment) {
+        mRepository.insertAdjustment(adjustment);
     }
 
-    public void deleteNote(Adjustment adjustment) {
-        mRepository.deleteNote(adjustment);
+    public void deleteAdjustment(Adjustment adjustment) {
+        mRepository.deleteAdjustment(adjustment);
     }
 
-    public void deleteAllNotes() {
-        mRepository.deleteAllNote();
+    public void deleteAllAdjustments() {
+        mRepository.deleteAllAdjustments();
     }
 }

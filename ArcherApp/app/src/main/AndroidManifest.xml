@@ -64,6 +64,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/files_paths" />
         </provider>
+
+        <activity
+            android:name=".activities.AdjustmentDetailActivity"
+            android:label="@string/title_activity_adjustment_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -28,7 +28,7 @@ public class DataRepository {
         return mAdjDao.getNoteById(id);
     }
 
-    public void insertNote(Adjustment adjustment) {
+    public void insertAdjustment(Adjustment adjustment) {
         new AdjDatabaseTask(AdjDatabaseTask.INSERT, mAdjDao).execute(adjustment);
     }
 
@@ -36,11 +36,11 @@ public class DataRepository {
         new AdjDatabaseTask(AdjDatabaseTask.UPDATE, mAdjDao).execute(adjustment);
     }
 
-    public void deleteNote(Adjustment adjustment) {
+    public void deleteAdjustment(Adjustment adjustment) {
         new AdjDatabaseTask(AdjDatabaseTask.DELETE, mAdjDao).execute(adjustment);
     }
 
-    public void deleteAllNote() {
+    public void deleteAllAdjustments() {
         new AdjDatabaseTask(AdjDatabaseTask.DELETE_ALL, mAdjDao).execute();
     }
 }

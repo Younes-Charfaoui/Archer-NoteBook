@@ -7,18 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-import me.mxcsyounes.archernotebook.DataProvider;
+import java.util.Date;
+
 import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.adapters.AdjustmentsAdapter;
+import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 import me.mxcsyounes.archernotebook.fragments.AddAdjustmentDistanceDialog;
 import me.mxcsyounes.archernotebook.fragments.AddAdjustmentPhotosDialog;
 import me.mxcsyounes.archernotebook.fragments.AddAdjustmentTextsDialog;
@@ -31,6 +31,8 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
     private FloatingActionButton mAddAdjustFab;
     private ProgressBar mProgressBar;
     private static final String TAG = "AdjActivity";
+    private Adjustment mAdjustment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
         mAddAdjustFab = findViewById(R.id.add_adjust_fab);
         mAddAdjustFab.hide();
 
+
         mAddAdjustFab.setOnClickListener(v -> {
             AddAdjustmentDistanceDialog dialog = new AddAdjustmentDistanceDialog();
             dialog.show(getSupportFragmentManager(), "DistanceAdd");
@@ -69,13 +72,14 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
 
         mViewModel = ViewModelProviders.of(this).get(AdjustmentViewModel.class);
 
-        mViewModel.getAllNotes().observe(this, list -> {
+        mViewModel.getAllAdjustments().observe(this, list -> {
             mProgressBar.setVisibility(View.GONE);
             mAddAdjustFab.show();
             recyclerView.setVisibility(View.VISIBLE);
-            if (DataProvider.getAdjustmentList() != null && DataProvider.getAdjustmentList().size() > 0) {
+            if (list != null && list.size() > 0) {
+                findViewById(R.id.adjust_empty_view).setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-                adapter.setAdjustmentsList(DataProvider.getAdjustmentList());
+                adapter.setAdjustmentsList(list);
             } else {
                 findViewById(R.id.adjust_empty_view).setVisibility(View.VISIBLE);
             }
@@ -84,21 +88,38 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
 
     @Override
     public void onAdjustmentDistanceComplete(int distance) {
-        Toast.makeText(this, "distance is " + distance, Toast.LENGTH_SHORT).show();
-
+        mAdjustment = new Adjustment();
+        mAdjustment.distance = distance + 1;
         AddAdjustmentTextsDialog dialog = new AddAdjustmentTextsDialog();
         dialog.show(getSupportFragmentManager(), "TextAdd");
     }
 
     @Override
     public void onAdjustmentTextComplete(String vertical, String horizontal, String description) {
-        Toast.makeText(this, "text are " + vertical + horizontal + description, Toast.LENGTH_SHORT).show();
+        if (vertical.trim().length() == 0)
+            mAdjustment.v_adj = null;
+        else
+            mAdjustment.v_adj = vertical;
+        if (horizontal.trim().length() == 0)
+            mAdjustment.h_adj = null;
+        else
+            mAdjustment.h_adj = horizontal;
+        if (description.trim().length() == 0)
+            mAdjustment.description = null;
+        else
+            mAdjustment.description = description;
+
         AddAdjustmentPhotosDialog dialog = new AddAdjustmentPhotosDialog();
         dialog.show(getSupportFragmentManager(), "PhotoAdd");
     }
 
     @Override
     public void onAdjustmentPhotoComplete(String paths) {
-        Log.i(TAG, "onAdjustmentPhotoComplete: " + paths);
+        if (paths.trim().length() == 0)
+            mAdjustment.path = null;
+        else
+            mAdjustment.path = paths;
+        mAdjustment.date = new Date();
+        mViewModel.insertAdjustment(mAdjustment);
     }
 }

@@ -35,5 +35,8 @@
     <string name="info_add_photo_string">You can take any photos for your bow and other thing like clicker state, arrows and so on.</string>
     <string name="no_photos_yet">No Photos yet.</string>
     <string name="take_photo">Take Photo</string>
+    <string name="somthing_wrong">Something Wrong happened.</string>
+    <string name="photo_string">photos.</string>
+    <string name="title_activity_adjustment_detail">AdjustmentDetailActivity</string>
 
 </resources>

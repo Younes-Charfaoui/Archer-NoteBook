@@ -1,8 +1,8 @@
 package me.mxcsyounes.archernotebook.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +16,8 @@ import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
 public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.AdjustmentViewHolder> {
+    public static final String KEY_ADJUSTMENT = "key_Data";
+
     private final static String TAG = "Adapter";
     private LayoutInflater mInflater;
     private List<Adjustment> mAdjustmentsList;
@@ -34,7 +36,18 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
     @Override
     public void onBindViewHolder(AdjustmentViewHolder holder, int position) {
         Adjustment adjustment = mAdjustmentsList.get(position);
-        String adjustmentParams = "Horizontal: " + adjustment.h_adj + ", Vertical: " + adjustment.v_adj;
+        String adjustmentParams = "";
+        if (adjustment.h_adj != null)
+            adjustmentParams += "Horizontal: " + adjustment.h_adj;
+
+        if (adjustment.v_adj != null)
+            adjustmentParams += ", Vertical: " + adjustment.v_adj;
+
+        if (adjustment.path != null) {
+            adjustmentParams += ", Photos: " + adjustment.path.split(";").length + " pics";
+        }
+
+        adjustmentParams += ".";
         holder.mAdjustParams.setText(adjustmentParams);
 
         SimpleDateFormat format = new SimpleDateFormat("E dd MMM", Locale.getDefault());
@@ -87,6 +100,10 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
             mDistanceTv = itemView.findViewById(R.id.adj_distance_text_view);
             mDateTv = itemView.findViewById(R.id.adj_date_text_view);
             mAdjustParams = itemView.findViewById(R.id.adj_type_text_view);
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent();
+                intent.putExtra(KEY_ADJUSTMENT, mAdjustmentsList.get(getAdapterPosition()));
+            });
         }
     }
 }

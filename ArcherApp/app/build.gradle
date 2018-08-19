@@ -42,6 +42,8 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation "me.anwarshahriar:calligrapher:1.0"
 }
