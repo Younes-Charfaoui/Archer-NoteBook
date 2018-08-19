@@ -1,10 +1,15 @@
 package me.mxcsyounes.archernotebook.activities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -71,12 +76,17 @@ public class AdjustmentDetailActivity extends AppCompatActivity {
                     ImageView imageView = new ImageView(this);
 
                     LinearLayout.LayoutParams params =
-                            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT);
-                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     params.setMargins(0, 8, 0, 8);
+                    params.gravity = Gravity.CENTER_HORIZONTAL;
                     imageView.setLayoutParams(params);
-                    Picasso.get().load(new File(path)).resize(imagesLayout.getLayoutParams().width,imagesLayout.getLayoutParams().width).into(imageView);
+
+                    Bitmap bitmap = BitmapFactory.decodeFile(path);
+                    float ratio = bitmap.getHeight() / bitmap.getWidth();
+
+
+                    Picasso.get().load(new File(path)).resize((int)(600 *ratio), (int)(500 *ratio)).into(imageView);
                     imagesLayout.addView(imageView);
                 }
             }
