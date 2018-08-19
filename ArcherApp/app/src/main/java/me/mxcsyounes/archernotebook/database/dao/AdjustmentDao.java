@@ -41,5 +41,5 @@ public interface AdjustmentDao {
     LiveData<List<Adjustment>> getAllDistanceDESC();
 
     @Query("SELECT * FROM adjustment WHERE id=:id")
-    LiveData<Adjustment> getNoteById(int id);
+    LiveData<Adjustment> getAdjustmentById(int id);
 }

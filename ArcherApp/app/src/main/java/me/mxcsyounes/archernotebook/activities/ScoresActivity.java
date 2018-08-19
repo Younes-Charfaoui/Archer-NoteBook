@@ -1,6 +1,9 @@
 package me.mxcsyounes.archernotebook.activities;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +14,14 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.List;
+
 import me.mxcsyounes.archernotebook.R;
+import me.mxcsyounes.archernotebook.database.entities.Score;
+import me.mxcsyounes.archernotebook.viewmodels.ScoresViewModel;
 
 public class ScoresActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,10 @@ public class ScoresActivity extends AppCompatActivity {
         findViewById(R.id.scores_scores_card).setOnClickListener(v -> {
             // TODO: 18-Aug-18 launch activity of scores
         });
+
+
+
+
     }
 
 }

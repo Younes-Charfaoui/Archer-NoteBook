@@ -1,4 +1,4 @@
-package me.mxcsyounes.archernotebook;
+package me.mxcsyounes.archernotebook.repositories;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
@@ -10,12 +10,12 @@ import me.mxcsyounes.archernotebook.database.ArcherDatabase;
 import me.mxcsyounes.archernotebook.database.dao.AdjustmentDao;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
-public class DataRepository {
+public class AdjustmentsRepository {
 
     private AdjustmentDao mAdjDao;
     private LiveData<List<Adjustment>> mAllAdj;
 
-    public DataRepository(Application application) {
+    public AdjustmentsRepository(Application application) {
         mAdjDao = ArcherDatabase.getInstance(application, false).mAdjDao();
         mAllAdj = mAdjDao.getAllDateDESC();
     }
@@ -25,7 +25,7 @@ public class DataRepository {
     }
 
     public LiveData<Adjustment> getAdj(int id) {
-        return mAdjDao.getNoteById(id);
+        return mAdjDao.getAdjustmentById(id);
     }
 
     public void insertAdjustment(Adjustment adjustment) {

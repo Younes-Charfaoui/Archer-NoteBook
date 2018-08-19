@@ -9,17 +9,17 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import me.mxcsyounes.archernotebook.DataRepository;
+import me.mxcsyounes.archernotebook.repositories.AdjustmentsRepository;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
 public class AdjustmentViewModel extends AndroidViewModel {
 
     private LiveData<List<Adjustment>> mAllAdjustment;
-    private DataRepository mRepository;
+    private AdjustmentsRepository mRepository;
 
     public AdjustmentViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new DataRepository(application);
+        mRepository = new AdjustmentsRepository(application);
         mAllAdjustment = mRepository.getAllAdj();
     }
 
