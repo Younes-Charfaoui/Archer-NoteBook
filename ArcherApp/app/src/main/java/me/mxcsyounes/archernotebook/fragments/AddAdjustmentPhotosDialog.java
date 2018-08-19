@@ -1,5 +1,6 @@
 package me.mxcsyounes.archernotebook.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,12 +22,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 import me.mxcsyounes.archernotebook.R;
 
 public class AddAdjustmentPhotosDialog extends DialogFragment {
 
+    public static final String TAG = AddAdjustmentPhotosDialog.class.getSimpleName();
 
     private AdjustmentPhotoListener mInterface;
 
@@ -61,7 +63,7 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
         textDialog.setView(view);
 
         textDialog.setPositiveButton("Finish", (dialogInterface, i) -> {
-            mInterface.onAdjustmentPhotoComplete("");
+            mInterface.onAdjustmentPhotoComplete(mCurrentPhotoFiles);
         });
 
 
@@ -69,7 +71,7 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
     }
 
     public interface AdjustmentPhotoListener {
-        void onAdjustmentPhotoComplete(String... paths);
+        void onAdjustmentPhotoComplete(String paths);
     }
 
 
@@ -87,8 +89,11 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
                 }
 
                 if (photoFile != null) {
-                    Uri photoUri = FileProvider.getUriForFile(Objects.requireNonNull(getContext()),"" , photoFile);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                    if (getContext() != null)
+                        imageUri = FileProvider.getUriForFile(getContext(), "me.mxcsyounes.archernotebook.fileprovider", photoFile);
+
+                    Log.i(TAG, "takePhoto: " + imageUri.toString());
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                     startActivityForResult(intent, REQUES_IMAGE_CAPTURE);
                 }
 
@@ -98,21 +103,33 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
             Toast.makeText(getContext(), "Problem in the app, try later.", Toast.LENGTH_SHORT).show();
     }
 
-    String mCurrentPhotoFile;
+    String mCurrentPhotoFiles = "";
+    Uri imageUri;
+    File currentImage;
 
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyMMdd_HHmmss", Locale.FRANCE).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getActivity().getFilesDir();
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-
-        mCurrentPhotoFile = image.getAbsolutePath();
-        return image;
+        File storageDir = null;
+        if (getContext() != null)
+            storageDir = getContext().getFilesDir();
+        currentImage = File.createTempFile(imageFileName, ".jpg", storageDir);
+        return currentImage;
 
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUES_IMAGE_CAPTURE)
+            if (resultCode == Activity.RESULT_OK) {
+                mCurrentPhotoFiles += imageUri.toString() + ";";
+            } else {
+                if (currentImage.exists())
+                    if (getContext() != null)
+                        getContext().deleteFile(currentImage.getName());
+            }
+
+
     }
 }

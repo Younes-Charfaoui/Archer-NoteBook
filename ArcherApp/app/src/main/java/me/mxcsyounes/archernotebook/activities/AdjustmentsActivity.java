@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -93,11 +94,11 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
     public void onAdjustmentTextComplete(String vertical, String horizontal, String description) {
         Toast.makeText(this, "text are " + vertical + horizontal + description, Toast.LENGTH_SHORT).show();
         AddAdjustmentPhotosDialog dialog = new AddAdjustmentPhotosDialog();
-        dialog.show(getSupportFragmentManager(),"PhotoAdd");
+        dialog.show(getSupportFragmentManager(), "PhotoAdd");
     }
 
     @Override
-    public void onAdjustmentPhotoComplete(String... paths) {
-
+    public void onAdjustmentPhotoComplete(String paths) {
+        Log.i(TAG, "onAdjustmentPhotoComplete: " + paths);
     }
 }
