@@ -36,7 +36,19 @@
     <string name="no_photos_yet">No Photos yet.</string>
     <string name="take_photo">Take Photo</string>
     <string name="somthing_wrong">Something Wrong happened.</string>
-    <string name="photo_string">photos.</string>
-    <string name="title_activity_adjustment_detail">AdjustmentDetailActivity</string>
+    <string name="photo_string">Photos.</string>
+    <string name="title_activity_adjustment_detail">Detail Adjustment</string>
+    <string name="vertical_adjustments">Vertical\nAdjustments</string>
+    <string name="horizontal_adjustments">Horizontal\nAdjustments</string>
+    <string name="no_photos">No Photos</string>
+    <string name="distance">Distance</string>
+    <string name="date">Date</string>
+    <string name="nan">NaN</string>
+    <string name="no_description">No Description.</string>
+    <string name="delete_all">Delete All</string>
+    <string name="finish">Finish</string>
+    <string name="add_adjuts_photo_title">Photo Adjusts.</string>
+    <string name="add_adjust_photo_message">Please take photos for your bow.</string>
+
 
 </resources>

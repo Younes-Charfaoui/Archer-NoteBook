@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 import me.mxcsyounes.archernotebook.R;
+import me.mxcsyounes.archernotebook.activities.AdjustmentDetailActivity;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
 public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.AdjustmentViewHolder> {
@@ -21,9 +22,11 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
     private final static String TAG = "Adapter";
     private LayoutInflater mInflater;
     private List<Adjustment> mAdjustmentsList;
+    private Context mContext;
 
     public AdjustmentsAdapter(Context context) {
         this.mInflater = LayoutInflater.from(context);
+        this.mContext = context;
     }
 
     @Override
@@ -62,7 +65,7 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
         notifyDataSetChanged();
     }
 
-    private String getDistance(int distance) {
+    public static String getDistance(int distance) {
         switch (distance) {
             case 1:
                 return "90m";
@@ -101,8 +104,9 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
             mDateTv = itemView.findViewById(R.id.adj_date_text_view);
             mAdjustParams = itemView.findViewById(R.id.adj_type_text_view);
             itemView.setOnClickListener(v -> {
-                Intent intent = new Intent();
+                Intent intent = new Intent(mContext, AdjustmentDetailActivity.class);
                 intent.putExtra(KEY_ADJUSTMENT, mAdjustmentsList.get(getAdapterPosition()));
+                mContext.startActivity(intent);
             });
         }
     }

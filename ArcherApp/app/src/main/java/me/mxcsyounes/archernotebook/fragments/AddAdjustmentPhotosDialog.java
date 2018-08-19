@@ -46,9 +46,9 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
 
         AlertDialog.Builder textDialog = new AlertDialog.Builder(getContext());
 
-        textDialog.setTitle("Photo Adjusts.");
+        textDialog.setTitle(R.string.add_adjuts_photo_title);
 
-        textDialog.setMessage("Please take photos for your bow.");
+        textDialog.setMessage(R.string.add_adjust_photo_message);
 
         View view = Objects.requireNonNull(getActivity()).getLayoutInflater().inflate(R.layout.adjust_photos_dialog, null);
 
@@ -60,9 +60,8 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
 
         textDialog.setView(view);
 
-        textDialog.setPositiveButton("Finish", (dialogInterface, i) ->
+        textDialog.setPositiveButton(R.string.finish, (dialogInterface, i) ->
                 mInterface.onAdjustmentPhotoComplete(mCurrentPhotoFiles));
-
 
         return textDialog.create();
     }
@@ -120,7 +119,7 @@ public class AddAdjustmentPhotosDialog extends DialogFragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE)
             if (resultCode == Activity.RESULT_OK) {
                 counter++;
-                String currentPhotoText = counter + getString(R.string.photo_string);
+                String currentPhotoText = counter + " " + getString(R.string.photo_string);
                 photoInfoTv.setText(currentPhotoText);
                 mCurrentPhotoFiles += currentImage.getAbsolutePath() + ";";
             } else {

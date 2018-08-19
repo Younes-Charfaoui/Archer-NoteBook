@@ -17,7 +17,7 @@ public class DataRepository {
 
     public DataRepository(Application application) {
         mAdjDao = ArcherDatabase.getInstance(application, false).mAdjDao();
-        mAllAdj = mAdjDao.getAllDateASC();
+        mAllAdj = mAdjDao.getAllDateDESC();
     }
 
     public LiveData<List<Adjustment>> getAllAdj() {

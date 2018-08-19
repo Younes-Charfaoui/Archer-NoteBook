@@ -3,10 +3,13 @@ package me.mxcsyounes.archernotebook.activities;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -81,6 +84,7 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
                 recyclerView.setVisibility(View.VISIBLE);
                 adapter.setAdjustmentsList(list);
             } else {
+                adapter.setAdjustmentsList(null);
                 findViewById(R.id.adjust_empty_view).setVisibility(View.VISIBLE);
             }
         });
@@ -122,4 +126,31 @@ public class AdjustmentsActivity extends AppCompatActivity implements AddAdjustm
         mAdjustment.date = new Date();
         mViewModel.insertAdjustment(mAdjustment);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.adjustment_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.adjustment_delete_all_item:
+                new AlertDialog.Builder(this)
+                        .setTitle("Delete All?")
+                        .setMessage("The data cannot be retrieved any more.")
+                        .setPositiveButton("Delete", (dialogInterface, i) -> {
+                            mViewModel.deleteAllAdjustments();
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

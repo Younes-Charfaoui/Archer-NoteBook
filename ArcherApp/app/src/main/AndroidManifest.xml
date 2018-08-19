@@ -68,7 +68,8 @@
         <activity
             android:name=".activities.AdjustmentDetailActivity"
             android:label="@string/title_activity_adjustment_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".activities.AdjustmentsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
