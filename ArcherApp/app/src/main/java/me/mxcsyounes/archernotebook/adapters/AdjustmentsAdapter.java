@@ -1,7 +1,6 @@
 package me.mxcsyounes.archernotebook.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +12,39 @@ import java.util.List;
 import java.util.Locale;
 
 import me.mxcsyounes.archernotebook.R;
-import me.mxcsyounes.archernotebook.activities.AdjustmentDetailActivity;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 
 public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.AdjustmentViewHolder> {
-    public static final String KEY_ADJUSTMENT = "key_Data";
+
 
     private final static String TAG = "Adapter";
     private LayoutInflater mInflater;
     private List<Adjustment> mAdjustmentsList;
-    private Context mContext;
+    private AdjustmentAdapterListener mListener;
 
-    public AdjustmentsAdapter(Context context) {
+    public AdjustmentsAdapter(Context context, AdjustmentAdapterListener listener) {
         this.mInflater = LayoutInflater.from(context);
-        this.mContext = context;
+        this.mListener = listener;
+    }
+
+    public static String getDistance(int distance) {
+        switch (distance) {
+            case 1:
+                return "90m";
+            case 2:
+                return "70m";
+            case 3:
+                return "60m";
+            case 4:
+                return "50m";
+            case 5:
+                return "30m";
+            case 6:
+                return "18m";
+            default:
+                return "";
+        }
+
     }
 
     @Override
@@ -65,31 +83,15 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
         notifyDataSetChanged();
     }
 
-    public static String getDistance(int distance) {
-        switch (distance) {
-            case 1:
-                return "90m";
-            case 2:
-                return "70m";
-            case 3:
-                return "60m";
-            case 4:
-                return "50m";
-            case 5:
-                return "30m";
-            case 6:
-                return "18m";
-            default:
-                return "";
-        }
-
-    }
-
     @Override
     public int getItemCount() {
         if (mAdjustmentsList != null)
             return mAdjustmentsList.size();
         return 0;
+    }
+
+    public interface AdjustmentAdapterListener {
+        void OnAdjustmentClicked(Adjustment adjustment);
     }
 
     class AdjustmentViewHolder extends RecyclerView.ViewHolder {
@@ -103,11 +105,7 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
             mDistanceTv = itemView.findViewById(R.id.adj_distance_text_view);
             mDateTv = itemView.findViewById(R.id.adj_date_text_view);
             mAdjustParams = itemView.findViewById(R.id.adj_type_text_view);
-            itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(mContext, AdjustmentDetailActivity.class);
-                intent.putExtra(KEY_ADJUSTMENT, mAdjustmentsList.get(getAdapterPosition()));
-                mContext.startActivity(intent);
-            });
+            itemView.setOnClickListener(v -> mListener.OnAdjustmentClicked(mAdjustmentsList.get(getAdapterPosition())));
         }
     }
 }

@@ -22,11 +22,15 @@ import com.google.android.gms.ads.MobileAds;
 
 import me.mxcsyounes.archernotebook.R;
 import me.mxcsyounes.archernotebook.adapters.AdjustmentsAdapter;
+import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 import me.mxcsyounes.archernotebook.viewmodels.AdjustmentViewModel;
 
-public class AdjustmentsActivity extends AppCompatActivity {
+public class AdjustmentsActivity extends AppCompatActivity implements AdjustmentsAdapter.AdjustmentAdapterListener {
 
+    public static final String KEY_DATA = "data";
+    public static final String KEY_ADJUSTMENT = "key_Data";
     public static final int REQUEST_CODE_ADD_ADJUSTMENT = 1244;
+    public static final int REQUEST_CODE_DELETE = 1117;
     private static final String TAG = "AdjActivity";
     private AdjustmentViewModel mViewModel;
     private FloatingActionButton mAddAdjustFab;
@@ -67,7 +71,7 @@ public class AdjustmentsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecyclerView recyclerView = findViewById(R.id.adjustment_recycler_view);
-        AdjustmentsAdapter adapter = new AdjustmentsAdapter(this);
+        AdjustmentsAdapter adapter = new AdjustmentsAdapter(this, this);
         LinearLayoutManager manager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         recyclerView.setAdapter(adapter);
@@ -119,8 +123,18 @@ public class AdjustmentsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_ADD_ADJUSTMENT && resultCode == Activity.RESULT_OK) {
-            mViewModel.insertAdjustment(data.getParcelableExtra("data"));
+            mViewModel.insertAdjustment(data.getParcelableExtra(KEY_DATA));
         }
+
+        if (requestCode == REQUEST_CODE_DELETE && resultCode == Activity.RESULT_OK)
+            mViewModel.deleteAdjustment(data.getParcelableExtra(KEY_DATA));
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void OnAdjustmentClicked(Adjustment adjustment) {
+        Intent intent = new Intent(this, AdjustmentDetailActivity.class);
+        intent.putExtra(KEY_ADJUSTMENT, adjustment);
+        startActivityForResult(intent, REQUEST_CODE_DELETE);
     }
 }

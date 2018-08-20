@@ -188,7 +188,7 @@ public class AddAdjustmentActivity extends AppCompatActivity {
                     adjustment.date = new Date();
 
                     Intent intent = new Intent();
-                    intent.putExtra("data", adjustment);
+                    intent.putExtra(AdjustmentsActivity.KEY_DATA, adjustment);
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 }

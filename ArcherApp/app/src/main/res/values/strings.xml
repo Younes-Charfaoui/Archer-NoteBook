@@ -58,6 +58,7 @@
     <string name="_70_meters">70 meters</string>
     <string name="_90_meters">90 meters</string>
     <string name="adjustments">Adjustments</string>
+    <string name="delete">Delete</string>
 
 
 </resources>
