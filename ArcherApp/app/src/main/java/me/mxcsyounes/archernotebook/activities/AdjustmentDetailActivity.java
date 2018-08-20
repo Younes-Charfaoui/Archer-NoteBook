@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -46,13 +47,20 @@ public class AdjustmentDetailActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        mAdView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                mAdView.setVisibility(View.VISIBLE);
+            }
+        });
+
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Adjustment adjustment = getIntent().getParcelableExtra(AdjustmentsActivity.KEY_ADJUSTMENT);
         if (adjustment != null) {
             ((TextView) findViewById(R.id.detail_adjust_distance)).
-                    setText(AdjustmentsAdapter.getDistance(adjustment.distance));
+                    setText(getDistanceLong(adjustment.distance));
 
             String date = new SimpleDateFormat("E dd MMM", Locale.getDefault()).format(adjustment.date);
             ((TextView) findViewById(R.id.detail_adjust_date)).
@@ -137,5 +145,25 @@ public class AdjustmentDetailActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static String getDistanceLong(int distance) {
+        switch (distance) {
+            case 1:
+                return "90 meters";
+            case 2:
+                return "70 meters";
+            case 3:
+                return "60 meters";
+            case 4:
+                return "50 meters";
+            case 5:
+                return "30 meters";
+            case 6:
+                return "18 meters";
+            default:
+                return "";
+        }
+
     }
 }

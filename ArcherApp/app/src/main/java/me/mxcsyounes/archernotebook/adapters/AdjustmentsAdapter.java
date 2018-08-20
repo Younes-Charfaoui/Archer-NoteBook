@@ -1,6 +1,7 @@
 package me.mxcsyounes.archernotebook.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
         this.mListener = listener;
     }
 
-    public static String getDistance(int distance) {
+    private String getDistance(int distance) {
         switch (distance) {
             case 1:
                 return "90m";
@@ -47,29 +48,33 @@ public class AdjustmentsAdapter extends RecyclerView.Adapter<AdjustmentsAdapter.
 
     }
 
+    @NonNull
     @Override
-    public AdjustmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdjustmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater
                 .inflate(R.layout.adjustment_list_item_layout, parent, false);
         return new AdjustmentViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(AdjustmentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdjustmentViewHolder holder, int position) {
         Adjustment adjustment = mAdjustmentsList.get(position);
-        String adjustmentParams = "";
+        String finalString = "";
         if (adjustment.h_adj != null)
-            adjustmentParams += "Horizontal: " + adjustment.h_adj;
+            finalString += "Horizontal: " + adjustment.h_adj;
 
-        if (adjustment.v_adj != null)
-            adjustmentParams += ", Vertical: " + adjustment.v_adj;
-
-        if (adjustment.path != null) {
-            adjustmentParams += ", Photos: " + adjustment.path.split(";").length + " pics";
+        if (adjustment.v_adj != null) {
+            if (finalString.length() > 0) finalString += ", ";
+            finalString += "Vertical: " + adjustment.v_adj;
         }
 
-        adjustmentParams += ".";
-        holder.mAdjustParams.setText(adjustmentParams);
+        if (adjustment.path != null) {
+            if (finalString.length() > 0) finalString += ", ";
+            finalString += "Photos: " + adjustment.path.split(";").length + " pics";
+        }
+
+        finalString += ".";
+        holder.mAdjustParams.setText(finalString);
 
         SimpleDateFormat format = new SimpleDateFormat("E dd MMM", Locale.getDefault());
         holder.mDateTv.setText(format.format(adjustment.date));

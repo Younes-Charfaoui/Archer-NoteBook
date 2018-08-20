@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/add_adjustment_ad_view">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,54 +19,6 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/bahnschrift"
-                android:text="@string/distance"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
-
-            <RadioGroup
-                android:id="@+id/add_adjutsment_distances_radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
-
-                <RadioButton
-                    android:id="@+id/add_adjust_90_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_90_meters" />
-
-                <RadioButton
-                    android:id="@+id/add_adjust_70_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:checked="true"
-                    android:text="@string/_70_meters" />
-
-                <RadioButton
-                    android:id="@+id/add_adjust_60_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_60_meters" />
-
-                <RadioButton
-                    android:id="@+id/add_adjust_50_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_50_meters" />
-
-                <RadioButton
-                    android:id="@+id/add_adjust_30_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_30_meters" />
-
-                <RadioButton
-                    android:id="@+id/add_adjust_18_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_18_meters" />
-
-
-            </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,6 +79,60 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/bahnschrift"
+                android:text="@string/distance"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <RadioGroup
+                android:id="@+id/add_adjutsment_distances_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/add_adjust_90_meter_radio"
+                    style="@style/RadioButtonAddAdjust"
+                    android:text="@string/_90_meters" />
+
+                <RadioButton
+                    android:id="@+id/add_adjust_70_meter_radio"
+                    style="@style/RadioButtonAddAdjust"
+                    android:checked="true"
+
+                    android:text="@string/_70_meters">
+
+                    <requestFocus />
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/add_adjust_60_meter_radio"
+                    style="@style/RadioButtonAddAdjust"
+                    android:text="@string/_60_meters" />
+
+                <RadioButton
+                    android:id="@+id/add_adjust_50_meter_radio"
+                    style="@style/RadioButtonAddAdjust"
+                    android:text="@string/_50_meters" />
+
+                <RadioButton
+                    android:id="@+id/add_adjust_30_meter_radio"
+                    style="@style/RadioButtonAddAdjust"
+                    android:text="@string/_30_meters" />
+
+                <RadioButton
+                    android:id="@+id/add_adjust_18_meter_radio"
+                    style="@style/RadioButtonAddAdjust"
+                    android:text="@string/_18_meters" />
+
+
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/bahnschrift"
                 android:text="@string/photo_string"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
@@ -165,14 +171,14 @@
     </ScrollView>
 
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/add_adjustment_ad_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="2dp"
-        android:visibility="gone"
-        app:adSize="BANNER"
-        app:adUnitId="@string/banner_ad_unit_id" />
+    <!--<com.google.android.gms.ads.AdView-->
+        <!--android:id="@+id/add_adjustment_ad_view"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="2dp"-->
+        <!--android:visibility="gone"-->
+        <!--app:adSize="BANNER"-->
+        <!--app:adUnitId="@string/banner_ad_unit_id" />-->
 </RelativeLayout>

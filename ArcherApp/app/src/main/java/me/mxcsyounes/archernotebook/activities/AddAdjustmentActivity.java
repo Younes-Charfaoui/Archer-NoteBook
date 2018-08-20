@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class AddAdjustmentActivity extends AppCompatActivity {
     private File currentImage;
     private int counter = 0;
     private TextView photoInfoTv;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,11 @@ public class AddAdjustmentActivity extends AppCompatActivity {
 
         MobileAds.initialize(this, getResources().getString(R.string.app_id_ad_test));
 
-        AdView mAdView = findViewById(R.id.add_adjustment_ad_view);
+        /*AdView mAdView = findViewById(R.id.add_adjustment_ad_view);
 
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
 
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -60,7 +63,11 @@ public class AddAdjustmentActivity extends AppCompatActivity {
                 super.onAdLoaded();
                 mAdView.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         currentId = R.id.add_adjust_70_meter_radio;
 
@@ -190,9 +197,9 @@ public class AddAdjustmentActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.putExtra(AdjustmentsActivity.KEY_DATA, adjustment);
                     setResult(Activity.RESULT_OK, intent);
+                    if (mInterstitialAd.isLoaded()) mInterstitialAd.show();
                     finish();
                 }
-                // todo display successful message and Interstitial add.
                 return true;
         }
         return super.onOptionsItemSelected(item);

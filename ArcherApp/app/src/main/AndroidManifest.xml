@@ -74,6 +74,7 @@
             android:name=".activities.AddAdjustmentActivity"
             android:label="@string/title_activity_add_adjustment"
             android:parentActivityName=".activities.AdjustmentsActivity"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
