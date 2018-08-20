@@ -11,7 +11,7 @@ import me.mxcsyounes.archernotebook.database.dao.ScoreDao;
 import me.mxcsyounes.archernotebook.database.entities.Adjustment;
 import me.mxcsyounes.archernotebook.database.entities.Score;
 
-@Database(entities = {Adjustment.class, Score.class}, version = 2, exportSchema = false)
+@Database(entities = {Adjustment.class, Score.class}, version = 1, exportSchema = false)
 public abstract class ArcherDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "archer.db";

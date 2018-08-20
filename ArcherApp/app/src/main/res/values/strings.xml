@@ -49,6 +49,15 @@
     <string name="finish">Finish</string>
     <string name="add_adjuts_photo_title">Photo Adjusts.</string>
     <string name="add_adjust_photo_message">Please take photos for your bow.</string>
+    <string name="title_activity_add_adjustment">Add Adjustment</string>
+    <string name="done_add_adjustment_menu_string">Done</string>
+    <string name="_18_meters">18 meters</string>
+    <string name="_30_meters">30 meters</string>
+    <string name="_50_meters">50 meters</string>
+    <string name="_60_meters">60 meters</string>
+    <string name="_70_meters">70 meters</string>
+    <string name="_90_meters">90 meters</string>
+    <string name="adjustments">Adjustments</string>
 
 
 </resources>

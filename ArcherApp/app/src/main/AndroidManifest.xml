@@ -70,6 +70,11 @@
             android:label="@string/title_activity_adjustment_detail"
             android:parentActivityName=".activities.AdjustmentsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AddAdjustmentActivity"
+            android:label="@string/title_activity_add_adjustment"
+            android:parentActivityName=".activities.AdjustmentsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
