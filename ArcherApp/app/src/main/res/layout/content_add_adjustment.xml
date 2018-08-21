@@ -10,8 +10,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,15 +97,12 @@
                     android:id="@+id/add_adjust_70_meter_radio"
                     style="@style/RadioButtonAddAdjust"
                     android:checked="true"
-
-                    android:text="@string/_70_meters">
-
-                    <requestFocus />
-                </RadioButton>
+                    android:text="@string/_70_meters" />
 
                 <RadioButton
                     android:id="@+id/add_adjust_60_meter_radio"
                     style="@style/RadioButtonAddAdjust"
+                    android:checked="true"
                     android:text="@string/_60_meters" />
 
                 <RadioButton
@@ -172,13 +168,13 @@
 
 
     <!--<com.google.android.gms.ads.AdView-->
-        <!--android:id="@+id/add_adjustment_ad_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="2dp"-->
-        <!--android:visibility="gone"-->
-        <!--app:adSize="BANNER"-->
-        <!--app:adUnitId="@string/banner_ad_unit_id" />-->
+    <!--android:id="@+id/add_adjustment_ad_view"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginBottom="2dp"-->
+    <!--android:visibility="gone"-->
+    <!--app:adSize="BANNER"-->
+    <!--app:adUnitId="@string/banner_ad_unit_id" />-->
 </RelativeLayout>
