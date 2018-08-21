@@ -206,7 +206,7 @@ public class AddAdjustmentActivity extends AppCompatActivity {
     }
 
 
-    private int getDistance(int id) {
+    public static int getDistance(int id) {
         switch (id) {
             case R.id.add_adjust_90_meter_radio:
                 return 1;

@@ -80,7 +80,12 @@
             android:name=".activities.AddScoreSheetActivity"
             android:label="@string/title_activity_add_score_sheet"
             android:parentActivityName=".activities.ScoresActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ScoreSheetActivity"
+            android:label="@string/title_activity_score_sheet"
+            android:parentActivityName=".activities.AddScoreSheetActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

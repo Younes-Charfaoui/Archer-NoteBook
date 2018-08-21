@@ -64,10 +64,8 @@
     <string name="type_of_sheet">Type of Sheet</string>
     <string name="tournament">Tournament</string>
     <string name="training">Training</string>
-    <string name="type_of_sheet">Type of Sheet</string>
     <string name="one_series">One Series</string>
     <string name="two_series">Two Series</string>
     <string name="type_of_series">Type of Series</string>
-
-
+    <string name="title_activity_score_sheet">Score Sheet</string>
 </resources>

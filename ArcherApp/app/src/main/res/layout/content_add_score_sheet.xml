@@ -90,6 +90,7 @@
             <RadioButton
                 android:id="@+id/add_score_sheet_training_radio"
                 style="@style/RadioButtonAddAdjust"
+                android:checked="true"
                 android:text="@string/training" />
         </RadioGroup>
 
@@ -116,6 +117,7 @@
             <RadioButton
                 android:id="@+id/add_score_sheet_two_series_radio"
                 style="@style/RadioButtonAddAdjust"
+                android:checked="true"
                 android:text="@string/two_series" />
         </RadioGroup>
 
