@@ -9,4 +9,12 @@
     <color name="slide_two">#FF8A65</color>
     <color name="slide_three">#81C784</color>
     <color name="slide_four">#BA68C8</color>
+
+    <!-- color of the target -->
+    <color name="yellow">#FFEA00</color>
+    <color name="red">#FF2C39</color>
+    <color name="blue">#2160B7</color>
+    <color name="black">#333333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#8F8F8F</color>
 </resources>
