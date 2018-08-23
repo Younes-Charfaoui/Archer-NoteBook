@@ -91,7 +91,7 @@
 
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/ad_view"
+        android:id="@+id/scores_ad_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:adSize="BANNER"
