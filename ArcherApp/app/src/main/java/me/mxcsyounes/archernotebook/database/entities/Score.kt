@@ -1,4 +1,4 @@
-package me.mxcsyounes.archernotebook.database.entities;
+package me.mxcsyounes.archernotebook.database.entities
 
 
 import android.arch.persistence.room.*
@@ -31,12 +31,12 @@ class Score {
 
     constructor(id: Int, @NonNull distance: Int, @NonNull type: Int, paths: String, description: String,
                 @NonNull date: Date) {
-        this.id = id;
-        this.distance = distance;
-        this.type = type;
-        this.paths = paths;
-        this.description = description;
-        this.date = date;
+        this.id = id
+        this.distance = distance
+        this.type = type
+        this.paths = paths
+        this.description = description
+        this.date = date
     }
 
     @Ignore

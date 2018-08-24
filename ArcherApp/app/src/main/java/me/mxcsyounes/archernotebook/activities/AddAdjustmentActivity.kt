@@ -136,7 +136,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
         return currentImage
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE)
             if (resultCode == Activity.RESULT_OK) {
                 counter++
@@ -185,6 +185,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
                         adjustment.path = null
                     else
                         adjustment.path = mCurrentPhotoFiles
+
                     adjustment.date = Date()
 
                     val intent = Intent()

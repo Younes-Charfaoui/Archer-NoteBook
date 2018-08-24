@@ -3,7 +3,7 @@ package me.mxcsyounes.archernotebook.database.converters
 import android.arch.persistence.room.TypeConverter
 import java.util.*
 
-object DateConverters {
+class DateConverters {
 
     @TypeConverter
     fun toDate(time: Long?): Date? {

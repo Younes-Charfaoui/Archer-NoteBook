@@ -37,14 +37,11 @@ class LauncherActivity : AppCompatActivity() {
         }
 
         Handler().postDelayed({
-            Runnable {
                 if (classes == 1)
                     startActivity(Intent(this, WelcomeActivity::class.java))
                 else
                     startActivity(Intent(this, MainActivity::class.java))
                 finish()
-            }
-
-        }, SPLASH_TIME)
+            }, SPLASH_TIME)
     }
 }

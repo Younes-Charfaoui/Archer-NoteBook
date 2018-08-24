@@ -2,10 +2,12 @@ package me.mxcsyounes.archernotebook.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.content_adjustment_detail.*
 import me.mxcsyounes.archernotebook.R
 import me.mxcsyounes.archernotebook.database.entities.Adjustment
 import java.io.File
+import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -70,7 +73,7 @@ class AdjustmentDetailActivity : AppCompatActivity() {
             else {
                 val paths = adjustment.path!!.split(";")
                 for (path in paths) {
-
+                    Log.i("AdjustmentDetail", path)
                     val imageView = ImageView(this)
 
                     val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -79,8 +82,12 @@ class AdjustmentDetailActivity : AppCompatActivity() {
                     params.gravity = Gravity.CENTER_HORIZONTAL
                     imageView.layoutParams = params
 
-                    val bitmap = BitmapFactory.decodeFile(path)
-                    val ratio = bitmap.height / bitmap.width
+
+                    val file = File(path)
+                    val inp = FileInputStream(file)
+                    val bitmap: Bitmap? = BitmapFactory.decodeStream(inp)
+                    if (bitmap == null) Log.i("AdjustmentDetail", "Bitmap is null")
+                    val ratio = bitmap?.height!! / bitmap.width
 
 
                     Picasso.get().load(File(path)).resize((600 * ratio), (500 * ratio)).into(imageView)
@@ -106,10 +113,10 @@ class AdjustmentDetailActivity : AppCompatActivity() {
                         .setTitle("Delete this?")
                         .setMessage("The data cannot be retrieved any more.")
                         .setPositiveButton("Delete", { _, _ ->
-                            val intent = Intent()
+                            val deleteIntent = Intent()
                             val adjustment: Adjustment = intent.getParcelableExtra(AdjustmentsActivity.KEY_ADJUSTMENT)
-                            intent.putExtra(AdjustmentsActivity.KEY_DATA, adjustment)
-                            setResult(Activity.RESULT_OK, intent)
+                            deleteIntent.putExtra(AdjustmentsActivity.KEY_DATA, adjustment)
+                            setResult(Activity.RESULT_OK, deleteIntent)
                             finish()
                         })
                         .setNegativeButton("Cancel", null)
