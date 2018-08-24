@@ -104,13 +104,17 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_ADD_ADJUSTMENT && resultCode == Activity.RESULT_OK) {
-            mViewModel?.insertAdjustment(data.getParcelableExtra(KEY_DATA))
+            if (data != null) {
+                mViewModel?.insertAdjustment(data.getParcelableExtra(KEY_DATA))
+            }
         }
 
         if (requestCode == REQUEST_CODE_DELETE && resultCode == Activity.RESULT_OK)
-            mViewModel?.deleteAdjustment(data.getParcelableExtra(KEY_DATA))
+            if (data != null) {
+                mViewModel?.deleteAdjustment(data.getParcelableExtra(KEY_DATA))
+            }
         super.onActivityResult(requestCode, resultCode, data)
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -20,7 +21,6 @@ import kotlinx.android.synthetic.main.content_adjustment_detail.*
 import me.mxcsyounes.archernotebook.R
 import me.mxcsyounes.archernotebook.database.entities.Adjustment
 import java.io.File
-import java.io.FileInputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -73,7 +73,7 @@ class AdjustmentDetailActivity : AppCompatActivity() {
             else {
                 val paths = adjustment.path!!.split(";")
                 for (path in paths) {
-                    Log.i("AdjustmentDetail", path)
+                    if (path.trim().isEmpty()) break
                     val imageView = ImageView(this)
 
                     val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -83,11 +83,8 @@ class AdjustmentDetailActivity : AppCompatActivity() {
                     imageView.layoutParams = params
 
 
-                    val file = File(path)
-                    val inp = FileInputStream(file)
-                    val bitmap: Bitmap? = BitmapFactory.decodeStream(inp)
-                    if (bitmap == null) Log.i("AdjustmentDetail", "Bitmap is null")
-                    val ratio = bitmap?.height!! / bitmap.width
+                    val bitmap: Bitmap = BitmapFactory.decodeFile(path)
+                    val ratio = bitmap.height / bitmap.width
 
 
                     Picasso.get().load(File(path)).resize((600 * ratio), (500 * ratio)).into(imageView)
