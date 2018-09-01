@@ -104,4 +104,18 @@
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+
+
+    <style name="ImageMarkStyle">
+        <item name="android:layout_width">@dimen/image_marks_size</item>
+        <item name="android:layout_height">@dimen/image_marks_size</item>
+        <item name="android:layout_marginTop">@dimen/image_marks_margin_top</item>
+    </style>
+
+
+    <style name="ImageArrowsStyle">
+        <item name="android:layout_width">@dimen/image_arrows_size</item>
+        <item name="android:layout_height">@dimen/image_arrows_size</item>
+        <item name="android:layout_marginTop">@dimen/image_arrow_margin_top</item>
+    </style>
 </resources>

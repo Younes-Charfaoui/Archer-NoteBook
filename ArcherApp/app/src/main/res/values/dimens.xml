@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="image_icon_margin">16dp</dimen>
+    <dimen name="image_marks_size">40dp</dimen>
+    <dimen name="image_marks_margin_top">8dp</dimen>
+    <dimen name="image_arrow_margin_top">8dp</dimen>
+    <dimen name="image_arrows_size">64dp</dimen>
 </resources>
