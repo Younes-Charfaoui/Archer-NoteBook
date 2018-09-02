@@ -2,22 +2,28 @@ package me.mxcsyounes.archernotebook.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_score_sheet.*
 import kotlinx.android.synthetic.main.content_score_sheet.*
 import me.mxcsyounes.archernotebook.R
+import me.mxcsyounes.archernotebook.model.Round
 
 class ScoreSheetActivity : AppCompatActivity() {
 
-    var marks = arrayOf(-1, -1, -1, -1, -1, -1)
+    private val rounds = mutableListOf<Round>()
+    private var counter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score_sheet)
         setSupportActionBar(score_sheet_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        counter = 1
+        for (i in 1..6) {
+            rounds.add(Round(i, arrayOf(-1, -1, -1, -1, -1, -1)))
+        }
 
         addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
 
@@ -26,29 +32,45 @@ class ScoreSheetActivity : AppCompatActivity() {
                 imageThree, imageTwo, imageOne, imageMist)
 
         backArrowImage.setOnClickListener {
-            showArray()
+            if (counter != 1) {
+                counter.dec()
+                showValuesInScreen()
+            }
+        }
+
+        forwardArrowImage.setOnClickListener {
+            if (counter != 6) {
+                counter.inc()
+                showValuesInScreen()
+            }
         }
 
         // initializing the score with 0
         scoreSumVoletTv.text = "0"
     }
 
+    private fun addClickListenerToArrow(vararg views: View?) {
+
+        for (view in views) {
+            view?.setOnClickListener {
+                clearImageArrow(it)
+                showValuesInScreen()
+            }
+        }
+    }
 
     private fun addClickListenerToMarks(vararg views: View?) {
 
         for (view in views) {
-            Log.d(TAG, "addClickListenerToMarks: initial tag is ${view?.tag}")
 
             view?.setOnClickListener {
                 val tag = it.tag as String
                 val value = valueFromTag(tag)
-                if (marks.contains(-1)) {
-                    print(marks)
-                    val index = marks.indexOf(-1)
-                    Log.d(TAG, "addClickListenerToMarks: index is $index")
+                if (rounds[counter].scores.contains(-1)) {
+                    print(rounds[counter].scores)
+                    val index = rounds[counter].scores.indexOf(-1)
 
-                    marks[index] = value
-                    Log.d(TAG, "addClickListenerToMarks: value is $value")
+                    rounds[counter].scores[index] = value
                     showValuesInScreen()
                 }
             }
@@ -56,12 +78,11 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun showValuesInScreen() {
-        Log.d(TAG, "showValuesInScreen: array is ${marks.toString()}")
-        marks = marks.sortedArrayDescending()
-        for ((i, value) in marks.withIndex()) {
+        voletNumberTv.text = "Round #$counter"
+        rounds[counter].scores = rounds[counter].scores.sortedArrayDescending()
+        for ((i, value) in rounds[counter].scores.withIndex()) {
             val view = getViewByPosition(i)
             val valueOfView = valueFromTag(view?.tag.toString())
-            Log.d(TAG, "the tag is $valueOfView")
             if (value == -1) {
                 view?.tag = "none"
                 view?.setImageResource(R.drawable.ractangle_score)
@@ -78,7 +99,6 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun getImageResourceByMark(mark: Int): Int {
-        Log.d(TAG, "getImageResourceByMark: the tag is $mark")
         return when (mark) {
             1 -> R.drawable.ic_one_1
             2 -> R.drawable.ic_two_2
@@ -97,7 +117,6 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun getViewByPosition(position: Int): ImageView? {
-        Log.d(TAG, "getViewByPosition: position is $position")
         return when (position) {
             0 -> arrowOne
             1 -> arrowTwo
@@ -110,33 +129,23 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun clearImageArrow(it: View?) {
-        Log.d(TAG, "clearImageArrow: the tag before is ${it?.tag}")
         if (it?.tag.toString() != "none") {
             (it as ImageView).setImageResource(R.drawable.ractangle_score)
             val value = valueFromTag(it.tag.toString())
-            val index = marks.indexOf(value)
-            marks[index] = -1
-            marks = marks.sortedArrayDescending()
+            val index = rounds[counter].scores.indexOf(value)
+            rounds[counter].scores[index] = -1
             it.tag = "none"
-            Log.d(TAG, "clearImageArrow: the tag after is ${it.tag}")
         }
     }
 
-    private fun addClickListenerToArrow(vararg views: View?) {
-
-        for (view in views) {
-            Log.d(TAG, "addClickListenerToArrow: initial tag is ${view?.tag}")
-            view?.setOnClickListener {
-                clearImageArrow(it)
-                showValuesInScreen()
-            }
-        }
+    private fun showResultOfVolet() {
+        val score = sumOfVolet(rounds[counter].scores)
+        scoreSumVoletTv.text = score.toString()
     }
 
     companion object {
 
         fun valueFromTag(tag: String): Int {
-            Log.d(TAG, "valueFromTag: tag is $tag")
             return try {
                 tag.toInt()
             } catch (e: Exception) {
@@ -156,16 +165,5 @@ class ScoreSheetActivity : AppCompatActivity() {
         }
 
         const val TAG = "ScoreSheetActivity"
-    }
-
-    private fun showArray() {
-        for (i in marks) {
-            Log.d(TAG, "showArray :value is $i")
-        }
-    }
-
-    fun showResultOfVolet() {
-        val score = sumOfVolet(marks)
-        scoreSumVoletTv.text = score.toString()
     }
 }
