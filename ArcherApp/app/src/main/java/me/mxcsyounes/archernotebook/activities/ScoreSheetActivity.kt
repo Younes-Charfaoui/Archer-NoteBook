@@ -9,11 +9,7 @@ import kotlinx.android.synthetic.main.activity_score_sheet.*
 import kotlinx.android.synthetic.main.content_score_sheet.*
 import me.mxcsyounes.archernotebook.R
 
-class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
-    override fun onClick(v: View?) {
-
-
-    }
+class ScoreSheetActivity : AppCompatActivity() {
 
     val marks = arrayOf(-1, -1, -1, -1, -1, -1)
 
@@ -29,18 +25,27 @@ class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
                 imageSeven, imageSix, imageFive, imageFour,
                 imageThree, imageTwo, imageOne, imageMist)
 
+        backArrowImage.setOnClickListener {
+            showArray()
+        }
     }
 
 
     private fun addClickListenerToMarks(vararg views: View?) {
 
         for (view in views) {
+            Log.d(TAG, "addClickListenerToMarks: initial tag is ${view?.tag}")
+
             view?.setOnClickListener {
                 val tag = it.tag as String
                 val value = valueFromTag(tag)
                 if (marks.contains(-1)) {
+                    print(marks)
                     val index = marks.indexOf(-1)
+                    Log.d(TAG, "addClickListenerToMarks: index is $index")
+
                     marks[index] = value
+                    Log.d(TAG, "addClickListenerToMarks: value is $value")
                     showValuesInScreen()
                 }
             }
@@ -48,13 +53,13 @@ class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showValuesInScreen() {
-        Log.i(TAG, "showValuesInScreen: array is $marks")
+        Log.d(TAG, "showValuesInScreen: array is ${marks.toString()}")
         marks.sortedArrayDescending()
         for ((i, value) in marks.withIndex()) {
             if (value == -1) continue
             val view = getViewByPosition(i)
             val valueOfView = valueFromTag(view?.tag.toString())
-            Log.i(TAG, "the tag is $valueOfView")
+            Log.d(TAG, "the tag is $valueOfView")
             if (value != valueOfView) {
                 val resourceId = getImageResourceByMark(value)
                 view?.tag = value.toString()
@@ -64,7 +69,7 @@ class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getImageResourceByMark(mark: Int): Int {
-        Log.i(TAG, "the tag is $mark")
+        Log.d(TAG, "getImageResourceByMark: the tag is $mark")
         return when (mark) {
             1 -> R.drawable.ic_one_1
             2 -> R.drawable.ic_two_2
@@ -83,7 +88,7 @@ class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getViewByPosition(position: Int): ImageView? {
-        Log.i(TAG, "getViewByPosition: position is $position")
+        Log.d(TAG, "getViewByPosition: position is $position")
         return when (position) {
             0 -> arrowOne
             1 -> arrowTwo
@@ -96,20 +101,21 @@ class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun clearImageArrow(it: View?) {
-        Log.i(TAG, "clearImageArrow: the tag before is ${it?.tag}")
+        Log.d(TAG, "clearImageArrow: the tag before is ${it?.tag}")
         if (it?.tag.toString() != "none") {
             (it as ImageView).setImageResource(R.drawable.ractangle_score)
             val value = valueFromTag(it.tag.toString())
             val index = marks.indexOf(value)
             marks[index] = -1
             it.tag = "none"
-            Log.i(TAG, "clearImageArrow: the tag after is ${it.tag}")
+            Log.d(TAG, "clearImageArrow: the tag after is ${it.tag}")
         }
     }
 
     private fun addClickListenerToArrow(vararg views: View?) {
 
         for (view in views) {
+            Log.d(TAG, "addClickListenerToArrow: initial tag is ${view?.tag}")
             view?.setOnClickListener {
                 clearImageArrow(it)
                 showValuesInScreen()
@@ -120,20 +126,22 @@ class ScoreSheetActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
 
         fun valueFromTag(tag: String): Int {
-            Log.i(TAG, "valueFromTag: tag is $tag")
-            return when (tag) {
-                "X" -> 11
-                "M" -> 0
-                else -> {
-                    try {
-                        tag.toInt()
-                    } catch (e: Exception) {
-                        -1
-                    }
-                }
+            Log.d(TAG, "valueFromTag: tag is $tag")
+            return try {
+                tag.toInt()
+            } catch (e: Exception) {
+                -1
             }
         }
 
         const val TAG = "ScoreSheetActivity"
     }
+
+    fun showArray(){
+        for (i in marks){
+            Log.d(TAG , "showArray :value is $i")
+        }
+    }
+
+
 }

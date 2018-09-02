@@ -114,6 +114,7 @@
 
 
     <style name="ImageArrowsStyle">
+        <item name="android:tag">@string/none</item>
         <item name="android:layout_width">@dimen/image_arrows_size</item>
         <item name="android:layout_height">@dimen/image_arrows_size</item>
         <item name="android:layout_marginTop">@dimen/image_arrow_margin_top</item>
