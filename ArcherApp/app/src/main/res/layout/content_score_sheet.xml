@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/score_sum_volet"
+        android:id="@+id/scoreSumVoletTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -68,7 +68,6 @@
         android:id="@+id/scores_sheet_marks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/score_sum_volet"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="@dimen/image_icon_margin"
         android:layout_marginStart="@dimen/image_icon_margin"
@@ -79,7 +78,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score_sum_volet" />
+        app:layout_constraintTop_toBottomOf="@+id/scoreSumVoletTv" />
 
     <ImageView
         android:id="@+id/arrowOne"

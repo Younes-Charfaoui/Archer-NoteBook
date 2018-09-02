@@ -11,7 +11,7 @@ import me.mxcsyounes.archernotebook.R
 
 class ScoreSheetActivity : AppCompatActivity() {
 
-    val marks = arrayOf(-1, -1, -1, -1, -1, -1)
+    var marks = arrayOf(-1, -1, -1, -1, -1, -1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,9 @@ class ScoreSheetActivity : AppCompatActivity() {
         backArrowImage.setOnClickListener {
             showArray()
         }
+
+        // initializing the score with 0
+        scoreSumVoletTv.text = "0"
     }
 
 
@@ -54,18 +57,24 @@ class ScoreSheetActivity : AppCompatActivity() {
 
     private fun showValuesInScreen() {
         Log.d(TAG, "showValuesInScreen: array is ${marks.toString()}")
-        marks.sortedArrayDescending()
+        marks = marks.sortedArrayDescending()
         for ((i, value) in marks.withIndex()) {
-            if (value == -1) continue
             val view = getViewByPosition(i)
             val valueOfView = valueFromTag(view?.tag.toString())
             Log.d(TAG, "the tag is $valueOfView")
-            if (value != valueOfView) {
-                val resourceId = getImageResourceByMark(value)
-                view?.tag = value.toString()
-                view?.setImageResource(resourceId)
+            if (value == -1) {
+                view?.tag = "none"
+                view?.setImageResource(R.drawable.ractangle_score)
+            } else {
+                if (value != valueOfView) {
+                    val resourceId = getImageResourceByMark(value)
+                    view?.tag = value.toString()
+                    view?.setImageResource(resourceId)
+                }
             }
         }
+
+        showResultOfVolet()
     }
 
     private fun getImageResourceByMark(mark: Int): Int {
@@ -107,6 +116,7 @@ class ScoreSheetActivity : AppCompatActivity() {
             val value = valueFromTag(it.tag.toString())
             val index = marks.indexOf(value)
             marks[index] = -1
+            marks = marks.sortedArrayDescending()
             it.tag = "none"
             Log.d(TAG, "clearImageArrow: the tag after is ${it.tag}")
         }
@@ -134,14 +144,28 @@ class ScoreSheetActivity : AppCompatActivity() {
             }
         }
 
+        fun sumOfVolet(marks: Array<Int>): Int {
+            var result = 0
+            for (i in marks) {
+                if (i == 11)
+                    result += 10
+                else if (i != -1)
+                    result += i
+            }
+            return result
+        }
+
         const val TAG = "ScoreSheetActivity"
     }
 
-    fun showArray(){
-        for (i in marks){
-            Log.d(TAG , "showArray :value is $i")
+    private fun showArray() {
+        for (i in marks) {
+            Log.d(TAG, "showArray :value is $i")
         }
     }
 
-
+    fun showResultOfVolet() {
+        val score = sumOfVolet(marks)
+        scoreSumVoletTv.text = score.toString()
+    }
 }
