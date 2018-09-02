@@ -1,288 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.ScoreSheetActivity"
-    tools:showIn="@layout/activity_score_sheet">
+    tools:showIn="@layout/activity_score_sheet"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/backArrowImage"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="@dimen/image_icon_margin"
-        android:layout_marginTop="@dimen/image_icon_margin"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_arrow_back_accent_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <TextView
-        android:id="@+id/voletNumberTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/image_icon_margin"
-        android:layout_marginStart="@dimen/image_icon_margin"
-        android:layout_marginTop="@dimen/image_icon_margin"
-        android:fontFamily="@font/bahnschrift"
-        android:textColor="@color/colorAccent"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toStartOf="@+id/backArrowImage"
-        app:layout_constraintStart_toEndOf="@+id/forwardArrowImage"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Volet #1" />
+        <ImageView
+            android:id="@+id/backArrowImage"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/image_icon_margin"
+            android:layout_marginTop="@dimen/image_icon_margin"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_arrow_back_accent_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/forwardArrowImage"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="@dimen/image_icon_margin"
-        android:layout_marginTop="@dimen/image_icon_margin"
-        android:contentDescription="@null"
-        android:rotation="180"
-        android:src="@drawable/ic_arrow_back_accent_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/voletNumberTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/image_icon_margin"
+            android:layout_marginStart="@dimen/image_icon_margin"
+            android:layout_marginTop="@dimen/image_icon_margin"
+            android:fontFamily="@font/bahnschrift"
+            android:textColor="@color/colorAccent"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toStartOf="@+id/backArrowImage"
+            app:layout_constraintStart_toEndOf="@+id/forwardArrowImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Volet #1" />
 
-    <TextView
-        android:id="@+id/scoreSumVoletTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="@dimen/image_icon_margin"
-        android:layout_marginStart="@dimen/image_icon_margin"
-        android:layout_marginTop="@dimen/image_icon_margin"
-        android:fontFamily="@font/bahnschrift"
-        android:textColor="@color/colorPrimary"
-        android:textSize="65sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/voletNumberTv"
-        tools:text="50" />
+        <ImageView
+            android:id="@+id/forwardArrowImage"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/image_icon_margin"
+            android:layout_marginTop="@dimen/image_icon_margin"
+            android:contentDescription="@null"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_back_accent_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/scores_sheet_marks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="@dimen/image_icon_margin"
-        android:layout_marginStart="@dimen/image_icon_margin"
-        android:layout_marginTop="@dimen/image_icon_margin"
-        android:fontFamily="@font/bahnschrift"
-        android:text="@string/marks"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scoreSumVoletTv" />
+        <TextView
+            android:id="@+id/scoreSumVoletTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/image_icon_margin"
+            android:layout_marginStart="@dimen/image_icon_margin"
+            android:layout_marginTop="@dimen/image_icon_margin"
+            android:fontFamily="@font/bahnschrift"
+            android:textColor="@color/colorPrimary"
+            android:textSize="65sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/voletNumberTv"
+            tools:text="50" />
 
-    <ImageView
-        android:id="@+id/arrowOne"
-        style="@style/ImageArrowsStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ractangle_score"
-        app:layout_constraintEnd_toStartOf="@+id/arrowTwo"
-        app:layout_constraintTop_toBottomOf="@+id/scores_sheet_marks" />
+        <TextView
+            android:id="@+id/scores_sheet_marks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/image_icon_margin"
+            android:layout_marginStart="@dimen/image_icon_margin"
+            android:layout_marginTop="@dimen/image_icon_margin"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/marks"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scoreSumVoletTv" />
 
-    <ImageView
-        android:id="@+id/arrowTwo"
-        style="@style/ImageArrowsStyle"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ractangle_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scores_sheet_marks" />
+        <ImageView
+            android:id="@+id/arrowOne"
+            style="@style/ImageArrowsStyle"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ractangle_score"
+            app:layout_constraintEnd_toStartOf="@+id/arrowTwo"
+            app:layout_constraintTop_toBottomOf="@+id/scores_sheet_marks" />
 
-    <ImageView
-        android:id="@+id/arrowThree"
-        style="@style/ImageArrowsStyle"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ractangle_score"
-        app:layout_constraintStart_toEndOf="@+id/arrowTwo"
-        app:layout_constraintTop_toBottomOf="@+id/scores_sheet_marks" />
+        <ImageView
+            android:id="@+id/arrowTwo"
+            style="@style/ImageArrowsStyle"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ractangle_score"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scores_sheet_marks" />
 
-    <ImageView
-        android:id="@+id/arrowFour"
-        style="@style/ImageArrowsStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ractangle_score"
-        app:layout_constraintEnd_toStartOf="@+id/arrowFive"
-        app:layout_constraintTop_toBottomOf="@+id/arrowTwo" />
+        <ImageView
+            android:id="@+id/arrowThree"
+            style="@style/ImageArrowsStyle"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ractangle_score"
+            app:layout_constraintStart_toEndOf="@+id/arrowTwo"
+            app:layout_constraintTop_toBottomOf="@+id/scores_sheet_marks" />
 
-    <ImageView
-        android:id="@+id/arrowFive"
-        style="@style/ImageArrowsStyle"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ractangle_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/arrowTwo" />
+        <ImageView
+            android:id="@+id/arrowFour"
+            style="@style/ImageArrowsStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ractangle_score"
+            app:layout_constraintBottom_toTopOf="@+id/tapBellowTv"
+            app:layout_constraintEnd_toStartOf="@+id/arrowFive"
+            app:layout_constraintTop_toBottomOf="@+id/arrowTwo" />
 
-    <ImageView
-        android:id="@+id/arrowSix"
-        style="@style/ImageArrowsStyle"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ractangle_score"
-        app:layout_constraintStart_toEndOf="@+id/arrowFive"
-        app:layout_constraintTop_toBottomOf="@+id/arrowTwo" />
+        <ImageView
+            android:id="@+id/arrowFive"
+            style="@style/ImageArrowsStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ractangle_score"
+            app:layout_constraintBottom_toTopOf="@+id/tapBellowTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrowTwo" />
 
-    <TextView
-        android:id="@+id/tapBellowTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/bahnschrift"
-        android:text="@string/tap_bellow"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/arrowFive" />
+        <ImageView
+            android:id="@+id/arrowSix"
+            style="@style/ImageArrowsStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ractangle_score"
+            app:layout_constraintBottom_toTopOf="@+id/tapBellowTv"
+            app:layout_constraintStart_toEndOf="@+id/arrowFive"
+            app:layout_constraintTop_toBottomOf="@+id/arrowTwo" />
 
-    <View
-        android:id="@+id/helperView"
-        android:layout_width="@dimen/image_marks_margin_top"
-        android:layout_height="@dimen/image_marks_margin_top"
-        android:layout_marginEnd="@dimen/image_marks_margin_top"
-        android:layout_marginStart="@dimen/image_marks_margin_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tapBellowTv" />
+        <TextView
+            android:id="@+id/tapBellowTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/tap_bellow"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/helperView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageX"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_ten_x"
-        android:tag="11"
-        app:layout_constraintEnd_toStartOf="@+id/imageTen"
-        app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
+        <View
+            android:id="@+id/helperView"
+            android:layout_width="@dimen/image_marks_margin_top"
+            android:layout_height="@dimen/image_marks_margin_top"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="@dimen/image_marks_margin_top"
+            android:layout_marginStart="@dimen/image_marks_margin_top"
+            app:layout_constraintBottom_toTopOf="@+id/imageNine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageTen"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_ten_10"
-        android:tag="10"
-        app:layout_constraintEnd_toStartOf="@+id/imageNine"
-        app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
+        <ImageView
+            android:id="@+id/imageX"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_ten_x"
+            android:tag="11"
+            app:layout_constraintBottom_toTopOf="@+id/imageFive"
+            app:layout_constraintEnd_toStartOf="@+id/imageTen"
+            app:layout_constraintTop_toTopOf="@+id/helperView" />
 
-    <ImageView
-        android:id="@+id/imageNine"
-        style="@style/ImageMarkStyle"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_nine_9"
-        android:tag="9"
-        app:layout_constraintEnd_toStartOf="@id/helperView"
-        app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
+        <ImageView
+            android:id="@+id/imageTen"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_ten_10"
+            android:tag="10"
+            app:layout_constraintBottom_toTopOf="@+id/imageFour"
+            app:layout_constraintEnd_toStartOf="@+id/imageNine"
+            app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
 
-    <ImageView
-        android:id="@+id/imageEight"
-        style="@style/ImageMarkStyle"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_eight_8"
-        android:tag="8"
-        app:layout_constraintStart_toEndOf="@+id/helperView"
-        app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
+        <ImageView
+            android:id="@+id/imageNine"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_nine_9"
+            android:tag="9"
+            app:layout_constraintBottom_toTopOf="@+id/imageThree"
+            app:layout_constraintEnd_toStartOf="@id/helperView"
+            app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
 
-    <ImageView
-        android:id="@+id/imageSeven"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_seven_7"
-        android:tag="7"
-        app:layout_constraintEnd_toStartOf="@+id/imageSix"
-        app:layout_constraintStart_toEndOf="@+id/imageEight"
-        app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
+        <ImageView
+            android:id="@+id/imageEight"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_eight_8"
+            android:tag="8"
+            app:layout_constraintBottom_toTopOf="@+id/imageTwo"
+            app:layout_constraintStart_toEndOf="@+id/helperView"
+            app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
 
-
-    <ImageView
-        android:id="@+id/imageSix"
-        style="@style/ImageMarkStyle"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_six_6"
-        android:tag="6"
-        app:layout_constraintStart_toEndOf="@+id/imageSeven"
-        app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
-
-    <ImageView
-        android:id="@+id/imageFive"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_five_5"
-        android:tag="5"
-        app:layout_constraintEnd_toStartOf="@+id/imageFour"
-        app:layout_constraintTop_toBottomOf="@+id/imageX" />
-
-    <ImageView
-        android:id="@+id/imageFour"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_four_4"
-        android:tag="4"
-        app:layout_constraintEnd_toStartOf="@+id/imageThree"
-        app:layout_constraintTop_toBottomOf="@+id/imageX" />
-
-    <ImageView
-        android:id="@+id/imageThree"
-        style="@style/ImageMarkStyle"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_three_3"
-        android:tag="3"
-        app:layout_constraintEnd_toStartOf="@+id/helperView"
-        app:layout_constraintTop_toBottomOf="@+id/imageX" />
+        <ImageView
+            android:id="@+id/imageSeven"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_seven_7"
+            android:tag="7"
+            app:layout_constraintBottom_toTopOf="@+id/imageOne"
+            app:layout_constraintEnd_toStartOf="@+id/imageSix"
+            app:layout_constraintStart_toEndOf="@+id/imageEight"
+            app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
 
 
-    <ImageView
-        android:id="@+id/imageTwo"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_two_2"
-        android:tag="2"
-        app:layout_constraintStart_toEndOf="@+id/helperView"
-        app:layout_constraintTop_toBottomOf="@+id/imageX" />
+        <ImageView
+            android:id="@+id/imageSix"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_six_6"
+            android:tag="6"
+            app:layout_constraintBottom_toTopOf="@+id/imageMist"
+            app:layout_constraintStart_toEndOf="@+id/imageSeven"
+            app:layout_constraintTop_toBottomOf="@+id/tapBellowTv" />
 
-    <ImageView
-        android:id="@+id/imageOne"
-        style="@style/ImageMarkStyle"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_one_1"
-        android:tag="1"
-        app:layout_constraintStart_toEndOf="@+id/imageTwo"
-        app:layout_constraintTop_toBottomOf="@+id/imageX" />
+        <ImageView
+            android:id="@+id/imageFive"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_five_5"
+            android:tag="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageFour" />
 
-    <ImageView
-        android:id="@+id/imageMist"
-        style="@style/ImageMarkStyle"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_mist"
-        android:tag="0"
-        app:layout_constraintStart_toEndOf="@+id/imageOne"
-        app:layout_constraintTop_toBottomOf="@+id/imageX" />
+        <ImageView
+            android:id="@+id/imageFour"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_four_4"
+            android:tag="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageThree" />
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imageThree"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_three_3"
+            android:tag="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/helperView" />
+
+
+        <ImageView
+            android:id="@+id/imageTwo"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_two_2"
+            android:tag="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/helperView" />
+
+        <ImageView
+            android:id="@+id/imageOne"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_one_1"
+            android:tag="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageTwo" />
+
+        <ImageView
+            android:id="@+id/imageMist"
+            style="@style/ImageMarkStyle"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_mist"
+            android:tag="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageOne" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
