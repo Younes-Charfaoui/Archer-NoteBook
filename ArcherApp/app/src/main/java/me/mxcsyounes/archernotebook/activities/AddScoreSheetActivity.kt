@@ -53,9 +53,15 @@ class AddScoreSheetActivity : AppCompatActivity() {
             val scoreRaw = data?.getStringExtra(KEY_SCORE)
             viewModel.scores.add(ScoreRounds(scoreRaw!!))
             Log.i(TAG, scoreRaw)
-            addScoreSheetLL.visibility = View.GONE
             toolbar.title = "Score Sheet"
             supportActionBar?.title = "Score Sheet"
+
+            addScoreSheetSeriesTypeRadioGroup.visibility = View.GONE
+            addScoreSheetSheetTypeRadioGroup.visibility = View.GONE
+            addScoreSheetDistanceRadioGroup.visibility = View.GONE
+            addScoreSheetTypeSeriesTv.visibility = View.GONE
+            addScoreSheetScoreSeriesTv.visibility = View.VISIBLE
+
 
             if (viewModel.state() == 1) {
                 addScoreSheetDistanceTv.text = getString(R.string.first_serie)
