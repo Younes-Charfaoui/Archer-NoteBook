@@ -10,12 +10,14 @@
     tools:showIn="@layout/activity_add_score_sheet">
 
     <LinearLayout
+        android:id="@+id/addScoreSheetLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
 
         <TextView
+
             android:id="@+id/addScoreSheetDistanceTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +29,7 @@
 
         <RadioGroup
 
-            android:id="@+id/add_score_sheet_distance_radio_group"
+            android:id="@+id/addScoreSheetDistanceRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
@@ -79,7 +81,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
-            android:id="@+id/add_score_sheet_sheet_type_radio_group"
+            android:id="@+id/addScoreSheetSheetTypeRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
@@ -107,7 +109,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
-            android:id="@+id/add_score_sheet_series_type_radio_group"
+            android:id="@+id/addScoreSheetSeriesTypeRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">

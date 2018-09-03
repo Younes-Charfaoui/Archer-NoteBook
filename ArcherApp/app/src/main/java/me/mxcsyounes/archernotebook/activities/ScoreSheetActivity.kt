@@ -1,5 +1,6 @@
 package me.mxcsyounes.archernotebook.activities
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
@@ -61,7 +62,7 @@ class ScoreSheetActivity : AppCompatActivity() {
                 if (missing == -1) {
                     val data = Intent()
                     data.putExtra(AddScoreSheetActivity.KEY_SCORE, viewModel.finalScore)
-                    setResult(AddScoreSheetActivity.REQUEST_SCORE_SHEET, data)
+                    setResult(Activity.RESULT_OK, data)
                     viewModel.clear()
                     finish()
                 } else {
