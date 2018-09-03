@@ -74,4 +74,6 @@
     <string name="round">Round</string>
     <string name="save_score_string">Save Score</string>
     <string name="continue_shooting_string">Continue Shooting</string>
+    <string name="first_serie">First Series</string>
+    <string name="second_serie">Second Series</string>
 </resources>

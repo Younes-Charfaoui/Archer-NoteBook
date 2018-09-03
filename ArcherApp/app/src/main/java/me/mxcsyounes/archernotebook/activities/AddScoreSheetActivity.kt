@@ -57,7 +57,8 @@ class AddScoreSheetActivity : AppCompatActivity() {
 
 
             if (viewModel.state() == 1) {
-
+                addScoreSheetDistanceTv.text = getString(R.string.first_serie)
+                addScoreSheetScoreSeriesTv.text = viewModel.firstScore
                 toolbar.title = "Score Sheet"
                 supportActionBar?.title = "Score Sheet"
                 addScoreSheetStartButton.text = getString(R.string.continue_shooting_string)
@@ -69,6 +70,15 @@ class AddScoreSheetActivity : AppCompatActivity() {
             } else {
                 toolbar.title = "Score Sheet"
                 supportActionBar?.title = "Score Sheet"
+
+                if (viewModel.seriesType == 2) {
+                    addScoreSheetDistanceTv.text = getString(R.string.second_serie)
+                    addScoreSheetScoreSeriesTv.text = viewModel.secondScore
+                } else {
+                    addScoreSheetDistanceTv.text = getString(R.string.first_serie)
+                    addScoreSheetScoreSeriesTv.text = viewModel.firstScore
+                }
+
                 addScoreSheetStartButton.text = getString(R.string.save_score_string)
                 addScoreSheetStartButton.setOnClickListener {
                     viewModel.saveScore()

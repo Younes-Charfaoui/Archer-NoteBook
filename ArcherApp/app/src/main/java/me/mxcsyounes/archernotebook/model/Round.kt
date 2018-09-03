@@ -15,6 +15,11 @@ class ScoreRounds {
         return result
     }
 
+    val over : Int
+        get() {
+            return rounds[0].scores.size * rounds.size * 10
+        }
+
     constructor(rounds: MutableList<Round>) {
         this.rounds = rounds
     }

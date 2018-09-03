@@ -38,7 +38,12 @@ class AddScoreSheetViewModel(application: Application) : AndroidViewModel(applic
                 totalScore += "#"
         }
         repository.insertScoreSheet(ScoreSheet(distance = distance, typeSeries = seriesType,
-                score = totalScore, typeSheet = sheetType , date = Date()))
+                score = totalScore, typeSheet = sheetType, date = Date()))
     }
 
+    val firstScore: String
+        get() = "${scores[0].total} / ${scores[0].over}"
+
+    val secondScore: String
+        get() = "${scores[1].total} / ${scores[1].over}"
 }
