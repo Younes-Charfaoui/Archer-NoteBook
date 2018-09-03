@@ -71,4 +71,5 @@
     <string name="title_activity_score_sheet">Score Sheet</string>
     <string name="marks">Marks</string>
     <string name="tap_bellow">Tap bellow</string>
+    <string name="round">Round</string>
 </resources>

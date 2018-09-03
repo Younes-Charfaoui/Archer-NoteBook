@@ -1,5 +1,6 @@
 package me.mxcsyounes.archernotebook.activities
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -8,11 +9,14 @@ import kotlinx.android.synthetic.main.activity_score_sheet.*
 import kotlinx.android.synthetic.main.content_score_sheet.*
 import me.mxcsyounes.archernotebook.R
 import me.mxcsyounes.archernotebook.model.Round
+import me.mxcsyounes.archernotebook.viewmodels.ScoreSheetViewModel
 
 class ScoreSheetActivity : AppCompatActivity() {
 
     private val rounds = mutableListOf<Round>()
     private var counter = 1
+    private lateinit var viewModel: ScoreSheetViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,10 +24,8 @@ class ScoreSheetActivity : AppCompatActivity() {
         setSupportActionBar(score_sheet_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        counter = 1
-        for (i in 1..6) {
-            rounds.add(Round(i, arrayOf(-1, -1, -1, -1, -1, -1)))
-        }
+        viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
+        viewModel.init()
 
         addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
 
@@ -32,21 +34,22 @@ class ScoreSheetActivity : AppCompatActivity() {
                 imageThree, imageTwo, imageOne, imageMist)
 
         backArrowImage.setOnClickListener {
-            if (counter != 1) {
-                counter.dec()
+            if (viewModel.previousRound()) {
                 showValuesInScreen()
             }
         }
 
         forwardArrowImage.setOnClickListener {
-            if (counter != 6) {
-                counter.inc()
+            if (viewModel.nextRound()) {
                 showValuesInScreen()
             }
         }
 
         // initializing the score with 0
         scoreSumVoletTv.text = "0"
+
+        // initializing the text with Round
+        voletNumberTv.text = viewModel.currentRoundNumberTitle
     }
 
     private fun addClickListenerToArrow(vararg views: View?) {
@@ -66,11 +69,9 @@ class ScoreSheetActivity : AppCompatActivity() {
             view?.setOnClickListener {
                 val tag = it.tag as String
                 val value = valueFromTag(tag)
-                if (rounds[counter].scores.contains(-1)) {
-                    print(rounds[counter].scores)
-                    val index = rounds[counter].scores.indexOf(-1)
-
-                    rounds[counter].scores[index] = value
+                if (viewModel.currentRoundScore.contains(-1)) {
+                    val index = viewModel.currentRoundScore.indexOf(-1)
+                    viewModel.currentRoundScore[index] = value
                     showValuesInScreen()
                 }
             }
@@ -78,9 +79,12 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun showValuesInScreen() {
-        voletNumberTv.text = "Round #$counter"
-        rounds[counter].scores = rounds[counter].scores.sortedArrayDescending()
-        for ((i, value) in rounds[counter].scores.withIndex()) {
+
+        voletNumberTv.text = viewModel.currentRoundNumberTitle
+
+        viewModel.sortCurrent()
+
+        for ((i, value) in viewModel.currentRoundScore.withIndex()) {
             val view = getViewByPosition(i)
             val valueOfView = valueFromTag(view?.tag.toString())
             if (value == -1) {
@@ -116,6 +120,9 @@ class ScoreSheetActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * function to get the
+     */
     private fun getViewByPosition(position: Int): ImageView? {
         return when (position) {
             0 -> arrowOne
@@ -132,15 +139,14 @@ class ScoreSheetActivity : AppCompatActivity() {
         if (it?.tag.toString() != "none") {
             (it as ImageView).setImageResource(R.drawable.ractangle_score)
             val value = valueFromTag(it.tag.toString())
-            val index = rounds[counter].scores.indexOf(value)
-            rounds[counter].scores[index] = -1
+            val index = viewModel.currentRoundScore.indexOf(value)
+            viewModel.currentRoundScore[index] = -1
             it.tag = "none"
         }
     }
 
     private fun showResultOfVolet() {
-        val score = sumOfVolet(rounds[counter].scores)
-        scoreSumVoletTv.text = score.toString()
+        scoreSumVoletTv.text = viewModel.currentRoundScoreSum.toString()
     }
 
     companion object {
@@ -151,17 +157,6 @@ class ScoreSheetActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 -1
             }
-        }
-
-        fun sumOfVolet(marks: Array<Int>): Int {
-            var result = 0
-            for (i in marks) {
-                if (i == 11)
-                    result += 10
-                else if (i != -1)
-                    result += i
-            }
-            return result
         }
 
         const val TAG = "ScoreSheetActivity"
