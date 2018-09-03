@@ -54,13 +54,13 @@ class AddScoreSheetActivity : AppCompatActivity() {
             viewModel.scores.add(ScoreRounds(scoreRaw!!))
             Log.i(TAG, scoreRaw)
             addScoreSheetLL.visibility = View.GONE
-
+            toolbar.title = "Score Sheet"
+            supportActionBar?.title = "Score Sheet"
 
             if (viewModel.state() == 1) {
                 addScoreSheetDistanceTv.text = getString(R.string.first_serie)
                 addScoreSheetScoreSeriesTv.text = viewModel.firstScore
-                toolbar.title = "Score Sheet"
-                supportActionBar?.title = "Score Sheet"
+
                 addScoreSheetStartButton.text = getString(R.string.continue_shooting_string)
                 addScoreSheetStartButton.setOnClickListener {
                     val intent = Intent(this, ScoreSheetActivity::class.java)
@@ -68,8 +68,6 @@ class AddScoreSheetActivity : AppCompatActivity() {
                 }
 
             } else {
-                toolbar.title = "Score Sheet"
-                supportActionBar?.title = "Score Sheet"
 
                 if (viewModel.seriesType == 2) {
                     addScoreSheetDistanceTv.text = getString(R.string.second_serie)

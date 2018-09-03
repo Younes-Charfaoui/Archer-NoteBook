@@ -12,19 +12,19 @@ import java.util.*
 @Entity(tableName = "score_sheet")
 class ScoreSheet(@PrimaryKey(autoGenerate = true)
                  @ColumnInfo(name = "_id")
-                 val idScore: Int? = null,
+                 var idScore: Int? = null,
 
                  @ColumnInfo(name = "date_score")
                  @TypeConverters(value = [(DateConverters::class)])
-                 val date: Date? = null,
+                 var date: Date? = null,
 
                  @ColumnInfo(name = "distance_score")
-                 val distance: Int,
-                 val typeSeries: Int,
-                 val typeSheet: Int,
+                 var distance: Int,
+                 var typeSeries: Int,
+                 var typeSheet: Int,
 
                  @ColumnInfo(name = "sheet_score")
-                 val score: String) {
+                 var score: String) {
 
 
     fun getScores(): MutableList<ScoreRounds> {
