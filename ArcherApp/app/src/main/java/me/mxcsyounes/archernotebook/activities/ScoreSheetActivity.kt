@@ -16,6 +16,7 @@ class ScoreSheetActivity : AppCompatActivity() {
     private lateinit var viewModel: ScoreSheetViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score_sheet)
         setSupportActionBar(score_sheet_toolbar)
@@ -23,6 +24,23 @@ class ScoreSheetActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
         viewModel.init()
+
+        val distance = intent.getIntExtra(AddScoreSheetActivity.KEY_DISTANCE, -1)
+        var seriesType = intent.getIntExtra(AddScoreSheetActivity.KEY_SERIES_TYPE, -1)
+        val sheetType = intent.getIntExtra(AddScoreSheetActivity.KEY_SHEET_TYPE, -1)
+
+        viewModel.setupData(distance, seriesType, sheetType)
+
+        if (seriesType == 1) {
+            supportActionBar?.title = "Series"
+            score_sheet_toolbar.title = "Series"
+        } else {
+
+            supportActionBar?.title = "Series 1"
+            score_sheet_toolbar.title = "Series 1"
+        }
+
+
 
         addClickListenerToMarks()
 
@@ -35,6 +53,7 @@ class ScoreSheetActivity : AppCompatActivity() {
         }
 
         forwardArrowImage.setOnClickListener {
+
             if (forwardArrowImage.tag == "back") {
                 if (viewModel.nextRound()) {
                     updateScreen()
@@ -42,8 +61,19 @@ class ScoreSheetActivity : AppCompatActivity() {
             } else {
                 val missing = viewModel.validateSeries()
                 if (missing == -1) {
-                    //ready to go
-                    Log.d(TAG, "Going to finish")
+
+                    viewModel.addScore()
+                    if (seriesType == 2) {
+
+                        seriesType = 1
+                        supportActionBar?.title = "Series 2"
+                        score_sheet_toolbar.title = "Series 2"
+                        viewModel.init()
+                        updateScreen()
+                    } else {
+
+                        Log.d(TAG, "Going to finish")
+                    }
 
                 } else {
                     viewModel.goToRound(missing)

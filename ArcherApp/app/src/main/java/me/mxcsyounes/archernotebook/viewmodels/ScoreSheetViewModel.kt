@@ -10,11 +10,21 @@ class ScoreSheetViewModel : ViewModel() {
     private val rounds = mutableListOf<Round>()
     private val scores = mutableListOf<Score>()
 
+    var distance: Int = 0
+    var seriesType: Int = 0
+    var sheetType: Int = 0
+
     fun init() {
         counter = 0
         for (i in 1..6) {
             rounds.add(Round(i, arrayOf(-1, -1, -1, -1, -1, -1)))
         }
+    }
+
+    fun setupData(distance: Int, seriesType: Int, sheetType: Int) {
+            this.distance = distance
+            this.seriesType = seriesType
+            this.sheetType = sheetType
     }
 
     fun nextRound(): Boolean {
@@ -77,5 +87,6 @@ class ScoreSheetViewModel : ViewModel() {
 
     fun addScore() {
         scores.add(Score(rounds))
+        rounds.clear()
     }
 }
