@@ -2,7 +2,28 @@ package me.mxcsyounes.archernotebook.model
 
 class Round(val number: Int, var scores: Array<Int>)
 
-class Score(private val rounds: MutableList<Round>) {
+class ScoreRounds {
+
+    val rounds: MutableList<Round>
+
+    constructor(rounds: MutableList<Round>) {
+        this.rounds = rounds
+    }
+
+    constructor(raw: String) {
+        val rounds = mutableListOf<Round>()
+        val roundsString = raw.split(";")
+        for ((index, roundString) in roundsString.withIndex()) {
+            val arrows = roundString.split("$")
+            val arrowsRounds = mutableListOf<Int>()
+            for (i in arrows) {
+                arrowsRounds.add(i.toInt())
+            }
+            rounds.add(Round(index, arrowsRounds.toTypedArray()))
+        }
+
+        this.rounds = rounds
+    }
 
     override fun toString(): String {
 
@@ -11,16 +32,16 @@ class Score(private val rounds: MutableList<Round>) {
 
     companion object {
 
-        fun scoreToString(score: Score): String {
+        fun scoreToString(scoreRounds: ScoreRounds): String {
             val stringBuilder = StringBuilder()
-            for ((indexRound, round) in score.rounds.withIndex()) {
+            for ((indexRound, round) in scoreRounds.rounds.withIndex()) {
                 for ((index, value) in round.scores.withIndex()) {
                     stringBuilder.append(value)
                     if (index != round.scores.lastIndex)
                         stringBuilder.append("$")
 
                 }
-                if (indexRound != score.rounds.lastIndex)
+                if (indexRound != scoreRounds.rounds.lastIndex)
                     stringBuilder.append(";")
             }
             return stringBuilder.toString()

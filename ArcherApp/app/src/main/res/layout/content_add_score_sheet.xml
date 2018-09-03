@@ -11,11 +11,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
 
         <TextView
+            android:id="@+id/addScoreSheetDistanceTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -25,6 +26,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
+
             android:id="@+id/add_score_sheet_distance_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +36,6 @@
             <RadioButton
                 android:id="@+id/add_adjust_90_meter_radio"
                 style="@style/RadioButtonAddAdjust"
-
                 android:text="@string/_90_meters" />
 
             <RadioButton
@@ -68,6 +69,7 @@
 
 
         <TextView
+            android:id="@+id/addScoreSheetTypeOfSheetTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -95,6 +97,7 @@
         </RadioGroup>
 
         <TextView
+            android:id="@+id/addScoreSheetTypeSeriesTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -123,7 +126,7 @@
 
 
         <Button
-            android:id="@+id/add_score_sheet_start_button"
+            android:id="@+id/addScoreSheetStartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

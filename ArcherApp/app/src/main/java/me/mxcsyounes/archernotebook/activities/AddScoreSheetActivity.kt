@@ -1,5 +1,6 @@
 package me.mxcsyounes.archernotebook.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -34,19 +35,29 @@ class AddScoreSheetActivity : AppCompatActivity() {
 
         }
 
-        add_score_sheet_start_button.setOnClickListener({ _ ->
+        addScoreSheetStartButton.setOnClickListener({ _ ->
             val intent = Intent(this, ScoreSheetActivity::class.java)
             intent.putExtra(KEY_DISTANCE, distance)
             intent.putExtra(KEY_SERIES_TYPE, seriesType)
             intent.putExtra(KEY_SHEET_TYPE, sheetType)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_SCORE_SHEET)
         })
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_SCORE_SHEET && resultCode == Activity.RESULT_OK) {
+            val score = data?.getStringExtra(KEY_SCORE)
+
+        }
     }
 
     companion object {
         const val KEY_DISTANCE = "keyDistance"
         const val KEY_SHEET_TYPE = "keySheetType"
         const val KEY_SERIES_TYPE = "keySeriesType"
+        const val KEY_SCORE = "keyScore"
+
+        const val REQUEST_SCORE_SHEET = 1454
     }
 }

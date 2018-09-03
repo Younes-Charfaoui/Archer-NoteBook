@@ -1,9 +1,9 @@
 package me.mxcsyounes.archernotebook.activities
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_score_sheet.*
@@ -25,22 +25,20 @@ class ScoreSheetActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
         viewModel.init()
 
-        val distance = intent.getIntExtra(AddScoreSheetActivity.KEY_DISTANCE, -1)
+        /*val distance = intent.getIntExtra(AddScoreSheetActivity.KEY_DISTANCE, -1)
         var seriesType = intent.getIntExtra(AddScoreSheetActivity.KEY_SERIES_TYPE, -1)
         val sheetType = intent.getIntExtra(AddScoreSheetActivity.KEY_SHEET_TYPE, -1)
 
         viewModel.setupData(distance, seriesType, sheetType)
-
-        if (seriesType == 1) {
+*/
+        /*if (seriesType == 1) {
             supportActionBar?.title = "Series"
             score_sheet_toolbar.title = "Series"
         } else {
 
             supportActionBar?.title = "Series 1"
             score_sheet_toolbar.title = "Series 1"
-        }
-
-
+        }*/
 
         addClickListenerToMarks()
 
@@ -61,24 +59,14 @@ class ScoreSheetActivity : AppCompatActivity() {
             } else {
                 val missing = viewModel.validateSeries()
                 if (missing == -1) {
-
-                    viewModel.addScore()
-                    if (seriesType == 2) {
-
-                        seriesType = 1
-                        supportActionBar?.title = "Series 2"
-                        score_sheet_toolbar.title = "Series 2"
-                        viewModel.init()
-                        updateScreen()
-                    } else {
-
-                        Log.d(TAG, "Going to finish")
-                    }
-
+                    val data = Intent()
+                    data.putExtra(AddScoreSheetActivity.KEY_SCORE, viewModel.finalScore)
+                    setResult(AddScoreSheetActivity.REQUEST_SCORE_SHEET, data)
+                    viewModel.clear()
+                    finish()
                 } else {
                     viewModel.goToRound(missing)
                     updateScreen()
-                    Log.d(TAG, "Not yet")
                 }
             }
         }

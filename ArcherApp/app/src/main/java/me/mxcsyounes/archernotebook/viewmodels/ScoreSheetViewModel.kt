@@ -2,29 +2,18 @@ package me.mxcsyounes.archernotebook.viewmodels
 
 import android.arch.lifecycle.ViewModel
 import me.mxcsyounes.archernotebook.model.Round
-import me.mxcsyounes.archernotebook.model.Score
+import me.mxcsyounes.archernotebook.model.ScoreRounds
 
 class ScoreSheetViewModel : ViewModel() {
 
     private var counter: Int = 0
     private val rounds = mutableListOf<Round>()
-    private val scores = mutableListOf<Score>()
-
-    var distance: Int = 0
-    var seriesType: Int = 0
-    var sheetType: Int = 0
 
     fun init() {
         counter = 0
         for (i in 1..6) {
             rounds.add(Round(i, arrayOf(-1, -1, -1, -1, -1, -1)))
         }
-    }
-
-    fun setupData(distance: Int, seriesType: Int, sheetType: Int) {
-            this.distance = distance
-            this.seriesType = seriesType
-            this.sheetType = sheetType
     }
 
     fun nextRound(): Boolean {
@@ -85,8 +74,11 @@ class ScoreSheetViewModel : ViewModel() {
         return -1
     }
 
-    fun addScore() {
-        scores.add(Score(rounds))
+    fun clear() {
         rounds.clear()
     }
+
+    val finalScore: String
+        get() = ScoreRounds(rounds).toString()
+
 }
