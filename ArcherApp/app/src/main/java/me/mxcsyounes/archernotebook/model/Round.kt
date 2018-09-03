@@ -6,6 +6,15 @@ class ScoreRounds {
 
     val rounds: MutableList<Round>
 
+    val total : Int
+    get() {
+        var result = 0
+        for (round in rounds){
+            result += round.scores.sum()
+        }
+        return result
+    }
+
     constructor(rounds: MutableList<Round>) {
         this.rounds = rounds
     }

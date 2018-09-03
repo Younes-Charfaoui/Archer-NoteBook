@@ -3,7 +3,6 @@ package me.mxcsyounes.archernotebook.repositories
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import me.mxcsyounes.archernotebook.asynck.*
 import me.mxcsyounes.archernotebook.database.ArcherDatabase
 import me.mxcsyounes.archernotebook.database.dao.ScoreDao
 import me.mxcsyounes.archernotebook.database.entities.Score

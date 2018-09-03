@@ -29,14 +29,13 @@ abstract class ArcherDatabase : RoomDatabase() {
         fun getInstance(context: Context, inMemory: Boolean = false): ArcherDatabase {
             if (sInstance == null) {
                 synchronized(ArcherDatabase::class.java) {
-                    if (inMemory) {
-                        sInstance = Room.inMemoryDatabaseBuilder(context,
+                    sInstance = if (inMemory) {
+                        Room.inMemoryDatabaseBuilder(context,
                                 ArcherDatabase::class.java)
                                 .build()
                     } else
-                        sInstance = Room.databaseBuilder(context,
+                        Room.databaseBuilder(context,
                                 ArcherDatabase::class.java, DB_NAME)
-
                                 .build()
                 }
             }

@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import me.mxcsyounes.archernotebook.database.entities.ScoreSheet
 import me.mxcsyounes.archernotebook.model.ScoreRounds
 import me.mxcsyounes.archernotebook.repositories.ScoreSheetRepository
+import java.util.*
 
 class AddScoreSheetViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -37,7 +38,7 @@ class AddScoreSheetViewModel(application: Application) : AndroidViewModel(applic
                 totalScore += "#"
         }
         repository.insertScoreSheet(ScoreSheet(distance = distance, typeSeries = seriesType,
-                score = totalScore, typeSheet = sheetType))
+                score = totalScore, typeSheet = sheetType , date = Date()))
     }
 
 }
