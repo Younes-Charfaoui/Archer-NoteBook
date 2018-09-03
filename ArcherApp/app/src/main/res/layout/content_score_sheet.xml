@@ -11,12 +11,12 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         >
 
         <ImageView
             android:id="@+id/backArrowImage"
-            android:layout_width="0dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_icon_margin"
@@ -32,22 +32,23 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/image_icon_margin"
             android:layout_marginStart="@dimen/image_icon_margin"
-            android:layout_marginTop="@dimen/image_icon_margin"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/bahnschrift"
             android:textColor="@color/colorAccent"
             android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@+id/backArrowImage"
             app:layout_constraintEnd_toStartOf="@+id/backArrowImage"
             app:layout_constraintStart_toEndOf="@+id/forwardArrowImage"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backArrowImage"
             tools:text="Volet #1" />
 
         <ImageView
             android:id="@+id/forwardArrowImage"
-            android:layout_width="0dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/image_icon_margin"
-            android:layout_marginTop="@dimen/image_icon_margin"
+            android:layout_marginTop="16dp"
             android:contentDescription="@null"
             android:rotation="180"
             android:src="@drawable/ic_arrow_back_accent_24dp"
@@ -64,7 +65,7 @@
             android:layout_marginTop="@dimen/image_icon_margin"
             android:fontFamily="@font/bahnschrift"
             android:textColor="@color/colorPrimary"
-            android:textSize="65sp"
+            android:textSize="80sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/voletNumberTv"
@@ -151,7 +152,7 @@
             android:layout_marginBottom="3dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="48dp"
             android:fontFamily="@font/bahnschrift"
             android:text="@string/tap_bellow"
             android:textColor="@color/colorAccent"

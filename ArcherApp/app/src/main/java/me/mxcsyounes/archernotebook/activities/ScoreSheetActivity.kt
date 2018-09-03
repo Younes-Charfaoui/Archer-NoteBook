@@ -27,21 +27,24 @@ class ScoreSheetActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
         viewModel.init()
 
-        addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
+        // addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
 
-        addClickListenerToMarks(imageX, imageTen, imageNine, imageEight,
-                imageSeven, imageSix, imageFive, imageFour,
-                imageThree, imageTwo, imageOne, imageMist)
+        addClickListenerToMarks()
+
+        backArrowImage.visibility = View.INVISIBLE
 
         backArrowImage.setOnClickListener {
             if (viewModel.previousRound()) {
                 showValuesInScreen()
+                setupListeners()
             }
         }
 
         forwardArrowImage.setOnClickListener {
             if (viewModel.nextRound()) {
                 showValuesInScreen()
+                setupListeners()
+
             }
         }
 
@@ -62,7 +65,21 @@ class ScoreSheetActivity : AppCompatActivity() {
         }
     }
 
-    private fun addClickListenerToMarks(vararg views: View?) {
+    /*private fun removeAllClickListenerToArrow() {
+        removeClickListener(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
+    }*/
+
+    private fun removeAllClickListenerToMarks() {
+        removeClickListener(imageX, imageTen, imageNine, imageEight,
+                imageSeven, imageSix, imageFive, imageFour,
+                imageThree, imageTwo, imageOne, imageMist)
+    }
+
+    private fun addClickListenerToMarks() {
+
+        val views = arrayOf(imageX, imageTen, imageNine, imageEight,
+                imageSeven, imageSix, imageFive, imageFour,
+                imageThree, imageTwo, imageOne, imageMist)
 
         for (view in views) {
 
@@ -78,7 +95,32 @@ class ScoreSheetActivity : AppCompatActivity() {
         }
     }
 
+    private fun removeClickListener(vararg views: View?) {
+
+        for (view in views) {
+            view?.setOnClickListener(null)
+        }
+    }
+
+    private fun setupListeners() {
+        if (!viewModel.currentRoundScore.contains(-1)) {
+            removeAllClickListenerToMarks()
+            addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
+        } else {
+            addClickListenerToMarks()
+        }
+    }
+
     private fun showValuesInScreen() {
+
+        when {
+            viewModel.currentRoundNumber == 0 -> backArrowImage.visibility = View.INVISIBLE
+            viewModel.currentRoundNumber == 5 -> forwardArrowImage.visibility = View.INVISIBLE
+            else -> {
+                backArrowImage.visibility = View.VISIBLE
+                forwardArrowImage.visibility = View.VISIBLE
+            }
+        }
 
         voletNumberTv.text = viewModel.currentRoundNumberTitle
 
@@ -90,13 +132,19 @@ class ScoreSheetActivity : AppCompatActivity() {
             if (value == -1) {
                 view?.tag = "none"
                 view?.setImageResource(R.drawable.ractangle_score)
+                removeClickListener(view)
             } else {
                 if (value != valueOfView) {
                     val resourceId = getImageResourceByMark(value)
                     view?.tag = value.toString()
                     view?.setImageResource(resourceId)
+                    addClickListenerToArrow(view)
                 }
             }
+        }
+
+        if (!viewModel.currentRoundScore.contains(-1)) {
+            removeAllClickListenerToMarks()
         }
 
         showResultOfVolet()
@@ -121,7 +169,9 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     /**
-     * function to get the
+     * function to get the arrowImageView from the position
+     * @param position : Int value of the position of the image
+     * @return ImageView of which we gonna change the image of it.
      */
     private fun getViewByPosition(position: Int): ImageView? {
         return when (position) {
@@ -135,6 +185,9 @@ class ScoreSheetActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * function to clear the image of an arrow if it has an value
+     */
     private fun clearImageArrow(it: View?) {
         if (it?.tag.toString() != "none") {
             (it as ImageView).setImageResource(R.drawable.ractangle_score)
@@ -142,6 +195,7 @@ class ScoreSheetActivity : AppCompatActivity() {
             val index = viewModel.currentRoundScore.indexOf(value)
             viewModel.currentRoundScore[index] = -1
             it.tag = "none"
+            addClickListenerToMarks()
         }
     }
 

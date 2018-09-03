@@ -16,7 +16,7 @@ class ScoreSheetViewModel : ViewModel() {
     }
 
     fun nextRound(): Boolean {
-        if (counter + 1 <= 6) {
+        if (counter + 1 <= 5) {
             counter++
             return true
         }
@@ -24,7 +24,7 @@ class ScoreSheetViewModel : ViewModel() {
     }
 
     fun previousRound(): Boolean {
-        if (counter - 1 >= 1) {
+        if (counter - 1 >= 0) {
             counter--
             return true
         }
@@ -33,6 +33,9 @@ class ScoreSheetViewModel : ViewModel() {
 
     val currentRoundNumberTitle: String
         get() = "Round #${rounds[counter].number}"
+
+    val currentRoundNumber: Int
+        get() = counter
 
     private fun sumOfVolet(marks: Array<Int>): Int {
         var result = 0
