@@ -9,7 +9,7 @@ import java.util.*
 @Entity(tableName = "score_sheet")
 class ScoreSheet(@PrimaryKey(autoGenerate = true)
                  @ColumnInfo(name = "_id")
-                 val idScore: Int,
+                 val idScore: Int? = null,
 
                  @ColumnInfo(name = "date_score")
                  val date : Date = Date(),
@@ -17,6 +17,7 @@ class ScoreSheet(@PrimaryKey(autoGenerate = true)
                  @ColumnInfo(name = "distance_score")
                  val distance : Int ,
                  val typeSeries : Int,
+                 val typeSheet : Int,
                  val score : String){
 
 

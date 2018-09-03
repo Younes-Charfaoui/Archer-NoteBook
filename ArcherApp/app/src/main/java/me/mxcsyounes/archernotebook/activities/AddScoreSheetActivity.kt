@@ -54,14 +54,27 @@ class AddScoreSheetActivity : AppCompatActivity() {
             viewModel.scores.add(ScoreRounds(scoreRaw!!))
             Log.i(TAG, scoreRaw)
             addScoreSheetLL.visibility = View.GONE
-            toolbar.title = "Score Sheet"
-            supportActionBar?.title = "Score Sheet"
-            /*if (viewModel.state() == 1) {
-                val intent = Intent(this, ScoreSheetActivity::class.java)
-                startActivityForResult(intent, REQUEST_SCORE_SHEET)
+
+
+            if (viewModel.state() == 1) {
+
+                toolbar.title = "Score Sheet"
+                supportActionBar?.title = "Score Sheet"
+                addScoreSheetStartButton.text = getString(R.string.continue_shooting_string)
+                addScoreSheetStartButton.setOnClickListener {
+                    val intent = Intent(this, ScoreSheetActivity::class.java)
+                    startActivityForResult(intent, REQUEST_SCORE_SHEET)
+                }
+
             } else {
-                // todo go to the final activity to save
-            }*/
+                toolbar.title = "Score Sheet"
+                supportActionBar?.title = "Score Sheet"
+                addScoreSheetStartButton.text = getString(R.string.save_score_string)
+                addScoreSheetStartButton.setOnClickListener {
+                    viewModel.saveScore()
+                    finish()
+                }
+            }
         }
     }
 

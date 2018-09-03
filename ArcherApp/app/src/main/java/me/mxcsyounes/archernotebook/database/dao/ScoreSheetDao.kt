@@ -17,8 +17,14 @@ interface ScoreSheetDao {
     fun deleteScoreSheet(score: ScoreSheet)
 
     @Query("SELECT * FROM score_sheet ORDER BY date_score ASC")
-    fun getAllScores(): LiveData<ScoreSheet>
+    fun getAllScores(): LiveData<MutableList<ScoreSheet>>
 
     @Query("SELECT * FROM score_sheet WHERE _id = :id")
     fun getScoreById(id: Int): LiveData<ScoreSheet>
+
+    @Query("DELETE FROM score_sheet WHERE _id = :id")
+    fun deleteScoreById(id: Int)
+
+    @Query("DELETE FROM score_sheet")
+    fun deleteAllScores()
 }

@@ -72,4 +72,6 @@
     <string name="marks">Marks</string>
     <string name="tap_bellow">Tap bellow</string>
     <string name="round">Round</string>
+    <string name="save_score_string">Save Score</string>
+    <string name="continue_shooting_string">Continue Shooting</string>
 </resources>

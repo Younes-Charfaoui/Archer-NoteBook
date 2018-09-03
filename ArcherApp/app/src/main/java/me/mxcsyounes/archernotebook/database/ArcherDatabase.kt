@@ -7,22 +7,26 @@ import android.content.Context
 
 import me.mxcsyounes.archernotebook.database.dao.AdjustmentDao
 import me.mxcsyounes.archernotebook.database.dao.ScoreDao
+import me.mxcsyounes.archernotebook.database.dao.ScoreSheetDao
 import me.mxcsyounes.archernotebook.database.entities.Adjustment
 import me.mxcsyounes.archernotebook.database.entities.Score
+import me.mxcsyounes.archernotebook.database.entities.ScoreSheet
 
-@Database(entities = arrayOf(Adjustment::class, Score::class), version = 1, exportSchema = false)
+@Database(entities = [(Adjustment::class), (Score::class) ,(ScoreSheet::class)], version = 1, exportSchema = false)
 abstract class ArcherDatabase : RoomDatabase() {
 
     abstract fun mAdjDao(): AdjustmentDao
 
     abstract fun mScoreDao(): ScoreDao
 
+    abstract fun scoreSheetDao(): ScoreSheetDao
+
     companion object {
 
         private const val DB_NAME = "archer.db"
         private var sInstance: ArcherDatabase? = null
 
-        fun getInstance(context: Context, inMemory: Boolean): ArcherDatabase {
+        fun getInstance(context: Context, inMemory: Boolean = false): ArcherDatabase {
             if (sInstance == null) {
                 synchronized(ArcherDatabase::class.java) {
                     if (inMemory) {
