@@ -2,11 +2,13 @@ package me.mxcsyounes.archernotebook.viewmodels
 
 import android.arch.lifecycle.ViewModel
 import me.mxcsyounes.archernotebook.model.Round
+import me.mxcsyounes.archernotebook.model.Score
 
 class ScoreSheetViewModel : ViewModel() {
 
     private var counter: Int = 0
     private val rounds = mutableListOf<Round>()
+    private val scores = mutableListOf<Score>()
 
     fun init() {
         counter = 0
@@ -31,21 +33,28 @@ class ScoreSheetViewModel : ViewModel() {
         return false
     }
 
+    fun goToRound(round: Int) {
+        counter = round
+    }
+
     val currentRoundNumberTitle: String
         get() = "Round #${rounds[counter].number}"
 
     val currentRoundNumber: Int
         get() = counter
 
-    private fun sumOfVolet(marks: Array<Int>): Int {
-        var result = 0
-        for (i in marks) {
-            if (i == 11)
-                result += 10
-            else if (i != -1)
-                result += i
+    companion object {
+
+        fun sumOfVolet(marks: Array<Int>): Int {
+            var result = 0
+            for (i in marks) {
+                if (i == 11)
+                    result += 10
+                else if (i != -1)
+                    result += i
+            }
+            return result
         }
-        return result
     }
 
     val currentRoundScore: Array<Int>
@@ -57,4 +66,16 @@ class ScoreSheetViewModel : ViewModel() {
 
     val currentRoundScoreSum: Int
         get() = sumOfVolet(currentRoundScore)
+
+    fun validateSeries(): Int {
+        for (round in rounds) {
+            if (round.scores.contains(-1))
+                return round.number - 1
+        }
+        return -1
+    }
+
+    fun addScore() {
+        scores.add(Score(rounds))
+    }
 }

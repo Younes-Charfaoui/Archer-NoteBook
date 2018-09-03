@@ -3,20 +3,17 @@ package me.mxcsyounes.archernotebook.activities
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_score_sheet.*
 import kotlinx.android.synthetic.main.content_score_sheet.*
 import me.mxcsyounes.archernotebook.R
-import me.mxcsyounes.archernotebook.model.Round
 import me.mxcsyounes.archernotebook.viewmodels.ScoreSheetViewModel
 
 class ScoreSheetActivity : AppCompatActivity() {
 
-    private val rounds = mutableListOf<Round>()
-    private var counter = 1
     private lateinit var viewModel: ScoreSheetViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,24 +24,32 @@ class ScoreSheetActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
         viewModel.init()
 
-        // addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
-
         addClickListenerToMarks()
 
         backArrowImage.visibility = View.INVISIBLE
 
         backArrowImage.setOnClickListener {
             if (viewModel.previousRound()) {
-                showValuesInScreen()
-                setupListeners()
+                updateScreen()
             }
         }
 
         forwardArrowImage.setOnClickListener {
-            if (viewModel.nextRound()) {
-                showValuesInScreen()
-                setupListeners()
+            if (forwardArrowImage.tag == "back") {
+                if (viewModel.nextRound()) {
+                    updateScreen()
+                }
+            } else {
+                val missing = viewModel.validateSeries()
+                if (missing == -1) {
+                    //ready to go
+                    Log.d(TAG, "Going to finish")
 
+                } else {
+                    viewModel.goToRound(missing)
+                    updateScreen()
+                    Log.d(TAG, "Not yet")
+                }
             }
         }
 
@@ -53,6 +58,11 @@ class ScoreSheetActivity : AppCompatActivity() {
 
         // initializing the text with Round
         voletNumberTv.text = viewModel.currentRoundNumberTitle
+    }
+
+    private fun updateScreen() {
+        showValuesInScreen()
+        setupListeners()
     }
 
     private fun addClickListenerToArrow(vararg views: View?) {
@@ -64,10 +74,6 @@ class ScoreSheetActivity : AppCompatActivity() {
             }
         }
     }
-
-    /*private fun removeAllClickListenerToArrow() {
-        removeClickListener(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
-    }*/
 
     private fun removeAllClickListenerToMarks() {
         removeClickListener(imageX, imageTen, imageNine, imageEight,
@@ -114,11 +120,23 @@ class ScoreSheetActivity : AppCompatActivity() {
     private fun showValuesInScreen() {
 
         when {
-            viewModel.currentRoundNumber == 0 -> backArrowImage.visibility = View.INVISIBLE
-            viewModel.currentRoundNumber == 5 -> forwardArrowImage.visibility = View.INVISIBLE
+            viewModel.currentRoundNumber == 0 -> {
+                if (forwardArrowImage.tag == "done")
+                    forwardArrowImage.setImageResource(R.drawable.ic_arrow_back_accent_24dp)
+
+                backArrowImage.visibility = View.INVISIBLE
+                forwardArrowImage.tag = "back"
+            }
+            viewModel.currentRoundNumber == 5 -> {
+                forwardArrowImage.setImageResource(R.drawable.ic_done_accent_24dp)
+                if (forwardArrowImage.rotation == 180f) forwardArrowImage.rotation = 0f
+                forwardArrowImage.tag = "done"
+            }
             else -> {
                 backArrowImage.visibility = View.VISIBLE
-                forwardArrowImage.visibility = View.VISIBLE
+                forwardArrowImage.setImageResource(R.drawable.ic_arrow_back_accent_24dp)
+                if (forwardArrowImage.rotation == 0f) forwardArrowImage.rotation = 180f
+                forwardArrowImage.tag = "back"
             }
         }
 

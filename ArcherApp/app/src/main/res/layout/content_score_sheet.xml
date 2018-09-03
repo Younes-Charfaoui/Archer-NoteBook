@@ -51,6 +51,7 @@
             android:layout_marginTop="16dp"
             android:contentDescription="@null"
             android:rotation="180"
+            android:tag="back"
             android:src="@drawable/ic_arrow_back_accent_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -9,20 +9,15 @@ import me.mxcsyounes.archernotebook.R
 
 class AddScoreSheetActivity : AppCompatActivity() {
 
-    private var mDistance: Int = 0
-    private var mSheetType: Int = 0
-    private var mSeriesType: Int = 0
+    private var mDistance: Int = 2
+    private var mSheetType: Int = 2
+    private var mSeriesType: Int = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_score_sheet)
 
         setSupportActionBar(toolbar)
-
-        mDistance = 2
-        mSeriesType = 2
-        mSheetType = 2
-
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -39,7 +34,6 @@ class AddScoreSheetActivity : AppCompatActivity() {
 
         }
 
-
         add_score_sheet_start_button.setOnClickListener({ _ ->
             val intent = Intent(this, ScoreSheetActivity::class.java)
             intent.putExtra(KEY_DISTANCE, mDistance)
@@ -48,7 +42,6 @@ class AddScoreSheetActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-
     }
 
     companion object {
@@ -56,5 +49,4 @@ class AddScoreSheetActivity : AppCompatActivity() {
         const val KEY_SHEET_TYPE = "keySheetType"
         const val KEY_SERIES_TYPE = "keySeriesType"
     }
-
 }

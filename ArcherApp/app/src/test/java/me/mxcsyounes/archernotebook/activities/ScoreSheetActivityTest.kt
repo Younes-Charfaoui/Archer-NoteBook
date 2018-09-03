@@ -1,5 +1,6 @@
 package me.mxcsyounes.archernotebook.activities
 
+import me.mxcsyounes.archernotebook.viewmodels.ScoreSheetViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -26,15 +27,15 @@ class ScoreSheetActivityTest {
     @Test
     fun sumOfVoletTest() {
         var array = arrayOf(10, 9, 8, 7, 6, 5)
-        assertEquals(45, ScoreSheetActivity.sumOfVolet(array))
+        assertEquals(45, ScoreSheetViewModel.sumOfVolet(array))
 
         array = arrayOf(11, 9, -1, -1,-1, -1)
-        assertEquals(19, ScoreSheetActivity.sumOfVolet(array))
+        assertEquals(19, ScoreSheetViewModel.sumOfVolet(array))
 
         array = arrayOf(11, 11, 2, 1, 0, 0)
-        assertEquals(23, ScoreSheetActivity.sumOfVolet(array))
+        assertEquals(23, ScoreSheetViewModel.sumOfVolet(array))
 
         array = arrayOf(10, 10, 9, 2, 2, -1)
-        assertEquals(33, ScoreSheetActivity.sumOfVolet(array))
+        assertEquals(33, ScoreSheetViewModel.sumOfVolet(array))
     }
 }
