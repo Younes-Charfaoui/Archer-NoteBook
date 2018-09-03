@@ -13,11 +13,11 @@
         android:id="@+id/addScoreSheetLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical"
         android:padding="24dp">
 
         <TextView
-
             android:id="@+id/addScoreSheetDistanceTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,6 +26,19 @@
             android:text="@string/distance"
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/addScoreSheetScoreSeriesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/bahnschrift"
+            tools:text="500/600"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="48sp" />
 
         <RadioGroup
 
@@ -81,6 +94,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
+
             android:id="@+id/addScoreSheetSheetTypeRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,6 +113,7 @@
         </RadioGroup>
 
         <TextView
+
             android:id="@+id/addScoreSheetTypeSeriesTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,6 +124,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
+
             android:id="@+id/addScoreSheetSeriesTypeRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
