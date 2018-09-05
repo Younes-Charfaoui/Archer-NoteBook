@@ -39,7 +39,7 @@ class ScoreSheetRepository(application: Application) {
         }
     }
 
-    fun deleteAllAdjustments() {
+    fun deleteAllScores() {
         executor.execute {
             scoreDao.deleteAllScores()
         }
