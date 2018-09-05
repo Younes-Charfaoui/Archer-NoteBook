@@ -71,7 +71,6 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
         mViewModel?.mAllAdjustment?.observe(this, Observer<MutableList<Adjustment>> { list ->
             adjust_progress_bar.visibility = View.GONE
             add_adjust_fab.show()
-            adjustment_recycler_view.visibility = View.VISIBLE
             if (list != null && list.size > 0) {
                 adjust_empty_view.visibility = View.GONE
                 adjustment_recycler_view.visibility = View.VISIBLE

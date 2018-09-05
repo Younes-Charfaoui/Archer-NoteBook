@@ -30,8 +30,11 @@ class PreviousScoresAdapter(val context: Context, private val listener: Previous
 
     override fun onBindViewHolder(holder: PreviousScoreViewHolder, position: Int) {
         with(scoresList?.get(position)) {
+
             val colors = getColor(this)
+
             holder.scoreTv.text = this?.sumOfAll().toString()
+
             val format = SimpleDateFormat("E dd MMM", Locale.getDefault())
             holder.scoreDateTv.text = format.format(this?.date)
 
@@ -64,24 +67,24 @@ class PreviousScoresAdapter(val context: Context, private val listener: Previous
         fun onClickScoreItem(scoreSheet: ScoreSheet)
     }
 
-    fun getColor(scoreSheet: ScoreSheet?): ColorScore {
+    private fun getColor(scoreSheet: ScoreSheet?): ColorScore {
         val average: Double = scoreSheet?.sumOfAll()?.toDouble()!! / scoreSheet.numberOfArrows.toDouble()
 
         return when (average.toInt()) {
-            in 0 until 2 -> {
+            in 0 until 3 -> {
                 ColorScore(R.color.black, R.color.whiteTwoDark, R.color.whiteTwo)
             }
-            in 2 until 4 -> {
+            in 3 until 5 -> {
                 ColorScore(R.color.whiteTwo, R.color.blackDark, R.color.black)
             }
-            in 4 until 6 -> {
+            in 5 until 7 -> {
                 ColorScore(R.color.whiteTwo, R.color.blueDark, R.color.blue)
             }
-            in 6 until 8 -> {
+            in 7 until 9 -> {
                 ColorScore(R.color.whiteTwo, R.color.redDark, R.color.red)
             }
-            in 8 until 10 -> {
-                ColorScore(R.color.whiteTwo, R.color.yellowDark, R.color.yellow)
+            in 9 until 11 -> {
+                ColorScore(R.color.black, R.color.yellowDark, R.color.yellow)
             }
             else -> {
                 ColorScore(R.color.whiteTwo, R.color.colorPrimaryDark, R.color.colorPrimary)

@@ -35,10 +35,9 @@ class PreviousScoresActivity : AppCompatActivity(), PreviousScoresAdapter.Previo
 
         viewModel.allScores.observe(this, Observer {
             previousScoresProgressBar.visibility = View.GONE
-            previousScoresRecyclerView.visibility = View.VISIBLE
             if (it != null && it.size > 0) {
                 previousScoresEmptyLayout.visibility = View.GONE
-                previousScoresProgressBar.visibility = View.VISIBLE
+                previousScoresRecyclerView.visibility = View.VISIBLE
                 adapter.swapList(it)
             } else {
                 adapter.swapList(null)
