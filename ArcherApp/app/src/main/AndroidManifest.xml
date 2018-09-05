@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.WelcomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.LauncherActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,35 +26,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.AdjustmentsActivity"
             android:label="@string/title_activity_adjustments"
             android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mxcsyounes.archernotebook.activities.MainActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.ScoresActivity"
             android:label="@string/title_activity_scores"
             android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mxcsyounes.archernotebook.activities.MainActivity" />
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.BowSettingActivity"
             android:label="@string/title_activity_bow_setting"
             android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -72,30 +72,39 @@
         </provider>
 
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.AdjustmentDetailActivity"
             android:label="@string/title_activity_adjustment_detail"
             android:parentActivityName=".activities.AdjustmentsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.AddAdjustmentActivity"
             android:label="@string/title_activity_add_adjustment"
             android:parentActivityName=".activities.AdjustmentsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.AddScoreSheetActivity"
             android:label="@string/title_activity_add_score_sheet"
             android:parentActivityName=".activities.ScoresActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".activities.ScoreSheetActivity"
             android:label="@string/title_activity_score_sheet"
             android:parentActivityName=".activities.AddScoreSheetActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:parentActivityName=".activities.ScoresActivity"
+            android:name=".activities.PreviousScoresActivity"
+            android:label="@string/title_activity_previous_scores"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mxcsyounes.archernotebook.activities.ScoresActivity" />
+        </activity>
     </application>
 
 </manifest>

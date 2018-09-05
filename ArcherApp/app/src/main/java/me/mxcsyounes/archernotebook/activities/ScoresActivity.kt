@@ -24,17 +24,16 @@ class ScoresActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        scores_add_score_card.setOnClickListener {
-            // TODO: 18-Aug-18 Launch adding score process
+        scoresAddScoreCard.setOnClickListener {
             startActivity(Intent(this, AddScoreSheetActivity::class.java))
         }
 
-        scores_progress_card.setOnClickListener {
+        scoresProgressCard.setOnClickListener {
             // TODO: 18-Aug-18 Launch progress scores activity
         }
 
-        scores_scores_card.setOnClickListener {
-            // TODO: 18-Aug-18 Launch  score list activity
+        scoresScoresCard.setOnClickListener {
+            startActivity(Intent(this, PreviousScoresActivity::class.java))
         }
 
 

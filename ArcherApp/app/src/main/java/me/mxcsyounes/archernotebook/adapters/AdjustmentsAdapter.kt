@@ -15,8 +15,8 @@ import java.util.*
 class AdjustmentsAdapter(context: Context, listener: AdjustmentAdapterListener) : RecyclerView.Adapter<AdjustmentsAdapter.AdjustmentViewHolder>() {
 
     companion object {
-        const val TAG = "Adapter";
 
+        const val TAG = "Adapter";
     }
 
 

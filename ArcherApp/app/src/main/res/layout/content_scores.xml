@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_scores">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/scores_add_score_card"
+        android:id="@+id/scoresAddScoreCard"
         style="@style/ScoresCardMenu"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
@@ -25,18 +25,19 @@
 
             <ImageView
                 style="@style/ScoresImageMenu"
-                android:src="@drawable/taget_and_arrow" />
+                android:src="@drawable/taget_and_arrow"
+                android:contentDescription="@null" />
 
             <TextView
                 style="@style/ScoresTextMenu"
-                android:text="Add Score" />
+                android:text="@string/add_score" />
 
         </FrameLayout>
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/scores_scores_card"
+        android:id="@+id/scoresScoresCard"
         style="@style/ScoresCardMenu"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
@@ -44,7 +45,7 @@
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scores_add_score_card">
+        app:layout_constraintTop_toBottomOf="@id/scoresAddScoreCard">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -52,18 +53,19 @@
 
             <ImageView
                 style="@style/ScoresImageMenu"
-                android:src="@drawable/ic_gear_archer" />
+                android:src="@drawable/ic_gear_archer"
+                android:contentDescription="@null" />
 
             <TextView
                 style="@style/ScoresTextMenu"
-                android:text="Scores" />
+                android:text="@string/scores" />
 
         </FrameLayout>
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/scores_progress_card"
+        android:id="@+id/scoresProgressCard"
         style="@style/ScoresCardMenu"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
@@ -71,7 +73,7 @@
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scores_scores_card">
+        app:layout_constraintTop_toBottomOf="@id/scoresScoresCard">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -79,11 +81,12 @@
 
             <ImageView
                 style="@style/ScoresImageMenu"
-                android:src="@drawable/ic_chart_archery" />
+                android:src="@drawable/ic_chart_archery"
+                android:contentDescription="@null" />
 
             <TextView
                 style="@style/ScoresTextMenu"
-                android:text="Progress" />
+                android:text="@string/progress" />
 
         </FrameLayout>
 

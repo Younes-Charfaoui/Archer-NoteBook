@@ -40,6 +40,15 @@ class ScoreSheet(@PrimaryKey(autoGenerate = true)
             mutableListOf(scoreOne, scoreTwo)
         }
     }
+
+    fun sumOfAll(): Int {
+        var result = 0
+        val scores = this.getScores()
+        for (score in scores) {
+            result += score.total
+        }
+        return result
+    }
 }
 
 
