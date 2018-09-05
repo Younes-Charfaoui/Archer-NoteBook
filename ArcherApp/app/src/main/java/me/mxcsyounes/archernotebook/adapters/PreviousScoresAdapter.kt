@@ -5,16 +5,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import kotlinx.android.synthetic.main.score_list_item.view.*
 import me.mxcsyounes.archernotebook.R
 import me.mxcsyounes.archernotebook.database.entities.ScoreSheet
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PreviousScoresAdapter(context: Context, listnener: PreviousScoreListener) : RecyclerView.Adapter<PreviousScoresAdapter.PreviousScoreViewHolder>() {
+class PreviousScoresAdapter(context: Context, listener: PreviousScoreListener) : RecyclerView.Adapter<PreviousScoresAdapter.PreviousScoreViewHolder>() {
 
-    val layoutInflater = LayoutInflater.from(context)
-    var scoresList: List<ScoreSheet>? = null
+    private val layoutInflater = LayoutInflater.from(context)
+    private var scoresList: List<ScoreSheet>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreviousScoreViewHolder {
         val view = layoutInflater.inflate(R.layout.score_list_item, parent, false)
@@ -33,11 +34,12 @@ class PreviousScoresAdapter(context: Context, listnener: PreviousScoreListener) 
 
     fun swapList(list: List<ScoreSheet>?) {
         this.scoresList = list
+        notifyDataSetChanged()
     }
 
     inner class PreviousScoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val scoreTv = view.scoreSheetItemScore
-        val scoreDateTv = view.scoreSheetItemDate
+        val scoreTv: TextView = view.scoreSheetItemScore
+        val scoreDateTv: TextView = view.scoreSheetItemDate
     }
 
     interface PreviousScoreListener {

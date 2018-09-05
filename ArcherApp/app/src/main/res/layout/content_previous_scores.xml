@@ -11,6 +11,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/previousScoresRecyclerView"
         android:layout_width="match_parent"
+        tools:listitem="@layout/score_list_item"
+        tools:orientation="horizontal"
+
         android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>
