@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_previous_scores.*
 import kotlinx.android.synthetic.main.content_previous_scores.*
 import me.mxcsyounes.archernotebook.R
@@ -23,6 +26,16 @@ class PreviousScoresActivity : AppCompatActivity(), PreviousScoresAdapter.Previo
         setContentView(R.layout.activity_previous_scores)
         setSupportActionBar(previousScoreToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        MobileAds.initialize(this, resources.getString(R.string.app_id_ad_test))
+
+        adViewPreviousScores.loadAd(AdRequest.Builder().build())
+
+        adViewPreviousScores.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                adViewPreviousScores.visibility = View.VISIBLE
+            }
+        }
 
         viewModel = ViewModelProviders.of(this).get(PreviousScoresViewModel::class.java)
 
@@ -43,7 +56,6 @@ class PreviousScoresActivity : AppCompatActivity(), PreviousScoresAdapter.Previo
                 adapter.swapList(null)
                 previousScoresEmptyLayout.visibility = View.VISIBLE
             }
-
         })
     }
 

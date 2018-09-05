@@ -12,11 +12,11 @@
         android:id="@+id/adjustment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/ad_view_adjustment"
+        app:layout_constraintBottom_toTopOf="@+id/adViewAdjustment"
         />
 
     <ProgressBar
-        android:id="@+id/adjust_progress_bar"
+        android:id="@+id/adjustProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -74,20 +74,20 @@
         android:id="@+id/add_adjust_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/ad_view_adjustment"
+        android:layout_above="@id/adViewAdjustment"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         app:fabSize="normal"
 
-        app:layout_constraintBottom_toTopOf="@+id/ad_view_adjustment"
+        app:layout_constraintBottom_toTopOf="@+id/adViewAdjustment"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_white_24dp"
         tools:ignore="VectorDrawableCompat" />
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/ad_view_adjustment"
+        android:id="@+id/adViewAdjustment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

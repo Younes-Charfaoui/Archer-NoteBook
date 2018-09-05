@@ -43,11 +43,11 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
 
         MobileAds.initialize(this, resources.getString(R.string.app_id_ad_test))
 
-        ad_view_adjustment.loadAd(AdRequest.Builder().build())
+        adViewAdjustment.loadAd(AdRequest.Builder().build())
 
-        ad_view_adjustment.adListener = object : AdListener() {
+        adViewAdjustment.adListener = object : AdListener() {
             override fun onAdLoaded() {
-                ad_view_adjustment.visibility = View.VISIBLE
+                adViewAdjustment.visibility = View.VISIBLE
             }
         }
 
@@ -69,7 +69,7 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
         mViewModel = ViewModelProviders.of(this).get(AdjustmentViewModel::class.java)
 
         mViewModel?.mAllAdjustment?.observe(this, Observer<MutableList<Adjustment>> { list ->
-            adjust_progress_bar.visibility = View.GONE
+            adjustProgressBar.visibility = View.GONE
             add_adjust_fab.show()
             if (list != null && list.size > 0) {
                 adjust_empty_view.visibility = View.GONE
