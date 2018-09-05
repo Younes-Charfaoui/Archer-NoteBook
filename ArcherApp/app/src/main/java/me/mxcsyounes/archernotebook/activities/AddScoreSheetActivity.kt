@@ -40,10 +40,10 @@ class AddScoreSheetActivity : AppCompatActivity() {
             viewModel.seriesType = if (whichRadio == R.id.add_score_sheet_one_series_radio) 1 else 2
         }
 
-        addScoreSheetStartButton.setOnClickListener({ _ ->
+        addScoreSheetStartButton.setOnClickListener { _ ->
             val intent = Intent(this, ScoreSheetActivity::class.java)
             startActivityForResult(intent, REQUEST_SCORE_SHEET)
-        })
+        }
 
     }
 

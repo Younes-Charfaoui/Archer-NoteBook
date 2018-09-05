@@ -6,16 +6,18 @@ class ScoreRounds {
 
     val rounds: MutableList<Round>
 
-    val total : Int
-    get() {
-        var result = 0
-        for (round in rounds){
-            result += round.scores.sum()
+    val total: Int
+        get() {
+            var result = 0
+            for (round in rounds) {
+                for (mark in round.scores) {
+                    result += if (mark == 11) 10 else mark
+                }
+            }
+            return result
         }
-        return result
-    }
 
-    val over : Int
+    val over: Int
         get() {
             return rounds[0].scores.size * rounds.size * 10
         }
