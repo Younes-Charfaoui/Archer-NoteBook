@@ -29,7 +29,6 @@ class ScoreSheet(@PrimaryKey(autoGenerate = true)
 
     fun getScores(): MutableList<ScoreRounds> {
         return if (typeSeries == 1) {
-
             val score = ScoreRounds(score)
             mutableListOf(score)
         } else {
@@ -49,6 +48,16 @@ class ScoreSheet(@PrimaryKey(autoGenerate = true)
         }
         return result
     }
+
+    val numberOfArrows: Int
+        get() {
+            var result = 0
+            val scores = this.getScores()
+            for (score in scores) {
+                result += score.rounds.size * score.rounds[0].scores.size
+            }
+            return result
+        }
 }
 
 

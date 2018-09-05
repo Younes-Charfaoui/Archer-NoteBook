@@ -4,7 +4,7 @@ import me.mxcsyounes.archernotebook.database.entities.Score
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class ScoreTest {
+class ScoreRoundTest {
 
     @Test
     fun testToString() {

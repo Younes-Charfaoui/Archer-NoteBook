@@ -54,9 +54,9 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
         add_adjust_fab.hide()
 
 
-        add_adjust_fab.setOnClickListener({
+        add_adjust_fab.setOnClickListener{
             startActivityForResult(Intent(this, AddAdjustmentActivity::class.java), REQUEST_CODE_ADD_ADJUSTMENT)
-        })
+        }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -94,9 +94,9 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
             AlertDialog.Builder(this)
                     .setTitle("Delete All?")
                     .setMessage("The data cannot be retrieved any more.")
-                    .setPositiveButton("Delete", { _, _ ->
+                    .setPositiveButton("Delete") { _, _ ->
                         mViewModel?.deleteAllAdjustments()
-                    }).setNegativeButton("Cancel", null)
+                    }.setNegativeButton("Cancel", null)
                     .show()
             true
         }

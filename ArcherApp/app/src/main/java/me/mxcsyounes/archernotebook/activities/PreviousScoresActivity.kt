@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_previous_scores.*
 import kotlinx.android.synthetic.main.content_previous_scores.*
@@ -28,11 +29,22 @@ class PreviousScoresActivity : AppCompatActivity(), PreviousScoresAdapter.Previo
         val adapter = PreviousScoresAdapter(this, this)
 
         previousScoresRecyclerView.adapter = adapter
-        previousScoresRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        val manager = GridLayoutManager(this, 2)
+        previousScoresRecyclerView.layoutManager = manager
         previousScoresRecyclerView.setHasFixedSize(true)
 
         viewModel.allScores.observe(this, Observer {
-            adapter.swapList(it)
+            previousScoresProgressBar.visibility = View.GONE
+            previousScoresRecyclerView.visibility = View.VISIBLE
+            if (it != null && it.size > 0) {
+                previousScoresEmptyLayout.visibility = View.GONE
+                previousScoresProgressBar.visibility = View.VISIBLE
+                adapter.swapList(it)
+            } else {
+                adapter.swapList(null)
+                previousScoresEmptyLayout.visibility = View.VISIBLE
+            }
+
         })
     }
 

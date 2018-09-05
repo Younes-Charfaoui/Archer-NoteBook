@@ -12,9 +12,8 @@
         android:id="@+id/adjustment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         app:layout_constraintBottom_toTopOf="@+id/ad_view_adjustment"
-        tools:listitem="@layout/adjustment_list_item_layout" />
+        />
 
     <ProgressBar
         android:id="@+id/adjust_progress_bar"
@@ -33,7 +32,6 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
 
         <LinearLayout
