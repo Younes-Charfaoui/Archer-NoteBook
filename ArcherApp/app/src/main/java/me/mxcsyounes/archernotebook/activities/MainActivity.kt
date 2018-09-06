@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             when (item.itemId) {
                 R.id.menu_item_setting -> true
-            // TODO: 16-Aug-18 adding action.
                 else -> super.onOptionsItemSelected(item)
             }
 

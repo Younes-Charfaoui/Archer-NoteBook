@@ -97,13 +97,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:parentActivityName=".activities.ScoresActivity"
             android:name=".activities.PreviousScoresActivity"
             android:label="@string/title_activity_previous_scores"
+            android:parentActivityName=".activities.ScoresActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.mxcsyounes.archernotebook.activities.ScoresActivity" />
+        </activity>
+        <activity
+            android:name=".ScoreDetailActivity"
+            android:label="@string/title_activity_score_detail"
+            android:parentActivityName=".activities.PreviousScoresActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.mxcsyounes.archernotebook.activities.PreviousScoresActivity" />
         </activity>
     </application>
 

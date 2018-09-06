@@ -81,4 +81,5 @@
     <string name="title_activity_previous_scores">Previous Scores</string>
     <string name="previous_scores_empty_title_string">No Scores recorded yet.</string>
     <string name="previous_scores_empty_detail_string">Get started by adding new Scores.</string>
+    <string name="title_activity_score_detail">Score Detail</string>
 </resources>
