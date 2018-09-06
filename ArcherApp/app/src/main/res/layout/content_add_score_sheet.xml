@@ -48,34 +48,34 @@
 
 
             <RadioButton
-                android:id="@+id/add_adjust_90_meter_radio"
+                android:id="@+id/addAdjust90MeterRadio"
                 style="@style/RadioButtonAddAdjust"
                 android:text="@string/_90_meters" />
 
             <RadioButton
-                android:id="@+id/add_adjust_70_meter_radio"
+                android:id="@+id/addAdjust70MeterRadio"
                 style="@style/RadioButtonAddAdjust"
                 android:checked="true"
                 android:text="@string/_70_meters" />
 
             <RadioButton
-                android:id="@+id/add_adjust_60_meter_radio"
+                android:id="@+id/addAdjust60MeterRadio"
                 style="@style/RadioButtonAddAdjust"
                 android:text="@string/_60_meters" />
 
 
             <RadioButton
-                android:id="@+id/add_adjust_50_meter_radio"
+                android:id="@+id/addAdjust50MeterRadio"
                 style="@style/RadioButtonAddAdjust"
                 android:text="@string/_50_meters" />
 
             <RadioButton
-                android:id="@+id/add_adjust_30_meter_radio"
+                android:id="@+id/addAdjust30MeterRadio"
                 style="@style/RadioButtonAddAdjust"
                 android:text="@string/_30_meters" />
 
             <RadioButton
-                android:id="@+id/add_adjust_18_meter_radio"
+                android:id="@+id/addAdjust18MeterRadio"
                 style="@style/RadioButtonAddAdjust"
                 android:text="@string/_18_meters" />
 

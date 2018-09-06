@@ -27,12 +27,12 @@ class AddAdjustmentActivity : AppCompatActivity() {
         private const val REQUEST_IMAGE_CAPTURE = 1
 
         fun getDistance(id: Int): Int = when (id) {
-            R.id.add_adjust_90_meter_radio -> 1
-            R.id.add_adjust_70_meter_radio -> 2
-            R.id.add_adjust_60_meter_radio -> 3
-            R.id.add_adjust_50_meter_radio -> 4
-            R.id.add_adjust_30_meter_radio -> 5
-            R.id.add_adjust_18_meter_radio -> 6
+            R.id.addAdjust90MeterRadio -> 1
+            R.id.addAdjust70MeterRadio -> 2
+            R.id.addAdjust60MeterRadio -> 3
+            R.id.addAdjust50MeterRadio -> 4
+            R.id.addAdjust30MeterRadio -> 5
+            R.id.addAdjust18MeterRadio -> 6
             else -> throw IllegalStateException()
         }
     }
@@ -51,37 +51,21 @@ class AddAdjustmentActivity : AppCompatActivity() {
 
         setSupportActionBar(add_adjustment_toolbar)
 
-        MobileAds.initialize(this, resources.getString(R.string.app_id_ad_test))
-
-        /*AdView mAdView = findViewById(R.id.add_adjustment_ad_view)
-
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mAdView.setVisibility(View.VISIBLE);
-            }
-        });*/
-
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd?.adUnitId = "ca-app-pub-3940256099942544/1033173712"
         mInterstitialAd?.loadAd(AdRequest.Builder().build())
 
-        currentId = R.id.add_adjust_70_meter_radio
+        currentId = R.id.addAdjust70MeterRadio
 
 
-        adjust_button_add_photo.setOnClickListener {
+        adjustButtonAddPhoto.setOnClickListener {
             takePhoto()
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-        add_adjutsment_distances_radio_group.setOnCheckedChangeListener{ _, id ->
+        addAdjutsmentDistancesRadioGroup.setOnCheckedChangeListener{ _, id ->
             currentId = id
         }
 
@@ -89,9 +73,9 @@ class AddAdjustmentActivity : AppCompatActivity() {
     }
 
     private fun validate(): Boolean {
-        val hText = horizontal_adjust_input_edit_text.text.toString().trim()
+        val hText = horizontalAdjustInputEditText.text.toString().trim()
         val vText = vertical_adjust_input_edit_text.text.toString().trim()
-        val description = description_adjust_input_edit_text.text.toString().trim()
+        val description = descriptionAdjustInputEditText.text.toString().trim()
 
         if (hText.isEmpty() && vText.isEmpty() && description.isEmpty()) {
             Toast.makeText(this, "One of the adjustment should have a value.",
@@ -141,7 +125,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 counter++
                 val currentPhotoText = "$counter  ${getString(R.string.photo_string)}"
-                adjust_photo_state_text_view.text = currentPhotoText
+                adjustPhotoStateTextView.text = currentPhotoText
                 mCurrentPhotoFiles += currentImage?.absolutePath + ";"
             } else {
                 if (currentImage?.exists()!!)
@@ -162,9 +146,9 @@ class AddAdjustmentActivity : AppCompatActivity() {
                     val adjustment = Adjustment()
                     adjustment.distance = getDistance(currentId)
 
-                    val vertical = horizontal_adjust_input_edit_text.text.toString().trim()
+                    val vertical = horizontalAdjustInputEditText.text.toString().trim()
                     val horizontal = vertical_adjust_input_edit_text.text.toString().trim()
-                    val description = description_adjust_input_edit_text.text.toString().trim()
+                    val description = descriptionAdjustInputEditText.text.toString().trim()
 
                     if (vertical.trim().isEmpty())
                         adjustment.verticalAdjustment = null

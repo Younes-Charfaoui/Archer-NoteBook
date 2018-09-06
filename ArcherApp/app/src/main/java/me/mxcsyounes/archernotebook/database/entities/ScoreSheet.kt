@@ -27,7 +27,7 @@ class ScoreSheet(@PrimaryKey(autoGenerate = true)
                  var score: String) {
 
 
-    fun getScores(): MutableList<ScoreRounds> {
+    private fun getScores(): MutableList<ScoreRounds> {
         return if (typeSeries == 1) {
             val score = ScoreRounds(score)
             mutableListOf(score)

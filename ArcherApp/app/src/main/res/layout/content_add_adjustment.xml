@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,173 +10,156 @@
     tools:context=".activities.AddAdjustmentActivity"
     tools:showIn="@layout/activity_add_adjustment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-        <LinearLayout
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/adjustments"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/horizontalAdjustInputLayoutText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:layout_marginBottom="8dp">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/bahnschrift"
-                android:text="@string/adjustments"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/horizontal_adjust_input_layout_text"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/horizontalAdjustInputEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+                android:layout_height="match_parent"
+                android:fontFamily="@font/bahnschrift"
+                android:hint="@string/horizontal_adjust"
+                android:inputType="numberDecimal" />
+        </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/horizontal_adjust_input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/bahnschrift"
-                    android:hint="@string/horizontal_adjust"
-                    android:inputType="numberDecimal" />
-            </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/verticalAdjustInputLayoutText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/vertical_adjust_input_layout_text"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/vertical_adjust_input_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+                android:layout_height="match_parent"
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/vertical_adjust_input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                android:fontFamily="@font/bahnschrift"
+                android:hint="@string/vertical_adjust"
+                android:inputType="numberDecimal" />
+        </android.support.design.widget.TextInputLayout>
 
-                    android:fontFamily="@font/bahnschrift"
-                    android:hint="@string/vertical_adjust"
-                    android:inputType="numberDecimal" />
-            </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
 
-            <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/descriptionAdjustInputEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/description_adjust_input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/bahnschrift"
-                    android:hint="@string/description"
-                    android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/bahnschrift"
-                android:text="@string/distance"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
+                android:hint="@string/description"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
 
-            <RadioGroup
-                android:id="@+id/add_adjutsment_distances_radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/distance"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/add_adjust_90_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_90_meters" />
+        <RadioGroup
+            android:id="@+id/addAdjutsmentDistancesRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
 
-                <RadioButton
-                    android:id="@+id/add_adjust_70_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:checked="true"
-                    android:text="@string/_70_meters" />
+            <RadioButton
+                android:id="@+id/addAdjust90MeterRadio"
+                style="@style/RadioButtonAddAdjust"
+                android:text="@string/_90_meters" />
 
-                <RadioButton
-                    android:id="@+id/add_adjust_60_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:checked="true"
-                    android:text="@string/_60_meters" />
+            <RadioButton
+                android:id="@+id/addAdjust70MeterRadio"
+                style="@style/RadioButtonAddAdjust"
+                android:checked="true"
+                android:text="@string/_70_meters" />
 
-                <RadioButton
-                    android:id="@+id/add_adjust_50_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_50_meters" />
+            <RadioButton
+                android:id="@+id/addAdjust60MeterRadio"
+                style="@style/RadioButtonAddAdjust"
+                android:checked="true"
+                android:text="@string/_60_meters" />
 
-                <RadioButton
-                    android:id="@+id/add_adjust_30_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_30_meters" />
+            <RadioButton
+                android:id="@+id/addAdjust50MeterRadio"
+                style="@style/RadioButtonAddAdjust"
+                android:text="@string/_50_meters" />
 
-                <RadioButton
-                    android:id="@+id/add_adjust_18_meter_radio"
-                    style="@style/RadioButtonAddAdjust"
-                    android:text="@string/_18_meters" />
+            <RadioButton
+                android:id="@+id/addAdjust30MeterRadio"
+                style="@style/RadioButtonAddAdjust"
+                android:text="@string/_30_meters" />
 
-
-            </RadioGroup>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/bahnschrift"
-                android:text="@string/photo_string"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bahnschrift"
-                android:text="@string/info_add_photo_string" />
-
-            <Button
-                android:id="@+id/adjust_button_add_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@null"
-                android:fontFamily="@font/bahnschrift"
-                android:text="@string/take_photo"
-                android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
-                android:textSize="34sp" />
+            <RadioButton
+                android:id="@+id/addAdjust18MeterRadio"
+                style="@style/RadioButtonAddAdjust"
+                android:text="@string/_18_meters" />
 
 
-            <TextView
-                android:id="@+id/adjust_photo_state_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="@font/bahnschrift"
-                android:text="@string/no_photos_yet" />
-
-        </LinearLayout>
-
-    </ScrollView>
+        </RadioGroup>
 
 
-    <!--<com.google.android.gms.ads.AdView-->
-    <!--android:id="@+id/add_adjustment_ad_view"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginBottom="2dp"-->
-    <!--android:visibility="gone"-->
-    <!--app:adSize="BANNER"-->
-    <!--app:adUnitId="@string/banner_ad_unit_id" />-->
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/photo_string"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/info_add_photo_string" />
+
+        <Button
+            android:id="@+id/adjustButtonAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/take_photo"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="34sp" />
+
+
+        <TextView
+            android:id="@+id/adjustPhotoStateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/bahnschrift"
+            android:text="@string/no_photos_yet" />
+
+    </LinearLayout>
+
+</ScrollView>
