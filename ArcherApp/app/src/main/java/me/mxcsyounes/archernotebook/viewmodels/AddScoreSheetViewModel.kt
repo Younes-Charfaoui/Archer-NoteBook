@@ -2,7 +2,9 @@ package me.mxcsyounes.archernotebook.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import com.jjoe64.graphview.series.DataPoint
 import me.mxcsyounes.archernotebook.database.entities.ScoreSheet
+import me.mxcsyounes.archernotebook.model.Round
 import me.mxcsyounes.archernotebook.model.ScoreRounds
 import me.mxcsyounes.archernotebook.repositories.ScoreSheetRepository
 import java.util.*
@@ -46,4 +48,15 @@ class AddScoreSheetViewModel(application: Application) : AndroidViewModel(applic
 
     val secondScore: String
         get() = "${scores[1].total} / ${scores[1].over}"
+
+
+
+    fun scoreSeries(number : Int): Array<out DataPoint>? {
+            val dataPoints = mutableListOf<DataPoint>()
+            for (round in scores[number].rounds) {
+                dataPoints.add(DataPoint(round.number.toDouble(), Round.sumRound(round.scores)
+                        .toDouble()))
+            }
+            return dataPoints.toTypedArray()
+        }
 }

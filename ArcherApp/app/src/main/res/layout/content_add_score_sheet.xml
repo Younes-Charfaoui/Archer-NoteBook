@@ -92,6 +92,11 @@
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
 
+        <com.jjoe64.graphview.helper.GraphViewXML
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/addScoreSheetProgressGraphView"/>
+
         <RadioGroup
 
             android:id="@+id/addScoreSheetSheetTypeRadioGroup"
