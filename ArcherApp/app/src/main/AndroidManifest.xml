@@ -106,7 +106,7 @@
                 android:value="me.mxcsyounes.archernotebook.activities.ScoresActivity" />
         </activity>
         <activity
-            android:name=".ScoreDetailActivity"
+            android:name=".activities.ScoreDetailActivity"
             android:label="@string/title_activity_score_detail"
             android:parentActivityName=".activities.PreviousScoresActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -81,9 +81,9 @@ class AddAdjustmentActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-        add_adjutsment_distances_radio_group.setOnCheckedChangeListener({ _, id ->
+        add_adjutsment_distances_radio_group.setOnCheckedChangeListener{ _, id ->
             currentId = id
-        })
+        }
 
 
     }

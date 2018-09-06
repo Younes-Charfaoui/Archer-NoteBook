@@ -1,10 +1,10 @@
-package me.mxcsyounes.archernotebook
+package me.mxcsyounes.archernotebook.activities
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_score_detail.*
+import me.mxcsyounes.archernotebook.R
 
 class ScoreDetailActivity : AppCompatActivity() {
 

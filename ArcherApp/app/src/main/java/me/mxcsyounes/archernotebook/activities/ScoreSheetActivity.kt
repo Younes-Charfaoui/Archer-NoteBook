@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_score_sheet.*
 import kotlinx.android.synthetic.main.content_score_sheet.*
 import me.mxcsyounes.archernotebook.R
@@ -15,7 +17,7 @@ import me.mxcsyounes.archernotebook.viewmodels.ScoreSheetViewModel
 class ScoreSheetActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ScoreSheetViewModel
-
+    private lateinit var interstitialAd: InterstitialAd
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -26,20 +28,9 @@ class ScoreSheetActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
         viewModel.init()
 
-        /*val distance = intent.getIntExtra(AddScoreSheetActivity.KEY_DISTANCE, -1)
-        var seriesType = intent.getIntExtra(AddScoreSheetActivity.KEY_SERIES_TYPE, -1)
-        val sheetType = intent.getIntExtra(AddScoreSheetActivity.KEY_SHEET_TYPE, -1)
-
-        viewModel.setupData(distance, seriesType, sheetType)
-*/
-        /*if (seriesType == 1) {
-            supportActionBar?.title = "Series"
-            score_sheet_toolbar.title = "Series"
-        } else {
-
-            supportActionBar?.title = "Series 1"
-            score_sheet_toolbar.title = "Series 1"
-        }*/
+        interstitialAd = InterstitialAd(this)
+        interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        interstitialAd.loadAd(AdRequest.Builder().build())
 
         addClickListenerToMarks()
 
@@ -64,6 +55,7 @@ class ScoreSheetActivity : AppCompatActivity() {
                     data.putExtra(AddScoreSheetActivity.KEY_SCORE, viewModel.finalScore)
                     setResult(Activity.RESULT_OK, data)
                     viewModel.clear()
+                    if (interstitialAd.isLoaded) interstitialAd.show()
                     finish()
                 } else {
                     viewModel.goToRound(missing)
