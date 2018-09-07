@@ -82,47 +82,45 @@ class ScoreSheetActivity : AppCompatActivity() {
     private fun setupScreen(distance: Int) {
         if (distance == 6) {
             hideViews(arrowFour, arrowFive, arrowSix,
-                     imageFive, imageFour,
+                    imageFive, imageFour,
                     imageThree, imageTwo, imageOne)
             arrows = arrayOf(arrowOne, arrowTwo, arrowThree)
             marks = arrayOf(imageX, imageTen, imageNine, imageEight,
                     imageSeven, imageSix, imageMist)
 
-            val constraintSet = ConstraintSet()
-            constraintSet.clone(scoreSheetConstraint)
-
-            constraintSet.clear(R.id.imageX, ConstraintSet.BOTTOM)
-
-            constraintSet.clear(R.id.imageTen, ConstraintSet.BOTTOM)
-            constraintSet.clear(R.id.imageNine, ConstraintSet.BOTTOM)
-            constraintSet.clear(R.id.imageNine, ConstraintSet.END)
-
-            constraintSet.clear(R.id.imageEight, ConstraintSet.BOTTOM)
-            constraintSet.clear(R.id.imageEight, ConstraintSet.LEFT)
-            constraintSet.clear(R.id.imageEight, ConstraintSet.RIGHT)
-
-            constraintSet.clear(R.id.imageSeven, ConstraintSet.BOTTOM)
-            constraintSet.clear(R.id.imageSix, ConstraintSet.BOTTOM)
-            constraintSet.clear(R.id.imageMist, ConstraintSet.BOTTOM)
-            constraintSet.clear(R.id.imageMist, ConstraintSet.END)
-
-            constraintSet.connect(R.id.imageEight, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
-            constraintSet.connect(R.id.imageEight, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
-//
-            constraintSet.connect(R.id.imageMist, ConstraintSet.START, R.id.imageSix, ConstraintSet.END)
-            constraintSet.connect(R.id.imageMist, ConstraintSet.TOP, R.id.tapBellowTv, ConstraintSet.BOTTOM)
-//            constraintSet.connect(R.id.imageMist, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
-//
-//
-            constraintSet.connect(R.id.imageNine, ConstraintSet.END, R.id.imageEight, ConstraintSet.START,16)
-
-            constraintSet.applyTo(scoreSheetConstraint)
+            makeConstraintFor18Meters()
         } else {
             arrows = arrayOf(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
             marks = arrayOf(imageX, imageTen, imageNine, imageEight,
                     imageSeven, imageSix, imageFive, imageFour,
                     imageThree, imageTwo, imageOne, imageMist)
         }
+    }
+
+    private fun makeConstraintFor18Meters() {
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(scoreSheetConstraint)
+        constraintSet.clear(R.id.imageX, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageTen, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageNine, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageNine, ConstraintSet.END)
+        constraintSet.clear(R.id.imageEight, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageEight, ConstraintSet.LEFT)
+        constraintSet.clear(R.id.imageEight, ConstraintSet.RIGHT)
+        constraintSet.clear(R.id.imageEight, ConstraintSet.START)
+        constraintSet.clear(R.id.imageEight, ConstraintSet.END)
+        constraintSet.clear(R.id.imageSeven, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageSix, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageMist, ConstraintSet.BOTTOM)
+        constraintSet.clear(R.id.imageMist, ConstraintSet.END)
+        constraintSet.clear(R.id.imageMist, ConstraintSet.START)
+        constraintSet.clear(R.id.imageMist, ConstraintSet.END)
+        constraintSet.connect(R.id.imageEight, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
+        constraintSet.connect(R.id.imageEight, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
+        constraintSet.connect(R.id.imageMist, ConstraintSet.START, R.id.imageSix, ConstraintSet.END, 16)
+        constraintSet.connect(R.id.imageMist, ConstraintSet.TOP, R.id.tapBellowTv, ConstraintSet.BOTTOM)
+        constraintSet.connect(R.id.imageNine, ConstraintSet.END, R.id.imageEight, ConstraintSet.START, 16)
+        constraintSet.applyTo(scoreSheetConstraint)
     }
 
     private fun hideViews(vararg views: View) {
@@ -151,10 +149,6 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun addClickListenerToMarks() {
-
-//        val views = arrayOf(imageX, imageTen, imageNine, imageEight,
-//                imageSeven, imageSix, imageFive, imageFour,
-//                imageThree, imageTwo, imageOne, imageMist)
 
         for (view in marks) {
 
