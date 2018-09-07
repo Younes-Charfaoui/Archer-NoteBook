@@ -84,9 +84,14 @@ class ScoreSheetActivity : AppCompatActivity() {
             hideViews(arrowFour, arrowFive, arrowSix, imageFour, imageFive, imageThree, imageTwo, imageOne)
             arrows = arrayOf(arrowOne, arrowTwo, arrowThree)
             marks = arrayOf(imageX, imageTen, imageNine, imageEight,
-                    imageSeven, imageSix,imageMist)
+                    imageSeven, imageSix, imageMist)
             val constraintSet = ConstraintSet()
+
+            constraintSet.clone(scoreSheetConstraint)
+
             constraintSet.clear(R.id.imageX, ConstraintSet.BOTTOM)
+            constraintSet.clear(R.id.imageX, ConstraintSet.TOP)
+
             constraintSet.clear(R.id.imageTen, ConstraintSet.BOTTOM)
             constraintSet.clear(R.id.imageNine, ConstraintSet.BOTTOM)
             constraintSet.clear(R.id.imageNine, ConstraintSet.RIGHT)
@@ -103,11 +108,14 @@ class ScoreSheetActivity : AppCompatActivity() {
             constraintSet.connect(R.id.imageEight, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
             constraintSet.connect(R.id.imageEight, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
 
-            constraintSet.connect(R.id.imageMist, ConstraintSet.LEFT, R.id.imageSix, ConstraintSet.RIGHT)
+            constraintSet.connect(R.id.imageMist, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
             constraintSet.connect(R.id.imageMist, ConstraintSet.TOP, R.id.tapBellowTv, ConstraintSet.BOTTOM)
+            constraintSet.connect(R.id.imageMist, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
 
 
             constraintSet.connect(R.id.imageNine, ConstraintSet.RIGHT, R.id.imageEight, ConstraintSet.LEFT)
+
+            constraintSet.applyTo(scoreSheetConstraint)
         } else {
             arrows = arrayOf(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
             marks = arrayOf(imageX, imageTen, imageNine, imageEight,

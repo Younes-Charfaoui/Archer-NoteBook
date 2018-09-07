@@ -42,11 +42,14 @@ class AddScoreSheetActivity : AppCompatActivity() {
         }
 
         addScoreSheetStartButton.setOnClickListener { _ ->
-            val intent = Intent(this, ScoreSheetActivity::class.java)
-            intent.putExtra(KEY_DISTANCE, viewModel.distance)
-            startActivityForResult(intent, REQUEST_SCORE_SHEET)
+            launchScoreSheetActivity()
         }
+    }
 
+    private fun launchScoreSheetActivity(){
+        val intent = Intent(this, ScoreSheetActivity::class.java)
+        intent.putExtra(KEY_DISTANCE, viewModel.distance)
+        startActivityForResult(intent, REQUEST_SCORE_SHEET)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -76,8 +79,7 @@ class AddScoreSheetActivity : AppCompatActivity() {
 
                 addScoreSheetStartButton.text = getString(R.string.continue_shooting_string)
                 addScoreSheetStartButton.setOnClickListener {
-                    val intent = Intent(this, ScoreSheetActivity::class.java)
-                    startActivityForResult(intent, REQUEST_SCORE_SHEET)
+                    launchScoreSheetActivity()
                 }
 
             } else {
