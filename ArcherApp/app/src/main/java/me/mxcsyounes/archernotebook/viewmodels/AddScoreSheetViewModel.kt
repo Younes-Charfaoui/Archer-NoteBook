@@ -52,8 +52,8 @@ class AddScoreSheetViewModel(application: Application) : AndroidViewModel(applic
 
 
     fun scoreSeries(number : Int): Array<out DataPoint>? {
-            val dataPoints = mutableListOf<DataPoint>()
-            for (round in scores[number].rounds) {
+        val dataPoints = mutableListOf<DataPoint>()
+            for (round in scores[number-1].rounds) {
                 dataPoints.add(DataPoint(round.number.toDouble(), Round.sumRound(round.scores)
                         .toDouble()))
             }

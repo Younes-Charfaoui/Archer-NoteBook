@@ -18,6 +18,9 @@ class ScoreSheetActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ScoreSheetViewModel
     private lateinit var interstitialAd: InterstitialAd
+    private lateinit var marks: Array<View>
+    private lateinit var arrows: Array<View>
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -25,12 +28,16 @@ class ScoreSheetActivity : AppCompatActivity() {
         setSupportActionBar(score_sheet_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val distance = intent?.getIntExtra(AddScoreSheetActivity.KEY_DISTANCE, -1)
+
         viewModel = ViewModelProviders.of(this).get(ScoreSheetViewModel::class.java)
-        viewModel.init()
+        viewModel.init(distance!!)
 
         interstitialAd = InterstitialAd(this)
         interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
         interstitialAd.loadAd(AdRequest.Builder().build())
+
+        setupScreen(distance)
 
         addClickListenerToMarks()
 
@@ -71,6 +78,26 @@ class ScoreSheetActivity : AppCompatActivity() {
         voletNumberTv.text = viewModel.currentRoundNumberTitle
     }
 
+    private fun setupScreen(distance: Int) {
+        if (distance == 6) {
+            hideViews(arrowFour, arrowFive, arrowSix, imageFour, imageFive, imageThree, imageTwo, imageOne)
+            arrows = arrayOf(arrowOne, arrowTwo, arrowThree)
+            marks = arrayOf(imageX, imageTen, imageNine, imageEight,
+                    imageSeven, imageSix)
+        } else {
+            arrows = arrayOf(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
+            marks = arrayOf(imageX, imageTen, imageNine, imageEight,
+                    imageSeven, imageSix, imageFive, imageFour,
+                    imageThree, imageTwo, imageOne, imageMist)
+        }
+    }
+
+    private fun hideViews(vararg views: View) {
+        for (view in views) {
+            view.visibility = View.GONE
+        }
+    }
+
     private fun updateScreen() {
         showValuesInScreen()
         setupListeners()
@@ -87,20 +114,18 @@ class ScoreSheetActivity : AppCompatActivity() {
     }
 
     private fun removeAllClickListenerToMarks() {
-        removeClickListener(imageX, imageTen, imageNine, imageEight,
-                imageSeven, imageSix, imageFive, imageFour,
-                imageThree, imageTwo, imageOne, imageMist)
+        removeClickListener(*marks)
     }
 
     private fun addClickListenerToMarks() {
 
-        val views = arrayOf(imageX, imageTen, imageNine, imageEight,
-                imageSeven, imageSix, imageFive, imageFour,
-                imageThree, imageTwo, imageOne, imageMist)
+//        val views = arrayOf(imageX, imageTen, imageNine, imageEight,
+//                imageSeven, imageSix, imageFive, imageFour,
+//                imageThree, imageTwo, imageOne, imageMist)
 
-        for (view in views) {
+        for (view in marks) {
 
-            view?.setOnClickListener {
+            view.setOnClickListener {
                 val tag = it.tag as String
                 val value = valueFromTag(tag)
                 if (viewModel.currentRoundScore.contains(-1)) {
@@ -122,7 +147,7 @@ class ScoreSheetActivity : AppCompatActivity() {
     private fun setupListeners() {
         if (!viewModel.currentRoundScore.contains(-1)) {
             removeAllClickListenerToMarks()
-            addClickListenerToArrow(arrowOne, arrowTwo, arrowThree, arrowFour, arrowFive, arrowSix)
+            addClickListenerToArrow(*arrows)
         } else {
             addClickListenerToMarks()
         }
@@ -131,14 +156,14 @@ class ScoreSheetActivity : AppCompatActivity() {
     private fun showValuesInScreen() {
 
         when {
-            viewModel.currentRoundNumber == 0 -> {
+            viewModel.isFirstRound -> {
                 if (forwardArrowImage.tag == "done")
                     forwardArrowImage.setImageResource(R.drawable.ic_arrow_back_accent_24dp)
 
                 backArrowImage.visibility = View.INVISIBLE
                 forwardArrowImage.tag = "back"
             }
-            viewModel.currentRoundNumber == 5 -> {
+            viewModel.isLastRound -> {
                 forwardArrowImage.setImageResource(R.drawable.ic_done_accent_24dp)
                 if (forwardArrowImage.rotation == 180f) forwardArrowImage.rotation = 0f
                 forwardArrowImage.tag = "done"

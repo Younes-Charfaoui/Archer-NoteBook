@@ -38,7 +38,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
     }
 
 
-    private var currentId = R.id.add_adjust_70_meter_radio
+    private var currentId = R.id.addAdjust70MeterRadio
 
     private var mCurrentPhotoFiles = ""
     private var currentImage: File? = null

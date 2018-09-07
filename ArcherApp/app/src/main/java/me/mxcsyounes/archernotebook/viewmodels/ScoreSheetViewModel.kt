@@ -8,19 +8,36 @@ class ScoreSheetViewModel : ViewModel() {
 
     private var counter: Int = 0
     private val rounds = mutableListOf<Round>()
+    var distance = 0
 
-    fun init() {
+    fun init(distance: Int) {
         counter = 0
-        for (i in 1..6) {
-            rounds.add(Round(i, arrayOf(-1, -1, -1, -1, -1, -1)))
+        this.distance = distance
+        if (distance == 6) {
+            for (i in 1..10) {
+                rounds.add(Round(i, arrayOf(-1, -1, -1)))
+            }
+        } else {
+            for (i in 1..6) {
+                rounds.add(Round(i, arrayOf(-1, -1, -1, -1, -1, -1)))
+            }
         }
+
     }
 
     fun nextRound(): Boolean {
-        if (counter + 1 <= 5) {
-            counter++
-            return true
+        if (distance == 6) {
+            if (counter + 1 <= 9) {
+                counter++
+                return true
+            }
+        } else {
+            if (counter + 1 <= 5) {
+                counter++
+                return true
+            }
         }
+
         return false
     }
 
@@ -41,6 +58,12 @@ class ScoreSheetViewModel : ViewModel() {
 
     val currentRoundNumber: Int
         get() = counter
+
+    val isFirstRound: Boolean
+        get() = counter == 0
+
+    val isLastRound: Boolean
+        get() = counter == rounds.size - 1
 
     companion object {
 

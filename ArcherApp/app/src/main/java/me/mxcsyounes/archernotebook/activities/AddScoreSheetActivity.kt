@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -44,6 +43,7 @@ class AddScoreSheetActivity : AppCompatActivity() {
 
         addScoreSheetStartButton.setOnClickListener { _ ->
             val intent = Intent(this, ScoreSheetActivity::class.java)
+            intent.putExtra(KEY_DISTANCE, viewModel.distance)
             startActivityForResult(intent, REQUEST_SCORE_SHEET)
         }
 
@@ -54,7 +54,6 @@ class AddScoreSheetActivity : AppCompatActivity() {
         if (requestCode == REQUEST_SCORE_SHEET && resultCode == Activity.RESULT_OK) {
             val scoreRaw = data?.getStringExtra(KEY_SCORE)
             viewModel.scores.add(ScoreRounds(scoreRaw!!))
-            Log.i(TAG, scoreRaw)
             toolbar.title = "Score Sheet"
             supportActionBar?.title = "Score Sheet"
 
@@ -63,6 +62,7 @@ class AddScoreSheetActivity : AppCompatActivity() {
             addScoreSheetDistanceRadioGroup.visibility = View.GONE
             addScoreSheetTypeSeriesTv.visibility = View.GONE
             addScoreSheetScoreSeriesTv.visibility = View.VISIBLE
+            addScoreSheetProgressGraphView.visibility = View.VISIBLE
 
             addScoreSheetTypeOfSheetTv.text = getString(R.string.progress)
 
@@ -112,6 +112,7 @@ class AddScoreSheetActivity : AppCompatActivity() {
 
     companion object {
         const val KEY_SCORE = "keyScore"
+        const val KEY_DISTANCE = "keyScore"
         const val TAG = "AddScoreSheetActivity"
         const val REQUEST_SCORE_SHEET = 1454
     }
