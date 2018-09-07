@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="24dp"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.PreviousScoresActivity"
@@ -13,8 +12,8 @@
         android:id="@+id/previousScoresRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:layout_marginEnd="8dp"
+        android:visibility="gone"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/adViewPreviousScores"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +44,6 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-
             tools:ignore="UseCompoundDrawables,UselessParent">
 
             <ImageView

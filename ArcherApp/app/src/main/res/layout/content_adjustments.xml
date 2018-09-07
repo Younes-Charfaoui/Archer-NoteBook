@@ -12,8 +12,7 @@
         android:id="@+id/adjustment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/adViewAdjustment"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/adViewAdjustment" />
 
     <ProgressBar
         android:id="@+id/adjustProgressBar"
@@ -29,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
+
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -80,7 +80,6 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         app:fabSize="normal"
-
         app:layout_constraintBottom_toTopOf="@+id/adViewAdjustment"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_white_24dp"
@@ -95,8 +94,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:visibility="gone"
         app:adSize="BANNER"
+        android:visibility="gone"
         app:adUnitId="@string/banner_ad_unit_id"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
