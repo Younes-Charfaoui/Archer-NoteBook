@@ -123,7 +123,7 @@ class AdjustmentDetailActivity : AppCompatActivity() {
                 val intent = Intent(this, AddAdjustmentActivity::class.java)
                 intent.putExtra(AddAdjustmentActivity.KEY_ACTION, AddAdjustmentActivity.ACTION_UPDATE)
                 intent.putExtra(AdjustmentsActivity.KEY_ADJUSTMENT,
-                        intent.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT))
+                        getIntent().getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT))
                 startActivityForResult(intent, REQUEST_UPDATE)
             }
         }

@@ -27,6 +27,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
     companion object {
         private const val REQUEST_IMAGE_CAPTURE = 1
         const val KEY_ACTION = "keyAction"
+        const val TAG = "AddAdjustmentActivity"
         const val ACTION_UPDATE = 15
         const val KEY_DATA: String = "KeyData"
 
@@ -76,7 +77,8 @@ class AddAdjustmentActivity : AppCompatActivity() {
 
         if (intent?.getIntExtra(KEY_ACTION, -1) == ACTION_UPDATE) {
             val adjustment = intent.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT)
-
+            if(adjustment != null) Log.d(TAG , "adjustment is not null")
+            else Log.d(TAG , "adjustment is null")
             horizontalAdjustInputEditText.setText(adjustment?.horizontalAdjustment)
             verticalAdjustInputEditText.setText(adjustment?.verticalAdjustment)
             descriptionAdjustInputEditText.setText(adjustment?.description)
