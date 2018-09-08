@@ -55,7 +55,7 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
         addAdjustFab.hide()
 
 
-        addAdjustFab.setOnClickListener{
+        addAdjustFab.setOnClickListener {
             startActivityForResult(Intent(this, AddAdjustmentActivity::class.java), REQUEST_CODE_ADD_ADJUSTMENT)
         }
 
@@ -75,7 +75,7 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
             if (list != null && list.size > 0) {
                 adjustEmptyView.visibility = View.GONE
                 adjustmentRecyclerView.visibility = View.VISIBLE
-                Log.d(TAG , "The list has ${list.size}")
+                Log.d(TAG, "The list has ${list.size}")
                 adapter.setAdjustmentsList(list)
             } else {
                 adapter.setAdjustmentsList(null)
@@ -106,6 +106,7 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
         if (requestCode == REQUEST_CODE_ADD_ADJUSTMENT && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 mViewModel?.insertAdjustment(data.getParcelableExtra(KEY_DATA))
@@ -114,7 +115,10 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
 
         if (requestCode == REQUEST_CODE_DELETE && resultCode == Activity.RESULT_OK)
             if (data != null) {
-                mViewModel?.deleteAdjustment(data.getParcelableExtra(KEY_DATA))
+                if (data.getIntExtra(AddAdjustmentActivity.KEY_ACTION, -1) != -1) {
+                    mViewModel?.updateAdjustment(data.getParcelableExtra(KEY_DATA))
+                } else
+                    mViewModel?.deleteAdjustment(data.getParcelableExtra(KEY_DATA))
             }
         super.onActivityResult(requestCode, resultCode, data)
     }

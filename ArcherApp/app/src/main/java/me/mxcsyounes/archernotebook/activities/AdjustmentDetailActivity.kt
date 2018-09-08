@@ -4,11 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -120,11 +118,27 @@ class AdjustmentDetailActivity : AppCompatActivity() {
                         .show()
                 return true
             }
+
+            R.id.detail_adjustment_update -> {
+                val intent = Intent(this, AddAdjustmentActivity::class.java)
+                intent.putExtra(AddAdjustmentActivity.KEY_ACTION, AddAdjustmentActivity.ACTION_UPDATE)
+                intent.putExtra(AdjustmentsActivity.KEY_ADJUSTMENT,
+                        intent.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT))
+                startActivityForResult(intent, REQUEST_UPDATE)
+            }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == REQUEST_UPDATE && resultCode == Activity.RESULT_OK) {
+            data?.putExtra(AddAdjustmentActivity.KEY_ACTION, AddAdjustmentActivity.ACTION_UPDATE)
+            setResult(Activity.RESULT_OK, data)
+            finish()
+        }
+    }
 
     companion object {
 
@@ -137,5 +151,7 @@ class AdjustmentDetailActivity : AppCompatActivity() {
             6 -> "18 meters"
             else -> ""
         }
+
+        const val REQUEST_UPDATE = 14002
     }
 }

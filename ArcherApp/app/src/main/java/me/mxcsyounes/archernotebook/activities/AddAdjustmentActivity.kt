@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.RadioButton
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_add_adjustment.*
 import kotlinx.android.synthetic.main.content_add_adjustment.*
 import me.mxcsyounes.archernotebook.R
@@ -25,18 +26,30 @@ class AddAdjustmentActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_IMAGE_CAPTURE = 1
+        const val KEY_ACTION = "keyAction"
+        const val ACTION_UPDATE = 15
+        const val KEY_DATA: String = "KeyData"
 
         fun getDistance(id: Int): Int = when (id) {
             R.id.addAdjust90MeterRadio -> 1
             R.id.addAdjust70MeterRadio -> 2
-            R.id.addAdjust60MeterRadio -> 3
             R.id.addAdjust50MeterRadio -> 4
             R.id.addAdjust30MeterRadio -> 5
             R.id.addAdjust18MeterRadio -> 6
+            R.id.addAdjust60MeterRadio -> 3
+            else -> throw IllegalStateException()
+        }
+
+        fun getRadioFromDistance(id: Int): Int = when (id) {
+            1 -> R.id.addAdjust90MeterRadio
+            2 -> R.id.addAdjust70MeterRadio
+            3 -> R.id.addAdjust60MeterRadio
+            4 -> R.id.addAdjust50MeterRadio
+            5 -> R.id.addAdjust30MeterRadio
+            6 -> R.id.addAdjust18MeterRadio
             else -> throw IllegalStateException()
         }
     }
-
 
     private var currentId = R.id.addAdjust70MeterRadio
 
@@ -61,16 +74,25 @@ class AddAdjustmentActivity : AppCompatActivity() {
             takePhoto()
         }
 
+        if (intent?.getIntExtra(KEY_ACTION, -1) == ACTION_UPDATE) {
+            val adjustment = intent.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT)
+
+            horizontalAdjustInputEditText.setText(adjustment?.horizontalAdjustment)
+            verticalAdjustInputEditText.setText(adjustment?.verticalAdjustment)
+            descriptionAdjustInputEditText.setText(adjustment?.description)
+            findViewById<RadioButton>(getRadioFromDistance(adjustment?.distance!!)).isChecked = true
+        }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        addAdjutsmentDistancesRadioGroup.setOnCheckedChangeListener{ _, id ->
+        addAdjutsmentDistancesRadioGroup.setOnCheckedChangeListener { _, id ->
             currentId = id
         }
     }
 
     private fun validate(): Boolean {
         val hText = horizontalAdjustInputEditText.text.toString().trim()
-        val vText = vertical_adjust_input_edit_text.text.toString().trim()
+        val vText = verticalAdjustInputEditText.text.toString().trim()
         val description = descriptionAdjustInputEditText.text.toString().trim()
 
         if (hText.isEmpty() && vText.isEmpty() && description.isEmpty()) {
@@ -80,7 +102,6 @@ class AddAdjustmentActivity : AppCompatActivity() {
         }
         return true
     }
-
 
     private fun takePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -107,7 +128,6 @@ class AddAdjustmentActivity : AppCompatActivity() {
 
     }
 
-
     private fun createImageFile(): File? {
         val timeStamp = SimpleDateFormat("yyyMMdd_HHmmss", Locale.ENGLISH).format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_"
@@ -129,7 +149,6 @@ class AddAdjustmentActivity : AppCompatActivity() {
             }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.add_adjustment_menu, menu)
         return true
@@ -143,7 +162,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
                     adjustment.distance = getDistance(currentId)
 
                     val vertical = horizontalAdjustInputEditText.text.toString().trim()
-                    val horizontal = vertical_adjust_input_edit_text.text.toString().trim()
+                    val horizontal = verticalAdjustInputEditText.text.toString().trim()
                     val description = descriptionAdjustInputEditText.text.toString().trim()
 
                     if (vertical.trim().isEmpty())
@@ -161,16 +180,22 @@ class AddAdjustmentActivity : AppCompatActivity() {
                     else
                         adjustment.description = description
 
-                    if (mCurrentPhotoFiles.trim().isEmpty())
-                        adjustment.path = null
-                    else
-                        adjustment.path = mCurrentPhotoFiles
-
                     adjustment.date = Date()
+                    val intentOne = Intent()
 
-                    val intent = Intent()
-                    intent.putExtra(AdjustmentsActivity.KEY_DATA, adjustment)
-                    setResult(Activity.RESULT_OK, intent)
+                    if (intent?.getIntExtra(KEY_ACTION, -1) == ACTION_UPDATE) {
+
+                        intentOne.putExtra(KEY_ACTION, ACTION_UPDATE)
+                    } else {
+
+                        if (mCurrentPhotoFiles.trim().isEmpty())
+                            adjustment.path = null
+                        else
+                            adjustment.path = mCurrentPhotoFiles
+
+                    }
+                    intentOne.putExtra(AdjustmentsActivity.KEY_DATA, adjustment)
+                    setResult(Activity.RESULT_OK, intentOne)
                     if (mInterstitialAd?.isLoaded!!) mInterstitialAd?.show()
                     finish()
                     return true
@@ -178,6 +203,4 @@ class AddAdjustmentActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }

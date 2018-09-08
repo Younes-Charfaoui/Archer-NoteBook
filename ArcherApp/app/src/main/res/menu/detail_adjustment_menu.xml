@@ -8,4 +8,11 @@
         android:orderInCategory="100"
         android:title="@string/delete"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/detail_adjustment_update"
+        android:icon="@drawable/ic_edit_white_24dp"
+        android:orderInCategory="101"
+        android:title="@string/edit_string"
+        app:showAsAction="ifRoom" />
 </menu>

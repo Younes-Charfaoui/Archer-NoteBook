@@ -18,14 +18,16 @@ class AdjustmentViewModel(application: Application) : AndroidViewModel(applicati
 
 
     fun insertAdjustment(adjustment: Adjustment) =
-            mRepository.insertAdjustment(adjustment);
+            mRepository.insertAdjustment(adjustment)
 
 
     fun deleteAdjustment(adjustment: Adjustment) =
-            mRepository.deleteAdjustment(adjustment);
+            mRepository.deleteAdjustment(adjustment)
 
+    fun updateAdjustment(adjustment: Adjustment) =
+            mRepository.updateAdjustment(adjustment)
 
     fun deleteAllAdjustments() =
-            mRepository.deleteAllAdjustments();
+            mRepository.deleteAllAdjustments()
 
 }
