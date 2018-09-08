@@ -83,6 +83,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
             verticalAdjustInputEditText.setText(adjustment?.verticalAdjustment)
             descriptionAdjustInputEditText.setText(adjustment?.description)
             findViewById<RadioButton>(getRadioFromDistance(adjustment?.distance!!)).isChecked = true
+            currentId = getRadioFromDistance(adjustment.distance)
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -186,7 +187,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
                     val intentOne = Intent()
 
                     if (intent?.getIntExtra(KEY_ACTION, -1) == ACTION_UPDATE) {
-
+                        adjustment.id = intent.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT).id
                         intentOne.putExtra(KEY_ACTION, ACTION_UPDATE)
                     } else {
 
@@ -196,6 +197,7 @@ class AddAdjustmentActivity : AppCompatActivity() {
                             adjustment.path = mCurrentPhotoFiles
 
                     }
+                    println(adjustment.toString())
                     intentOne.putExtra(AdjustmentsActivity.KEY_DATA, adjustment)
                     setResult(Activity.RESULT_OK, intentOne)
                     if (mInterstitialAd?.isLoaded!!) mInterstitialAd?.show()

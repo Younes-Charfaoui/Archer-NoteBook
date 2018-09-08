@@ -67,6 +67,10 @@ class Adjustment : Parcelable {
         return 0
     }
 
+    override fun toString(): String {
+        return "Adjustment(id=$id, distance=$distance, verticalAdjustment=$verticalAdjustment, horizontalAdjustment=$horizontalAdjustment, date=$date, path=$path, description=$description)"
+    }
+
     companion object CREATOR : Parcelable.Creator<Adjustment> {
         override fun createFromParcel(parcel: Parcel): Adjustment {
             return Adjustment(parcel)

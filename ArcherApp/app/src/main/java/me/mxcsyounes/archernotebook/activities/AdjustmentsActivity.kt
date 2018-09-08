@@ -115,10 +115,15 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
 
         if (requestCode == REQUEST_CODE_DELETE && resultCode == Activity.RESULT_OK)
             if (data != null) {
+                Log.d(TAG , "final onActivityResult is called")
                 if (data.getIntExtra(AddAdjustmentActivity.KEY_ACTION, -1) != -1) {
                     mViewModel?.updateAdjustment(data.getParcelableExtra(KEY_DATA))
-                } else
+                    Log.d(TAG , "updateAdjustment is called")
+
+                } else{
                     mViewModel?.deleteAdjustment(data.getParcelableExtra(KEY_DATA))
+                    Log.d(TAG , "deleteAdjustment is called")
+                }
             }
         super.onActivityResult(requestCode, resultCode, data)
     }

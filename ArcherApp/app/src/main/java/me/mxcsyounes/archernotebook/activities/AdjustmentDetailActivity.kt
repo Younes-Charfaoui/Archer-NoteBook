@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -134,6 +135,11 @@ class AdjustmentDetailActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == REQUEST_UPDATE && resultCode == Activity.RESULT_OK) {
+            val adjustment = data?.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_DATA)
+            if (adjustment == null) Log.d(TAG, "The object is null")
+            else {
+                Log.d(TAG, "Data returned $adjustment")
+            }
             data?.putExtra(AddAdjustmentActivity.KEY_ACTION, AddAdjustmentActivity.ACTION_UPDATE)
             setResult(Activity.RESULT_OK, data)
             finish()
@@ -153,5 +159,6 @@ class AdjustmentDetailActivity : AppCompatActivity() {
         }
 
         const val REQUEST_UPDATE = 14002
+        const val TAG = "AdjustmentDetailActivit"
     }
 }
