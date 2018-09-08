@@ -57,19 +57,15 @@ class AddAdjustmentActivity : AppCompatActivity() {
 
         currentId = R.id.addAdjust70MeterRadio
 
-
         adjustButtonAddPhoto.setOnClickListener {
             takePhoto()
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         addAdjutsmentDistancesRadioGroup.setOnCheckedChangeListener{ _, id ->
             currentId = id
         }
-
-
     }
 
     private fun validate(): Boolean {

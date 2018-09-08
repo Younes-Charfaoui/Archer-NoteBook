@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -51,10 +52,10 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
             }
         }
 
-        add_adjust_fab.hide()
+        addAdjustFab.hide()
 
 
-        add_adjust_fab.setOnClickListener{
+        addAdjustFab.setOnClickListener{
             startActivityForResult(Intent(this, AddAdjustmentActivity::class.java), REQUEST_CODE_ADD_ADJUSTMENT)
         }
 
@@ -62,22 +63,23 @@ class AdjustmentsActivity : AppCompatActivity(), AdjustmentsAdapter.AdjustmentAd
 
         val adapter = AdjustmentsAdapter(this, this)
 
-        adjustment_recycler_view.adapter = adapter
-        adjustment_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        adjustment_recycler_view.setHasFixedSize(false)
+        adjustmentRecyclerView.adapter = adapter
+        adjustmentRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adjustmentRecyclerView.setHasFixedSize(false)
 
         mViewModel = ViewModelProviders.of(this).get(AdjustmentViewModel::class.java)
 
         mViewModel?.mAllAdjustment?.observe(this, Observer<MutableList<Adjustment>> { list ->
             adjustProgressBar.visibility = View.GONE
-            add_adjust_fab.show()
+            addAdjustFab.show()
             if (list != null && list.size > 0) {
-                adjust_empty_view.visibility = View.GONE
-                adjustment_recycler_view.visibility = View.VISIBLE
+                adjustEmptyView.visibility = View.GONE
+                adjustmentRecyclerView.visibility = View.VISIBLE
+                Log.d(TAG , "The list has ${list.size}")
                 adapter.setAdjustmentsList(list)
             } else {
                 adapter.setAdjustmentsList(null)
-                adjust_empty_view.visibility = View.VISIBLE
+                adjustEmptyView.visibility = View.VISIBLE
             }
 
         })

@@ -11,7 +11,7 @@ import java.util.*
 class Adjustment : Parcelable {
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = 0
+    var id: Int? = null
 
     var distance: Int = 0
 
@@ -31,7 +31,7 @@ class Adjustment : Parcelable {
     var description: String? = null
 
     constructor(parcel: Parcel) {
-        id = parcel.readInt()
+        id = null
         distance = parcel.readInt()
         verticalAdjustment = parcel.readString()
         horizontalAdjustment = parcel.readString()
@@ -55,7 +55,6 @@ class Adjustment : Parcelable {
     constructor()
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id!!)
         parcel.writeInt(distance)
         parcel.writeString(verticalAdjustment)
         parcel.writeString(horizontalAdjustment)

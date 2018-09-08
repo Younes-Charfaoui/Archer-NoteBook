@@ -39,7 +39,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/adjust_empty_view"
+            android:id="@+id/adjustEmptyView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

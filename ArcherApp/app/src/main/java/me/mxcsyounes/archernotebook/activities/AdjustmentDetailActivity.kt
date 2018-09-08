@@ -109,13 +109,13 @@ class AdjustmentDetailActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                         .setTitle("Delete this?")
                         .setMessage("The data cannot be retrieved any more.")
-                        .setPositiveButton("Delete", { _, _ ->
+                        .setPositiveButton("Delete") { _, _ ->
                             val deleteIntent = Intent()
                             val adjustment: Adjustment = intent.getParcelableExtra(AdjustmentsActivity.KEY_ADJUSTMENT)
                             deleteIntent.putExtra(AdjustmentsActivity.KEY_DATA, adjustment)
                             setResult(Activity.RESULT_OK, deleteIntent)
                             finish()
-                        })
+                        }
                         .setNegativeButton("Cancel", null)
                         .show()
                 return true

@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_adjustments">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/adjustment_recycler_view"
+        android:id="@+id/adjustmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/adViewAdjustment" />
@@ -35,7 +35,7 @@
 
 
         <LinearLayout
-            android:id="@+id/adjust_empty_view"
+            android:id="@+id/adjustEmptyView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -71,7 +71,7 @@
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_adjust_fab"
+        android:id="@+id/addAdjustFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/adViewAdjustment"
