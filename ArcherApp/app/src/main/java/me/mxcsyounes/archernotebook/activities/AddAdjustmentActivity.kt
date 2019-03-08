@@ -77,8 +77,8 @@ class AddAdjustmentActivity : AppCompatActivity() {
 
         if (intent?.getIntExtra(KEY_ACTION, -1) == ACTION_UPDATE) {
             val adjustment = intent.getParcelableExtra<Adjustment>(AdjustmentsActivity.KEY_ADJUSTMENT)
-            if(adjustment != null) Log.d(TAG , "adjustment is not null")
-            else Log.d(TAG , "adjustment is null")
+            if (adjustment != null) Log.d(TAG, "adjustment is not null")
+            else Log.d(TAG, "adjustment is null")
             horizontalAdjustInputEditText.setText(adjustment?.horizontalAdjustment)
             verticalAdjustInputEditText.setText(adjustment?.verticalAdjustment)
             descriptionAdjustInputEditText.setText(adjustment?.description)

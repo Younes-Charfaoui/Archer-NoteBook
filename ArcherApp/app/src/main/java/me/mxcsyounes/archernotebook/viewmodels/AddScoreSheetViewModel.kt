@@ -50,13 +50,12 @@ class AddScoreSheetViewModel(application: Application) : AndroidViewModel(applic
         get() = "${scores[1].total} / ${scores[1].over}"
 
 
-
-    fun scoreSeries(number : Int): Array<out DataPoint>? {
+    fun scoreSeries(number: Int): Array<out DataPoint>? {
         val dataPoints = mutableListOf<DataPoint>()
-            for (round in scores[number-1].rounds) {
-                dataPoints.add(DataPoint(round.number.toDouble(), Round.sumRound(round.scores)
-                        .toDouble()))
-            }
-            return dataPoints.toTypedArray()
+        for (round in scores[number - 1].rounds) {
+            dataPoints.add(DataPoint(round.number.toDouble(), Round.sumRound(round.scores)
+                    .toDouble()))
         }
+        return dataPoints.toTypedArray()
+    }
 }

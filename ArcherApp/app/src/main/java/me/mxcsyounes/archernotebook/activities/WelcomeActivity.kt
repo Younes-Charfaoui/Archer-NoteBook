@@ -34,7 +34,7 @@ class WelcomeActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         //checking if the sdk is grate than Lollipop
         if (Build.VERSION.SDK_INT >= 21) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View. SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
 
         setContentView(R.layout.activity_welcome)
@@ -46,7 +46,7 @@ class WelcomeActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View .SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             window.statusBarColor = Color.TRANSPARENT
         }
 
@@ -55,13 +55,12 @@ class WelcomeActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         welcome_view_pager.addOnPageChangeListener(this)
 
         //when the skip button is Pressed
-        skip_button.setOnClickListener{
+        skip_button.setOnClickListener {
             launchMainScreen()
         }
 
         //when the next button is pressed
-        next_button.setOnClickListener{
-
+        next_button.setOnClickListener {
             val current = getItem()
             if (current < mLayouts.size) {
                 welcome_view_pager.currentItem = current
@@ -69,8 +68,6 @@ class WelcomeActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
                 launchMainScreen()
             }
         }
-
-
     }
 
     private fun launchMainScreen() {
@@ -92,7 +89,6 @@ class WelcomeActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     }
 
     override fun onPageSelected(position: Int) {}
-
 
     override fun onPageScrollStateChanged(state: Int) {}
 }
